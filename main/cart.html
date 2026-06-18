@@ -59,5 +59,150 @@
 
   <script src="/main/scripts/main.js"></script>
   <script src="/main/scripts/shop.js"></script>
+  <script>
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+const consultationModal = document.getElementById('consultationModal');
+const closeConsultationModal = document.getElementById('closeConsultationModal');
+const productForm = document.getElementById('productForm');
+const productsGrid = document.getElementById('productsGrid');
+
+if (menuBtn && mobileMenu) {
+  menuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.textContent = isOpen ? '✕' : '☰';
+  });
+
+  mobileMenu.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    });
+  });
+}
+
+const slides = document.querySelectorAll('.hero-slide');
+let current = 0;
+
+setInterval(() => {
+  if (!slides.length) return;
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+}, 5000);
+
+function openConsultationModal() {
+  if (!consultationModal) return;
+  consultationModal.classList.remove('hidden');
+}
+
+function closeConsultationModalFn() {
+  if (!consultationModal) return;
+  consultationModal.classList.add('hidden');
+}
+
+function getStarterProducts() {
+  return [
+    { image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600', name: 'Poppy Dew Lip Gloss', description: 'A luminous gloss for glowing bridal portraits and special occasions.', category: 'Beauty', price: '12,500' },
+    { image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600', name: 'Gilded Glow Shimmer Oil', description: 'A polished shimmer finish for events, photos, and elegant evenings.', category: 'Body', price: '18,000' },
+    { image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600', name: 'Velvet Muse Palette', description: 'Soft matte tones made for flawless bridal and event styling.', category: 'Beauty', price: '25,000' },
+    { image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600', name: 'Hydra-Flourish Serum', description: 'Hydrating care that keeps your glow fresh before every celebration.', category: 'Skincare', price: '32,000' }
+  ];
+}
+
+function getProducts() {
+  const saved = JSON.parse(localStorage.getItem('flourishProducts') || 'null');
+  return Array.isArray(saved) && saved.length ? saved : getStarterProducts();
+}
+
+function renderProducts() {
+  if (!productsGrid) return;
+
+  const products = getProducts();
+
+  productsGrid.innerHTML = products.map((item) => `
+    <article class="product-card rounded-3xl bg-white p-4 shadow-xl hover:-translate-y-1 transition">
+      <img src="${item.image}" alt="${item.name}" class="h-56 w-full rounded-2xl object-cover">
+      <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${item.category || 'Beauty'}</span>
+      <h3 class="mt-2 text-xl font-semibold text-blue-950">${item.name}</h3>
+      
+      <p class="price mt-3 text-blue-800 font-semibold"> ₦${item.price || '12,500'}</p>
+    </article>
+  `).join('');
+}
+
+if (productForm && productsGrid) {
+  productForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const image = document.getElementById('productImage').value.trim();
+    const name = document.getElementById('productName').value.trim();
+    const description = document.getElementById('productDescription').value.trim();
+
+    if (!image || !name || !description) return;
+
+    const currentProducts = getProducts();
+    const nextProducts = Array.isArray(currentProducts) ? currentProducts.slice() : [];
+    nextProducts.unshift({
+      image,
+      name,
+      description,
+      category: 'New Upload',
+      price: '14,500'
+    });
+
+    localStorage.setItem('flourishProducts', JSON.stringify(nextProducts));
+    productForm.reset();
+    renderProducts();
+  });
+}
+
+if (consultationModal) {
+  document.querySelectorAll('.open-consultation-modal').forEach((button) => {
+    button.addEventListener('click', openConsultationModal);
+  });
+
+  consultationModal.addEventListener('click', (event) => {
+    if (event.target.matches('[data-close-modal="true"]')) {
+      closeConsultationModalFn();
+    }
+  });
+
+  if (closeConsultationModal) {
+    closeConsultationModal.addEventListener('click', closeConsultationModalFn);
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeConsultationModalFn();
+    }
+  });
+}
+
+renderProducts();
+
+function sendEmail(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const data = new FormData(form);
+  const name = (data.get('name') || 'Client').toString().trim();
+  const email = (data.get('email') || '').toString().trim();
+  const message = (data.get('message') || '').toString().trim();
+  const subject = encodeURIComponent(`New consultation request from ${name}`);
+  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+  window.location.href = `mailto:flourishpoppies@gmail.com?subject=${subject}&body=${body}`;
+  form.reset();
+}
+
+const glow = document.createElement('div');
+glow.className = 'cursor-glow';
+document.body.appendChild(glow);
+
+document.addEventListener('mousemove', (event) => {
+  glow.style.setProperty('--x', `${event.clientX}px`);
+  glow.style.setProperty('--y', `${event.clientY}px`);
+});
+</script>
 </body>
 </html>

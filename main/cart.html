@@ -203,6 +203,138 @@ document.addEventListener('mousemove', (event) => {
   glow.style.setProperty('--x', `${event.clientX}px`);
   glow.style.setProperty('--y', `${event.clientY}px`);
 });
+
+
+function formatPrice(value) {
+  return new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits: 0
+  }).format(value);
+}
+
+function renderCart() {
+  const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+
+  const container = document.getElementById('cartItems');
+  const subtotal = document.getElementById('cartSubtotal');
+  const count = document.getElementById('cartCount');
+
+  if (!container) return;
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-10">
+        <h3 class="text-xl font-semibold text-blue-950">
+          Your cart is empty
+        </h3>
+        <a href="shop.html"
+           class="mt-4 inline-block bg-blue-800 text-white px-5 py-3 rounded-xl">
+           Continue Shopping
+        </a>
+      </div>
+    `;
+
+    subtotal.textContent = formatPrice(0);
+    count.textContent = '0 items';
+    return;
+  }
+
+  let total = 0;
+
+  container.innerHTML = cart.map((item,index) => {
+
+    const itemTotal = item.price * item.qty;
+    total += itemTotal;
+
+    return `
+      <article class="rounded-3xl border border-amber-100 bg-white p-5 shadow-xl flex flex-col md:flex-row gap-5 md:items-center justify-between">
+
+        <div class="flex gap-4 items-center">
+          <img src="${item.image}"
+               alt="${item.name}"
+               class="h-24 w-24 rounded-2xl object-cover">
+
+          <div>
+            <h3 class="text-xl font-semibold text-blue-950">
+              ${item.name}
+            </h3>
+
+            <p class="text-sm text-gray-600">
+              ${item.category}
+            </p>
+
+            <p class="text-sm text-blue-800 font-semibold">
+              ${formatPrice(item.price)}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+
+          <button onclick="decreaseQty(${index})"
+            class="bg-gray-200 px-3 py-1 rounded">
+            -
+          </button>
+
+          <span>${item.qty}</span>
+
+          <button onclick="increaseQty(${index})"
+            class="bg-gray-200 px-3 py-1 rounded">
+            +
+          </button>
+
+        </div>
+
+        <div class="font-bold text-blue-900">
+          ${formatPrice(itemTotal)}
+        </div>
+
+        <button onclick="removeItem(${index})"
+          class="bg-red-500 text-white px-3 py-2 rounded-lg">
+          Remove
+        </button>
+
+      </article>
+    `;
+  }).join('');
+
+  subtotal.textContent = formatPrice(total);
+
+  const totalItems = cart.reduce((sum,item)=>sum+item.qty,0);
+  count.textContent = `${totalItems} item${totalItems > 1 ? 's' : ''}`;
+}
+
+function increaseQty(index) {
+  const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+
+  cart[index].qty++;
+
+  localStorage.setItem('flourishCart', JSON.stringify(cart));
+  renderCart();
+}
+
+function decreaseQty(index) {
+  const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+
+  if(cart[index].qty > 1){
+      cart[index].qty--;
+  }
+
+  localStorage.setItem('flourishCart', JSON.stringify(cart));
+  renderCart();
+}
+
+function removeItem(index) {
+  const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+
+  cart.splice(index,1);
+
+  localStorage.setItem('flourishCart', JSON.stringify(cart));
+  renderCart();
+}
+
+renderCart();
 </script>
 </body>
 </html>

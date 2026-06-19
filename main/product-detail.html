@@ -140,9 +140,7 @@ function renderProductDetail() {
 
   const params = new URLSearchParams(window.location.search);
   const product = getProductById(params.get('id'));
-  document.getElementById('addCartBtn')
-.addEventListener('click', () => addToCart(product));
-
+ 
   detail.innerHTML = `
     <div class="grid lg:grid-cols-2 gap-10 items-center">
       <img src="${product.image}" alt="${product.name}" class="rounded-3xl shadow-2xl h-[420px] object-cover">

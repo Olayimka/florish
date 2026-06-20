@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Payment</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-8 rounded-3xl shadow-xl text-center">
+
+<h2 class="text-3xl font-bold mb-4">
+Complete Payment
+</h2>
+
+<button
+onclick="payNow()"
+class="bg-green-600 text-white px-8 py-4 rounded-xl">
+
+Pay Now
+
+</button>
+
+</div>
+
+<script>
+
+function payNow(){
+
+const billing =
+JSON.parse(
+localStorage.getItem('billingInfo')
+);
+
+const cart =
+JSON.parse(
+localStorage.getItem('flourishCart')
+);
+
+let total = 0;
+
+cart.forEach(item=>{
+total += item.price * item.qty;
+});
+
+PaystackPop.setup({
+
+key:'YOUR_PAYSTACK_PUBLIC_KEY',
+
+email:billing.email,
+
+amount:total * 100,
+
+currency:'NGN',
+
+callback:function(response){
+
+localStorage.setItem(
+'paymentReference',
+response.reference
+);
+
+window.location.href =
+'success.html';
+
+}
+
+}).openIframe();
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Email Verification</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-md">
+
+<h2 class="text-2xl font-bold mb-5">
+Verify Email
+</h2>
+
+<input
+id="email"
+type="email"
+placeholder="Enter Email"
+class="w-full border p-3 rounded-xl mb-4"
+/>
+
+<button
+onclick="sendOTP()"
+class="w-full bg-blue-800 text-white p-3 rounded-xl">
+Send OTP
+</button>
+
+<div id="otpArea" class="hidden mt-5">
+
+<input
+id="otp"
+placeholder="Enter OTP"
+class="w-full border p-3 rounded-xl mb-4"
+/>
+
+<button
+onclick="verifyOTP()"
+class="w-full bg-green-600 text-white p-3 rounded-xl">
+Verify OTP
+</button>
+
+</div>
+
+</div>
+
+<script>
+let generatedOTP = '';
+
+function sendOTP(){
+
+generatedOTP =
+Math.floor(100000 + Math.random() * 900000);
+
+alert(
+'Demo OTP: ' + generatedOTP
+);
+
+document
+.getElementById('otpArea')
+.classList.remove('hidden');
+
+}
+
+function verifyOTP(){
+
+const entered =
+document.getElementById('otp').value;
+
+if(entered === generatedOTP){
+
+window.location.href =
+'billing.html';
+
+}else{
+
+alert('Invalid OTP');
+
+}
+
+}
+</script>
+
+</body>
+</html>

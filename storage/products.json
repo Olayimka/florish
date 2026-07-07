@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Poppy Dew Lip Gloss",
+    "category": "Beauty",
+    "price": 12500,
+    "image": "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600",
+    "description": "A luminous gloss for glowing bridal portraits and special occasions.",
+    "details": "Soft shimmer, nourishing formula, and a satin finish that photographs beautifully for every bridal moment."
+  },
+  {
+    "id": 2,
+    "name": "Gilded Glow Shimmer Oil",
+    "category": "Body",
+    "price": 18000,
+    "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600",
+    "description": "A polished shimmer finish for events, photos, and elegant evenings.",
+    "details": "Lightweight glow oil with silky hydration, perfect for bridal prep or evening events."
+  },
+  {
+    "id": 3,
+    "name": "Velvet Muse Palette",
+    "category": "Beauty",
+    "price": 25000,
+    "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600",
+    "description": "Soft matte tones made for flawless bridal and event styling.",
+    "details": "Buildable soft matte shades designed for classic bridal looks and refined event make-up."
+  },
+  {
+    "id": 4,
+    "name": "Hydra-Flourish Serum",
+    "category": "Skincare",
+    "price": 32000,
+    "image": "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600",
+    "description": "Hydrating care that keeps your glow fresh before every celebration.",
+    "details": "A silky serum to prep skin pre-bridal, event, and photo sessions for a luminous finish."
+  }
+]

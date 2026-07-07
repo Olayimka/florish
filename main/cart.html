@@ -247,7 +247,8 @@ function renderCart() {
 
   container.innerHTML = cart.map((item,index) => {
 
-    const itemTotal = item.price * item.qty;
+    const itemPrice = Number(item.price || 0);
+    const itemTotal = itemPrice * Number(item.qty || 1);
     total += itemTotal;
 
     return `
@@ -268,7 +269,7 @@ function renderCart() {
             </p>
 
             <p class="text-sm text-blue-800 font-semibold">
-              ${formatPrice(item.price)}
+              ${formatPrice(Number(item.price || 0))}
             </p>
           </div>
         </div>

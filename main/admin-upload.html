@@ -19,19 +19,40 @@
   </nav>
 
   <main class="py-16 bg-[#f7f3ef]" style="margin:15px;">
-    <div class="max-w-4xl mx-auto px-6 rounded-3xl bg-white p-8 shadow-2xl border border-amber-100">
-      <h1 class="text-1rem uppercase tracking-[0.35em] text-blue-800">Admin uploader</h1>
-    
-      <p class="mt-4 text-gray-700">Use this page to upload a beauty product image and details. The item appears instantly on the shop page.</p>
-      <form id="productForm" class="mt-8 grid gap-4 md:grid-cols-2">
-        <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Image URL</span><input id="productImage" type="url" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="https://example.com/image.jpg" /></label>
-        <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Product name</span><input id="productName" type="text" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Golden Glow Serum" /></label>
-        <label class="block text-sm text-gray-700 md:col-span-2"><span class="mb-1 block font-medium">Short description</span><input id="productDescription" type="text" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Soft glow for bridal prep and event styling" /></label>
-        <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Category</span><input id="productCategory" type="text" class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Beauty" /></label>
-        <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Price (NGN)</span><input id="productPrice" type="number" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="15000" /></label>
-        <button type="submit" class="md:col-span-2 rounded-2xl bg-blue-800 px-5 py-3 text-white font-semibold hover:bg-blue-900 transition">Upload product</button>
-      </form>
-      <p class="mt-4 text-sm text-gray-500">Tip: after uploading, open the shop page to see the new item in the product grid.</p>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="rounded-3xl bg-white p-8 shadow-2xl border border-amber-100">
+        <h1 class="text-1rem uppercase tracking-[0.35em] text-blue-800">Admin uploader</h1>
+        <p class="mt-4 text-gray-700">Upload a product image from your device or paste a URL. The item appears instantly on the shop page and can be edited or removed later.</p>
+        <form id="productForm" class="mt-8 grid gap-4 md:grid-cols-2">
+          <input id="productId" type="hidden" />
+          <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Upload image</span><input id="productImageFile" type="file" accept="image/*" class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" /></label>
+          <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Image URL</span><input id="productImage" type="url" class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="https://example.com/image.jpg" /></label>
+          <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Product name</span><input id="productName" type="text" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Golden Glow Serum" /></label>
+          <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Price (NGN)</span><input id="productPrice" type="number" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="15000" /></label>
+          <label class="block text-sm text-gray-700"><span class="mb-1 block font-medium">Category</span><input id="productCategory" type="text" class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Beauty" /></label>
+          <label class="flex items-center gap-3 rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3 text-sm text-gray-700"><input id="productSold" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-800" /><span>Mark as sold</span></label>
+          <label class="block text-sm text-gray-700 md:col-span-2"><span class="mb-1 block font-medium">Short description</span><input id="productDescription" type="text" required class="w-full rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3" placeholder="Soft glow for bridal prep and event styling" /></label>
+          <button type="submit" class="md:col-span-2 rounded-2xl bg-blue-800 px-5 py-3 text-white font-semibold hover:bg-blue-900 transition">Upload product</button>
+        </form>
+      </div>
+
+      <div class="rounded-3xl bg-white p-8 shadow-2xl border border-amber-100">
+        <h2 class="text-2xl font-semibold text-blue-950">Inventory overview</h2>
+        <div class="mt-6 overflow-x-auto">
+          <table class="min-w-full text-left">
+            <thead class="border-b border-amber-100 text-xs uppercase tracking-[0.2em] text-gray-500">
+              <tr>
+                <th class="py-3 pr-3">Product</th>
+                <th class="py-3 pr-3">Category</th>
+                <th class="py-3 pr-3">Price</th>
+                <th class="py-3 pr-3">Status</th>
+                <th class="py-3 pr-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminInventoryTable"></tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -59,23 +80,6 @@
   </footer>
 
   <script src="/main/scripts/main.js"></script>
-  <script>
-    const productForm = document.getElementById('productForm');
-    if (productForm) {
-      productForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const image = document.getElementById('productImage').value.trim();
-        const name = document.getElementById('productName').value.trim();
-        const description = document.getElementById('productDescription').value.trim();
-        const category = document.getElementById('productCategory').value.trim() || 'New Upload';
-        const price = document.getElementById('productPrice').value.trim();
-        const products = JSON.parse(localStorage.getItem('flourishProducts') || '[]');
-        products.unshift({ id: Date.now(), image, name, description, category, price: Number(price) || 15000 });
-        localStorage.setItem('flourishProducts', JSON.stringify(products));
-        productForm.reset();
-        alert('Product uploaded successfully.');
-      });
-    }
-  </script>
+  <script src="/main/scripts/app.js"></script>
 </body>
 </html>

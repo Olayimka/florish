@@ -91,29 +91,41 @@ function addToCart(product) {
   window.location.href = 'cart.html';
 }
 
-function renderShopProducts() {
+async function renderShopProducts() {
   const container = document.getElementById('shopProducts');
   if (!container) return;
 
   const params = new URLSearchParams(window.location.search);
-  const selectedProductId = params.get('product');
-  const products = getAllProducts();
+  const selectedProductId = params.get('product') || params.get('id');
+  let products = getAllProducts();
+
+  try {
+    const res = await fetch('/api/products');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.products) && data.products.length) {
+        products = data.products.map(p => ({ ...p, price: normalizePrice(p.price) }));
+      }
+    }
+  } catch (err) {}
 
   container.innerHTML = products.map((product) => {
     const converted = getConvertedPrices(product.price);
     const isSelected = String(product.id) === String(selectedProductId);
     return `
-      <article class="product-card rounded-3xl bg-white p-4 shadow-xl hover:-translate-y-1 transition ${isSelected ? 'ring-2 ring-blue-800' : ''}" data-product-id="${product.id}">
-        <a href="product-detail.html?id=${product.id}" class="block">
-          <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover">
-        </a>
-        <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category}</span>
-        <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
-        <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)}</p>
-        <p class="mt-1 text-sm text-gray-600">${formatCad(converted.cad)}</p>
-        <div class="mt-4 flex flex-wrap gap-2">
-          <a href="product-detail.html?id=${product.id}" class="inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900">View details</a>
-          <button type="button" class="inline-flex rounded-full border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50" onclick="addToCart(getProductById('${product.id}'))">Add to cart</button>
+      <article class="product-card rounded-3xl bg-white p-4 shadow-xl hover:-translate-y-1 transition flex flex-col justify-between ${isSelected ? 'ring-2 ring-blue-800' : ''}" data-product-id="${product.id}">
+        <div>
+          <a href="product-detail.html?id=${product.id}" class="block">
+            <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover hover:opacity-95 transition">
+          </a>
+          <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
+          <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
+          <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)}</p>
+          <p class="mt-1 text-sm text-gray-600">${formatCad(converted.cad)}</p>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-gray-100">
+          <a href="product-detail.html?id=${product.id}" class="inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900 shadow-sm transition">View details</a>
+          <button type="button" class="inline-flex rounded-full border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50 transition" onclick="addToCart(getProductById('${product.id}'))">Add to cart</button>
         </div>
       </article>
     `;
@@ -157,6 +169,7 @@ function renderCart() {
   const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
   const container = document.getElementById('cartItems');
   const subtotal = document.getElementById('cartSubtotal');
+  const cadSubtotal = document.getElementById('cartCadSubtotal');
   const count = document.getElementById('cartCount');
 
   if (!container) return;
@@ -164,6 +177,7 @@ function renderCart() {
   if (!cart.length) {
     container.innerHTML = '<p class="text-gray-600">Your cart is empty. Start with one of our beauty essentials.</p>';
     if (subtotal) subtotal.textContent = formatPrice(0);
+    if (cadSubtotal) cadSubtotal.textContent = formatCad(0);
     if (count) count.textContent = '0 items';
     return;
   }
@@ -186,6 +200,7 @@ function renderCart() {
   `).join('');
 
   if (subtotal) subtotal.textContent = formatPrice(total);
+  if (cadSubtotal) cadSubtotal.textContent = formatCad(getConvertedPrices(total).cad);
   if (count) count.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
 }
 

@@ -7,82 +7,134 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </head>
 <body class="bg-[#fffaf5] text-gray-800">
   <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-      <a href="index.html" class="flex items-center gap-3 min-w-0"><img src="assest/logo.png" alt="Flourish Poppies logo" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" /><h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2></a>
-      <ul class="hidden md:flex gap-6 text-gray-700 font-medium"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="shop.html">Shop</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="consultation.html" class="text-blue-800">Consultation</a></li><li><a href="contact.html">Contact</a></li></ul>
-      <div class="flex items-center gap-3"><button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button><a href="shop.html" class="hidden sm:inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm">Shop Now</a></div>
-    </div>
-     <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-pink-100">
-    <div class="px-5 py-5">
-
-        <div class="space-y-2">
-
-            <a href="index.html"
-               class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-500 transition-all duration-300">
-                <span class="font-medium text-gray-700">Home</span>
-                <span class="text-green-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-            </a>
-
-            <a href="about.html"
-             class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-500 transition-all duration-300">
-            
-                <span class="font-medium text-gray-700">About Us</span>
-                <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-            </a>
-
-            <a href="gallery.html"
-               class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-                <span class="font-medium text-gray-700">Gallery</span>
-                <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-            </a>
-
-             <a href="consultation.html"
-               class="group flex items-center justify-between rounded-2xl px-4 py-4  bg-[#ae9378] hover:bg-pink-50 transition-all duration-300">
-                <span class="font-medium text-[#694929]">Consultation</span>
-                <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-            </a>
-
-            <a href="contact.html"
-               class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-                <span class="font-medium text-gray-700">Contact Us</span>
-                <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-            </a>
-
+      <div class="flex items-center gap-3 min-w-0">
+        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0); image-rendering:auto;">
+        <div>
+          <h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2>
         </div>
+      </div>
 
-        <div class="my-5 border-t border-pink-100"></div>
+      <ul class="hidden md:flex gap-8 text-gray-700 font-medium">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="consultation.html" class="text-blue-800 font-semibold">Consultation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
 
-        <a href="shop.html"
-           class="block text-center py-4 rounded-2xl font-semibold text-white bg-[#694929] from-blue-800 via-blue-700 to-blue-900 shadow-xl hover:shadow-blue-300/40 hover:-translate-y-1 transition-all duration-300">
-            Shop Now →
-        </a>
-
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
+        <a href="shop.html" class="hidden sm:inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm">Shop Now</a>
+      </div>
     </div>
-</div>
+
+    <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-pink-100">
+      <div class="px-5 py-5">
+        <div class="space-y-2">
+          <a href="index.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Home</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="about.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">About Us</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="gallery.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Gallery</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="consultation.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#ae9378] hover:bg-pink-100 transition-all duration-300">
+            <span class="font-medium text-[#694929]">Consultation</span>
+            <span class="text-pink-700 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="contact.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Contact Us</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+        </div>
+        <div class="my-5 border-t border-pink-100"></div>
+        <a href="shop.html" class="block text-center py-4 rounded-2xl font-semibold text-white bg-[#694929] from-blue-800 via-blue-700 to-blue-900 shadow-xl hover:shadow-blue-300/40 hover:-translate-y-1 transition-all duration-300">
+          Shop Now →
+        </a>
+      </div>
   </nav>
   <main>
    
     <section class="py-16 bg-[#f7f3ef]">
       <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-start">
-        <div class="rounded-3xl bg-white p-6 shadow-xl">
-          <h2 class="heading text-2xl font-semibold text-blue-950">Need help choosing?</h2>
-          <p class="mt-4 text-gray-700">Select the consultation that fits your celebration and we will guide you from there.</p>
-          <div class="mt-6 space-y-3">
-            <button type="button" data-open-calendly class="w-full rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3 text-blue-950 font-semibold hover:bg-blue-100 transition">Book Bridal & Event</button>
-            <button type="button" data-open-calendly class="w-full rounded-2xl border border-pink-100 bg-pink-50 px-4 py-3 text-pink-950 font-semibold hover:bg-pink-100 transition">Book Make-up Session</button>
-            <a href="contact.html" class="block rounded-2xl border border-amber-100 bg-[#fffaf5] px-4 py-3 text-gray-800 font-semibold hover:bg-amber-100 transition">Contact the team</a>
+        <div class="rounded-3xl bg-white p-6 sm:p-8 shadow-xl">
+          <div class="mb-8 rounded-2xl bg-blue-50 p-4 border border-blue-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h3 class="font-bold text-blue-950">Book via Calendly</h3>
+              <p class="text-xs text-blue-800">Use Calendly for direct instant booking with automatic Google Calendar sync.</p>
+            </div>
+            <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/blessedbestone/flourishpoppies-consultation'});return false;" class="whitespace-nowrap rounded-xl bg-blue-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-900 shadow-sm transition">
+              Open Calendly 📅
+            </button>
+          </div>
+
+          <h2 class="heading text-2xl font-semibold text-blue-950">Or Book Directly Below</h2>
+          <p class="mt-2 text-gray-700">Schedule a 1-on-1 session directly with our team.</p>
+          
+          <form id="consultationBookingForm" class="mt-6 space-y-4">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Your Name</label>
+              <input type="text" id="cName" required placeholder="Jane Doe" class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Your Email</label>
+              <input type="email" id="cEmail" required placeholder="jane@example.com" class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Phone Number</label>
+                <input type="tel" id="cPhone" placeholder="+234..." class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Service Type</label>
+                <select id="cType" class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 bg-white">
+                  <option value="Bridal & Event Consultation">Bridal & Event Consultation</option>
+                  <option value="Make-up & Beauty Session">Make-up & Beauty Session</option>
+                  <option value="Skincare Guidance">Skincare Guidance</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Preferred Date & Time</label>
+              <input type="datetime-local" id="cDate" required class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-1">Notes / Preferences</label>
+              <textarea id="cMessage" rows="3" placeholder="Tell us about your event date or beauty goals..." class="w-full rounded-2xl border border-gray-200 p-3 focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+            </div>
+
+            <button type="submit" id="cSubmitBtn" class="w-full rounded-2xl bg-blue-800 px-5 py-3.5 font-semibold text-white hover:bg-blue-900 transition shadow-md">Confirm & Sync to Calendar 📅</button>
+          </form>
+
+          <div id="cSuccess" class="hidden mt-6 rounded-2xl bg-green-50 p-5 border border-green-200">
+            <h3 class="font-bold text-green-900 text-lg">📅 Consultation Booked!</h3>
+            <p id="cSuccessMsg" class="text-sm text-green-800 mt-1"></p>
+            <a id="gCalLink" href="#" target="_blank" class="mt-4 inline-block rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">Add to Google Calendar 📅</a>
           </div>
         </div>
-        <div class="rounded-3xl bg-blue-950 text-white p-6 shadow-xl">
-          <h2 class="heading text-2xl font-semibold">What to expect</h2>
-          <ul class="mt-4 space-y-3 text-gray-100">
-            <li>• Personalized beauty or styling advice</li>
-            <li>• Product suggestions and event-ready looks</li>
-            <li>• A clear plan for your bridal or cosmetic needs</li>
-          </ul>
+
+        <div class="space-y-6">
+          <div class="rounded-3xl bg-blue-950 text-white p-6 sm:p-8 shadow-xl">
+            <h2 class="heading text-2xl font-semibold">What to expect</h2>
+            <ul class="mt-4 space-y-3 text-gray-100">
+              <li>• 1-on-1 personalized beauty and styling guidance</li>
+              <li>• Custom shade matching & product recommendations</li>
+              <li>• Complete plan for your event or bridal look</li>
+              <li>• Calendar invite synced directly to your email</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -112,5 +164,56 @@
   </footer>
   <script src="/main/scripts/main.js"></script>
   <script src="/main/scripts/app.js"></script>
+  <script>
+    const cForm = document.getElementById('consultationBookingForm');
+    if (cForm) {
+      cForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const submitBtn = document.getElementById('cSubmitBtn');
+        const successBox = document.getElementById('cSuccess');
+        const successMsg = document.getElementById('cSuccessMsg');
+        const gCalLink = document.getElementById('gCalLink');
+
+        const payload = {
+          name: document.getElementById('cName').value.trim(),
+          email: document.getElementById('cEmail').value.trim(),
+          phone: document.getElementById('cPhone').value.trim(),
+          type: document.getElementById('cType').value,
+          date: document.getElementById('cDate').value,
+          message: document.getElementById('cMessage').value.trim()
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Booking & Syncing Calendar...';
+
+        try {
+          const res = await fetch('/api/consultation', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Failed to book consultation');
+
+          cForm.reset();
+          cForm.classList.add('hidden');
+          successBox.classList.remove('hidden');
+          successMsg.innerText = data.message || 'Consultation request booked! A calendar invite (.ics) has been emailed to your inbox.';
+
+          if (data.googleCalUrl) {
+            gCalLink.href = data.googleCalUrl;
+          } else {
+            gCalLink.classList.add('hidden');
+          }
+        } catch (err) {
+          alert(err.message || 'Booking error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Confirm & Sync to Calendar 📅';
+        }
+      });
+    }
+  </script>
 </body>
 </html>

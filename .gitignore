@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+
+# Session / Order / Cart Storage (Runtime data)
+storage/carts.json
+storage/orders.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

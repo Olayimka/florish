@@ -51,8 +51,20 @@
     }
   ];
 
+  function parsePrice(value) {
+    if (typeof value === 'number' && Number.isFinite(value)) return value;
+    if (!value) return 0;
+    const cleaned = String(value).replace(/[^0-9.]/g, '');
+    const parsed = parseFloat(cleaned);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
   function formatPrice(value) {
-    return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(value || 0);
+    return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(parsePrice(value));
+  }
+
+  function formatCad(value) {
+    return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(parsePrice(value));
   }
 
   function readProductsFromStorage() {
@@ -88,6 +100,24 @@
   function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     updateCartBadge();
+    syncCartWithServer(cart);
+  }
+
+  async function syncCartWithServer(cart) {
+    try {
+      let sessionId = localStorage.getItem('flourishSessionId');
+      if (!sessionId) {
+        sessionId = `sess_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+        localStorage.setItem('flourishSessionId', sessionId);
+      }
+      await fetch('/api/cart/sync', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId, cart })
+      });
+    } catch {
+      /* fallback to local storage silently */
+    }
   }
 
   function updateCartBadge() {
@@ -217,8 +247,9 @@
 
   function renderShopPage() {
     const container = document.getElementById('shopProducts');
+    const landingGrid = document.getElementById('productsGrid');
     const inventoryBody = document.getElementById('inventoryTableBody');
-    if (!container && !inventoryBody) return;
+    if (!container && !landingGrid && !inventoryBody) return;
 
     const products = getProducts();
     if (container) {
@@ -229,8 +260,8 @@
           </a>
           <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
           <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
-          <p class="mt-2 text-sm text-gray-600">${product.description}</p>
-          <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)}</p>
+          <p class="mt-2 text-sm text-gray-600">${product.description || ''}</p>
+          <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)} · <span class="text-amber-700 font-medium">${formatCad(parsePrice(product.price) / 1250)} CAD</span></p>
           <div class="mt-4 flex flex-wrap gap-2">
             <a href="product-detail.html?id=${product.id}" class="inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900">View details</a>
             <button type="button" class="inline-flex rounded-full border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50" data-add-to-cart="${product.id}">Add to cart</button>
@@ -239,12 +270,24 @@
       `).join('');
     }
 
+    if (landingGrid) {
+      landingGrid.innerHTML = products.map((product) => `
+        <a href="product-detail.html?id=${product.id}" class="product-card block rounded-3xl bg-white p-4 shadow-xl transition hover:-translate-y-1">
+          <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover">
+          <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
+          <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
+          <p class="price mt-2 text-blue-800 font-semibold">${formatPrice(product.price)} · <span class="text-amber-700 font-medium">${formatCad(parsePrice(product.price) / 1250)} CAD</span></p>
+          <span class="mt-3 inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white">View details</span>
+        </a>
+      `).join('');
+    }
+
     if (inventoryBody) {
       inventoryBody.innerHTML = products.map((product) => `
         <tr class="border-b border-amber-100 text-sm text-gray-700">
           <td class="py-3 pr-3 font-semibold text-blue-950">${product.name}</td>
           <td class="py-3 pr-3">${product.category || 'Beauty'}</td>
-          <td class="py-3 pr-3">${formatPrice(product.price)}</td>
+          <td class="py-3 pr-3">${formatPrice(product.price)} (${formatCad(parsePrice(product.price) / 1250)} CAD)</td>
           <td class="py-3 pr-3">
             <span class="rounded-full px-3 py-1 text-xs font-semibold ${product.sold ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-700'}">${product.sold ? 'Sold' : 'Available'}</span>
           </td>
@@ -268,6 +311,7 @@
           <p class="text-sm uppercase tracking-[0.25em] text-gray-500 mt-2">${product.category}</p>
           <p class="mt-5 text-gray-700 leading-7">${product.details || product.description}</p>
           <p class="mt-6 text-3xl font-bold text-blue-900">${formatPrice(product.price)}</p>
+          <p class="mt-1 text-sm font-semibold text-amber-700">Approx. ${formatCad(parsePrice(product.price) / 1250)} CAD</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <button type="button" id="detailAddToCart" class="rounded-2xl bg-blue-800 px-5 py-3 text-white font-semibold hover:bg-blue-900" data-add-to-cart="${product.id}">Add to cart</button>
             <a href="cart.html" class="rounded-2xl border border-blue-200 bg-blue-50 px-5 py-3 text-blue-900 font-semibold hover:bg-blue-100">View cart</a>
@@ -287,11 +331,12 @@
     if (!cart.length) {
       container.innerHTML = '<p class="text-gray-600">Your cart is empty. Start with one of our beauty essentials.</p>';
       if (subtotal) subtotal.textContent = formatPrice(0);
+      if (cadSubtotal) cadSubtotal.textContent = formatCad(0);
       if (count) count.textContent = '0 items';
       return;
     }
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 1), 0);
+    const total = cart.reduce((sum, item) => sum + parsePrice(item.price) * Number(item.qty || 1), 0);
     container.innerHTML = cart.map((item) => `
       <article class="rounded-3xl border border-amber-100 bg-white p-5 shadow-xl flex flex-col md:flex-row gap-5 md:items-center justify-between">
         <div class="flex gap-4 items-center">
@@ -308,13 +353,15 @@
           <button type="button" class="rounded-full border border-blue-200 px-3 py-1 text-sm" data-cart-change="${item.id}" data-qty="1">+</button>
         </div>
         <div class="flex items-center gap-4">
-          <div class="text-lg font-semibold text-blue-900">${formatPrice(Number(item.price || 0) * Number(item.qty || 1))}</div>
+          <div class="text-lg font-semibold text-blue-900">${formatPrice(parsePrice(item.price) * Number(item.qty || 1))}</div>
           <button type="button" class="rounded-full bg-rose-100 px-3 py-2 text-sm font-semibold text-rose-700" data-cart-remove="${item.id}">Remove</button>
         </div>
       </article>
     `).join('');
 
+    const cadSubtotal = document.getElementById('cartCadSubtotal');
     if (subtotal) subtotal.textContent = formatPrice(total);
+    if (cadSubtotal) cadSubtotal.textContent = formatCad(total / 1250);
     if (count) count.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
   }
 

@@ -277,45 +277,69 @@
     `;
   }
 
+  function formatCad(value) {
+    const num = Number(value || 0);
+    const cad = num / 1250;
+    return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(cad);
+  }
+
   function renderCartPage() {
     const container = document.getElementById('cartItems');
     const subtotal = document.getElementById('cartSubtotal');
+    const subtotalCad = document.getElementById('cartSubtotalCad');
+    const totalCombined = document.getElementById('cartTotalCombined');
+    const totalCadNote = document.getElementById('cartTotalCadNote');
     const count = document.getElementById('cartCount');
     if (!container) return;
 
     const cart = getCart();
     if (!cart.length) {
-      container.innerHTML = '<p class="text-gray-600">Your cart is empty. Start with one of our beauty essentials.</p>';
+      container.innerHTML = '<p class="text-slate-600 p-6 text-center">Your cart is empty. Start with one of our beauty essentials.</p>';
       if (subtotal) subtotal.textContent = formatPrice(0);
+      if (subtotalCad) subtotalCad.textContent = formatCad(0) + ' CAD';
+      if (totalCombined) totalCombined.textContent = formatPrice(0);
+      if (totalCadNote) totalCadNote.textContent = formatCad(0) + ' CAD';
       if (count) count.textContent = '0 items';
       return;
     }
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 1), 0);
-    container.innerHTML = cart.map((item) => `
-      <article class="rounded-3xl border border-amber-100 bg-white p-5 shadow-xl flex flex-col md:flex-row gap-5 md:items-center justify-between">
-        <div class="flex gap-4 items-center">
-          <img src="${item.image}" alt="${item.name}" class="h-24 w-24 rounded-2xl object-cover">
-          <div>
-            <h3 class="text-xl font-semibold text-blue-950">${item.name}</h3>
-            <p class="text-sm text-gray-600">${item.category}</p>
-            <p class="text-sm text-blue-800 font-semibold">${formatPrice(item.price)} each</p>
+    const totalNgn = cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 1), 0);
+    container.innerHTML = cart.map((item) => {
+      const itemPrice = Number(item.price || 0);
+      const lineTotal = itemPrice * Number(item.qty || 1);
+      return `
+        <article class="rounded-2xl border border-amber-100 bg-white p-5 shadow-sm flex flex-col md:flex-row gap-5 md:items-center justify-between">
+          <div class="flex gap-4 items-center">
+            <img src="${item.image}" alt="${item.name}" class="h-20 w-20 rounded-2xl object-cover">
+            <div>
+              <h3 class="text-lg font-bold text-blue-950">${item.name}</h3>
+              <p class="text-xs uppercase tracking-wider text-amber-600 font-semibold">${item.category || 'Beauty'}</p>
+              <p class="text-sm text-blue-900 font-bold mt-1">${formatPrice(itemPrice)} <span class="text-xs font-semibold text-amber-700">(${formatCad(itemPrice)} CAD)</span> each</p>
+            </div>
           </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <button type="button" class="rounded-full border border-blue-200 px-3 py-1 text-sm" data-cart-change="${item.id}" data-qty="-1">−</button>
-          <span class="text-sm font-semibold text-blue-950">Qty ${item.qty}</span>
-          <button type="button" class="rounded-full border border-blue-200 px-3 py-1 text-sm" data-cart-change="${item.id}" data-qty="1">+</button>
-        </div>
-        <div class="flex items-center gap-4">
-          <div class="text-lg font-semibold text-blue-900">${formatPrice(Number(item.price || 0) * Number(item.qty || 1))}</div>
-          <button type="button" class="rounded-full bg-rose-100 px-3 py-2 text-sm font-semibold text-rose-700" data-cart-remove="${item.id}">Remove</button>
-        </div>
-      </article>
-    `).join('');
+          <div class="flex items-center gap-3">
+            <button type="button" class="rounded-full border border-slate-200 px-3 py-1 text-sm font-bold hover:bg-slate-100" data-cart-change="${item.id}" data-qty="-1">−</button>
+            <span class="text-xs font-bold text-blue-950">Qty ${item.qty}</span>
+            <button type="button" class="rounded-full border border-slate-200 px-3 py-1 text-sm font-bold hover:bg-slate-100" data-cart-change="${item.id}" data-qty="1">+</button>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="text-right">
+              <div class="text-base font-bold text-blue-950">${formatPrice(lineTotal)}</div>
+              <div class="text-xs font-semibold text-amber-700">(${formatCad(lineTotal)} CAD)</div>
+            </div>
+            <button type="button" class="rounded-xl bg-rose-50 px-3 py-2 text-xs font-bold text-rose-700 hover:bg-rose-100" data-cart-remove="${item.id}">Remove</button>
+          </div>
+        </article>
+      `;
+    }).join('');
 
-    if (subtotal) subtotal.textContent = formatPrice(total);
-    if (count) count.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
+    if (subtotal) subtotal.textContent = formatPrice(totalNgn);
+    if (subtotalCad) subtotalCad.textContent = formatCad(totalNgn) + ' CAD';
+    if (totalCombined) totalCombined.textContent = formatPrice(totalNgn);
+    if (totalCadNote) totalCadNote.textContent = formatCad(totalNgn) + ' CAD';
+    
+    const totalItems = cart.reduce((sum, item) => sum + Number(item.qty || 1), 0);
+    if (count) count.textContent = `${totalItems} item${totalItems > 1 ? 's' : ''}`;
   }
 
   function renderAdminInventory() {

@@ -1,27 +1,87 @@
 
 
 
+/* Luxury Brand Styles & Design Tokens */
+:root {
+  --navy-deep: #071733;
+  --navy-dark: #0b254c;
+  --navy-primary: #123466;
+  --gold-accent: #d4af37;
+  --gold-light: #f4e3b2;
+  --cream-bg: #fffaf5;
+  --cream-soft: #f7f3ef;
+}
+
 body {
   font-size: 16px;
-  color: #ae9378;
+  color: #334155;
+  background-color: var(--cream-bg);
+  font-family: 'Inter', sans-serif;
   cursor: auto;
+}
+
+h1, h2, h3, h4, .heading {
+  font-family: 'Playfair Display', serif;
 }
 
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
-::selection { background: rgba(244, 187, 100, 0.35); }
+::selection { background: rgba(212, 175, 55, 0.35); color: #0b254c; }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ebd9;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a059;
+  border-radius: 4px;
+}
+
+/* Gold Gradients & Luxury Accents */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #f7e7b4 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #e6ca65 50%, #c59b27 100%);
+}
+
+.border-gold-glow {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.glass-dark {
+  background: rgba(7, 23, 51, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Hero & Founder Styles */
 .about-hero {
-  background-image: linear-gradient(180deg, rgba(11, 37, 76, 0.55) 0%, rgba(11, 37, 76, 0.65) 100%), url('https://images.unsplash.com/photo-1526481280690-8c63b1f4c6e1?auto=format&fit=crop&w=1600&q=80');
+  background-image: linear-gradient(180deg, rgba(7, 23, 51, 0.88) 0%, rgba(11, 37, 76, 0.92) 100%), url('assest/founder-portrait.jpg');
   background-size: cover;
-  background-position: center;
-  min-height: 72vh;
+  background-position: center 25%;
+  min-height: 68vh;
 }
 
 .about-hero h1 {
-  text-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
 }
 
 .founder-section {
@@ -34,12 +94,13 @@ html { scroll-behavior: smooth; }
 }
 
 .founder-photo {
-  width: min(100%, 380px);
+  width: min(100%, 420px);
 }
 
 .founder-photo__frame {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   width: 100%;
+  border-radius: 2rem;
 }
 
 .founder-photo__img {
@@ -49,8 +110,28 @@ html { scroll-behavior: smooth; }
   display: block;
 }
 
+/* UGC Story Ring Animation */
+.story-avatar-ring {
+  background: linear-gradient(45deg, #d4af37, #f72585, #7209b7, #480ca8);
+  padding: 3px;
+  border-radius: 50%;
+  animation: rotateGlow 6s linear infinite;
+}
+
+@keyframes rotateGlow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.story-avatar-img {
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Footer & Buttons */
 .footer-small {
-  padding: 1.75rem 0;
+  padding: 2.5rem 0;
 }
 
 .footer-small p {
@@ -99,8 +180,8 @@ html { scroll-behavior: smooth; }
 .consultation-modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(7, 17, 40, 0.55);
-  backdrop-filter: blur(4px);
+  background: rgba(7, 17, 40, 0.65);
+  backdrop-filter: blur(8px);
 }
 
 .consultation-modal__panel {
@@ -116,7 +197,7 @@ html { scroll-behavior: smooth; }
 .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 40px; }
 .badge { display: inline-block; background: #f4d7c7; color: #b75f24; padding: 6px 14px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; }
 .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.product-card img { height: 220px; object-fit: cover; border-radius: 16px; }
+.product-card img { height: 240px; object-fit: cover; border-radius: 16px; }
 .category { display: block; font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.25em; }
 .price { color: #0b3ea8; font-weight: 600; }
 .price span { color: #777; font-weight: 400; }
@@ -128,7 +209,8 @@ html { scroll-behavior: smooth; }
   flex: 1 1 180px;
 }
 
-@media (max-width: 992px) {
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1024px) {
   .products-grid { grid-template-columns: repeat(2, 1fr); }
   .founder-card { grid-template-columns: 1fr; }
 }
@@ -137,31 +219,32 @@ html { scroll-behavior: smooth; }
   body { font-size: 15px; cursor: auto; }
 
   .about-hero { min-height: 55vh; }
-  .about-hero h1 { font-size: clamp(2.5rem, 9vw, 3.5rem); }
-  .founder-photo { margin: 0 auto; }
+  .about-hero h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+  .founder-photo { margin: 0 auto; width: 100%; }
 
   .hero-shell { min-height: 82vh; }
 
   .hero-copy { max-width: 100%; }
 
   .hero-copy h1 {
-    font-size: clamp(2.2rem, 9vw, 3.15rem);
-    line-height: 1.05;
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.1;
   }
 
   .hero-copy p {
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     line-height: 1.6;
   }
 
-  .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .button-row { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
   .button-row button,
   .button-row a { width: 100%; flex: 1 1 auto; }
   .section-header { flex-direction: column; align-items: flex-start; }
-  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
-  .product-card img { height: 180px; }
+  .products-grid { grid-template-columns: 1fr; gap: 18px; }
+  .product-card img { height: 210px; }
 
   .hero-slide { background-position: center 35%; }
 
-  section { padding-top: 4rem; padding-bottom: 4rem; }
+  section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
 }
+

@@ -194,3 +194,5 @@ window.addToCart = addToCart;
 renderShopProducts();
 renderProductDetail();
 renderCart();
+renderProductDetail();
+renderCart();

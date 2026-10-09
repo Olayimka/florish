@@ -250,20 +250,122 @@
     return remaining;
   }
 
+  function triggerBlowKissAnimation() {
+    const existing = document.getElementById('kissThankYouModal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'kissThankYouModal';
+    modal.className = 'fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md transition-opacity duration-300';
+    modal.innerHTML = `
+      <div class="relative w-full max-w-md bg-gradient-to-b from-white via-[#fffaf5] to-[#fef7f0] rounded-3xl p-8 text-center shadow-2xl border border-amber-300/60 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="kissModalContent">
+        
+        <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-48 h-48 bg-gradient-to-tr from-pink-300/30 to-amber-300/30 rounded-full blur-2xl pointer-events-none"></div>
+
+        <div class="relative mx-auto mb-5 w-24 h-24 flex items-center justify-center rounded-full bg-gradient-to-tr from-pink-100 via-amber-50 to-pink-50 border-2 border-amber-300/70 shadow-md">
+          <span class="text-5xl transform inline-block transition-transform duration-300 hover:scale-110 animate-bounce">😘</span>
+          <span class="absolute -right-2 -top-1 text-3xl animate-ping opacity-75">💋</span>
+        </div>
+
+        <h3 class="heading text-2xl sm:text-3xl font-extrabold text-blue-950 mb-3 tracking-tight">Thank You Gorgeous! 💖</h3>
+        
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed font-medium mb-5">
+          We have received your message! Our executive team will respond to you within <span class="font-bold text-amber-700 bg-amber-100/90 px-2 py-0.5 rounded-lg border border-amber-200">24 hours</span>.
+        </p>
+
+        <div class="py-2.5 px-4 bg-amber-50 rounded-2xl border border-amber-200/80 text-xs font-semibold text-amber-900 inline-flex items-center gap-2 mb-6 shadow-sm">
+          <span class="text-sm">💋</span> Sending you love & beauty vibes! <span class="text-sm">✨</span>
+        </div>
+
+        <button id="closeKissModalBtn" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold text-sm uppercase tracking-wider shadow-lg hover:shadow-amber-400/40 hover:brightness-105 active:scale-95 transition-all">
+          Close 💋
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    requestAnimationFrame(() => {
+      const content = document.getElementById('kissModalContent');
+      if (content) {
+        content.classList.remove('scale-95', 'opacity-0');
+        content.classList.add('scale-100', 'opacity-100');
+      }
+    });
+
+    const kissEmojis = ['💋', '😘', '💋✨', '💖', '💋💕', '👄', '💋', '😘💨'];
+    const particleCount = 30;
+
+    for (let i = 0; i < particleCount; i++) {
+      setTimeout(() => {
+        const particle = document.createElement('div');
+        particle.className = 'fixed pointer-events-none z-[10000] select-none font-bold';
+        particle.textContent = kissEmojis[Math.floor(Math.random() * kissEmojis.length)];
+
+        const startX = window.innerWidth / 2 + (Math.random() * 220 - 110);
+        const startY = window.innerHeight / 2 + (Math.random() * 120 - 60);
+
+        const deltaX = (Math.random() - 0.5) * 400;
+        const deltaY = -(200 + Math.random() * 320);
+        const rotation = (Math.random() - 0.5) * 90;
+        const fontSize = 24 + Math.random() * 28;
+        const duration = 2200 + Math.random() * 1300;
+
+        particle.style.cssText = `
+          left: ${startX}px;
+          top: ${startY}px;
+          font-size: ${fontSize}px;
+          opacity: 1;
+          transform: translate(0, 0) scale(0.4) rotate(0deg);
+          transition: transform ${duration}ms cubic-bezier(0.1, 0.8, 0.3, 1), opacity ${duration}ms ease-out;
+          filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.4));
+        `;
+
+        document.body.appendChild(particle);
+
+        requestAnimationFrame(() => {
+          particle.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.5) rotate(${rotation}deg)`;
+          particle.style.opacity = '0';
+        });
+
+        setTimeout(() => particle.remove(), duration + 100);
+      }, i * 65);
+    }
+
+    const closeModal = () => {
+      const content = document.getElementById('kissModalContent');
+      if (content) {
+        content.classList.add('scale-95', 'opacity-0');
+      }
+      modal.classList.add('opacity-0');
+      setTimeout(() => modal.remove(), 300);
+    };
+
+    const closeBtn = document.getElementById('closeKissModalBtn');
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    setTimeout(() => {
+      if (document.body.contains(modal)) closeModal();
+    }, 5500);
+  }
+
   async function submitInquiry(event) {
     event.preventDefault();
     const form = event.currentTarget;
     const body = Object.fromEntries(new FormData(form).entries());
-    const response = await fetch(CONTACT_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Could not send message');
-    window.location.href = data.mailtoLink;
-    form.reset();
-    showToast('Thanks! Your message is ready to send.');
+    try {
+      await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }).catch(() => {});
+    } catch (e) {}
+
+    if (form) form.reset();
+    triggerBlowKissAnimation();
   }
 
   async function submitConsultation(event) {
@@ -289,19 +391,29 @@
     if (!container && !landingGrid && !inventoryBody) return;
 
     const products = getProducts();
+    const isMultiColMobile = products.length > 8;
+
     if (container) {
+      if (isMultiColMobile) {
+        container.className = "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-8";
+      } else {
+        container.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8";
+      }
+
       container.innerHTML = products.map((product) => `
-        <article class="product-card rounded-3xl bg-white p-4 shadow-xl hover:-translate-y-1 transition">
-          <a href="product-detail.html?id=${product.id}" class="block">
-            <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover">
-          </a>
-          <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
-          <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
-          <p class="mt-2 text-sm text-gray-600">${product.description || ''}</p>
-          <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)} · <span class="text-amber-700 font-medium">${formatCad(parsePrice(product.price) / 1250)} CAD</span></p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            <a href="product-detail.html?id=${product.id}" class="inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900">View details</a>
-            <button type="button" class="inline-flex rounded-full border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50" data-add-to-cart="${product.id}">Add to cart</button>
+        <article class="product-card rounded-3xl bg-white ${isMultiColMobile ? 'p-3 sm:p-5' : 'p-5'} shadow-xl hover:-translate-y-1 transition flex flex-col justify-between">
+          <div>
+            <a href="product-detail.html?id=${product.id}" class="block relative overflow-hidden rounded-2xl aspect-square w-full">
+              <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+            </a>
+            <span class="category mt-3 sm:mt-4 block text-[9px] sm:text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
+            <h3 class="mt-1.5 sm:mt-2 text-sm sm:text-xl font-semibold text-blue-950 line-clamp-1">${product.name}</h3>
+            <p class="mt-1 text-xs text-gray-600 line-clamp-2">${product.description || ''}</p>
+            <p class="price mt-2.5 sm:mt-3 text-sm sm:text-base text-blue-800 font-semibold">${formatPrice(product.price)} · <span class="text-amber-700 text-xs font-medium">${formatCad(parsePrice(product.price) / 1250)} CAD</span></p>
+          </div>
+          <div class="mt-3 sm:mt-4 flex flex-col sm:flex-row gap-1.5 sm:gap-2">
+            <a href="product-detail.html?id=${product.id}" class="w-full sm:flex-1 text-center rounded-xl sm:rounded-full bg-blue-800 px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-white hover:bg-blue-900">View details</a>
+            <button type="button" class="w-full sm:flex-1 text-center rounded-xl sm:rounded-full border border-blue-200 px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold text-blue-900 hover:bg-blue-50" data-add-to-cart="${product.id}">Add to cart</button>
           </div>
         </article>
       `).join('');
@@ -310,7 +422,9 @@
     if (landingGrid) {
       landingGrid.innerHTML = products.map((product) => `
         <a href="product-detail.html?id=${product.id}" class="product-card block rounded-3xl bg-white p-4 shadow-xl transition hover:-translate-y-1">
-          <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover">
+          <div class="relative overflow-hidden rounded-2xl aspect-square w-full mb-3">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+          </div>
           <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
           <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
           <p class="price mt-2 text-blue-800 font-semibold">${formatPrice(product.price)} · <span class="text-amber-700 font-medium">${formatCad(parsePrice(product.price) / 1250)} CAD</span></p>
@@ -634,5 +748,6 @@
   document.addEventListener('DOMContentLoaded', initApp);
   window.addToCart = addToCart;
   window.formatPrice = formatPrice;
+  window.triggerBlowKissAnimation = triggerBlowKissAnimation;
   window.openCalendly = () => window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
 })();

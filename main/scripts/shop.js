@@ -183,32 +183,40 @@ async function renderShopProducts() {
     }
   } catch (err) {}
 
+  const isMultiColMobile = products.length > 8;
+
+  if (isMultiColMobile) {
+    container.className = "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-8";
+  } else {
+    container.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8";
+  }
+
   container.innerHTML = products.map((product) => {
     const isSelected = String(product.id) === String(selectedProductId);
     return `
-      <article class="product-card group relative rounded-3xl bg-white p-5 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 border border-amber-100/80 flex flex-col justify-between ${isSelected ? 'ring-2 ring-amber-500' : ''}" data-product-id="${product.id}">
+      <article class="product-card group relative rounded-3xl bg-white ${isMultiColMobile ? 'p-3 sm:p-5' : 'p-5'} shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 border border-amber-100/80 flex flex-col justify-between ${isSelected ? 'ring-2 ring-amber-500' : ''}" data-product-id="${product.id}">
         <div>
           <a href="product-detail.html?id=${product.id}" class="block relative overflow-hidden rounded-2xl aspect-square bg-[#fffaf5]">
             <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            ${product.sold ? '<span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow">Sold Out</span>' : ''}
+            ${product.sold ? '<span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-rose-500 text-white text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow">Sold Out</span>' : ''}
           </a>
-          <div class="mt-4">
-            <span class="inline-block rounded-full bg-amber-100/80 px-3 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-amber-900 border border-amber-200/60">${product.category || 'Beauty'}</span>
-            <h3 class="mt-2 text-lg font-bold text-slate-900 heading line-clamp-1">${product.name}</h3>
-            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${product.description || ''}</p>
-            <div class="mt-4 pt-3 border-t border-amber-100/60 flex items-baseline justify-between">
+          <div class="mt-3 sm:mt-4">
+            <span class="inline-block rounded-full bg-amber-100/80 px-2.5 sm:px-3 py-0.5 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-amber-900 border border-amber-200/60">${product.category || 'Beauty'}</span>
+            <h3 class="mt-1.5 sm:mt-2 text-sm sm:text-lg font-bold text-slate-900 heading line-clamp-1">${product.name}</h3>
+            <p class="text-[11px] sm:text-xs text-slate-500 mt-1 line-clamp-2">${product.description || ''}</p>
+            <div class="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-amber-100/60 flex items-baseline justify-between">
               <div>
-                <span class="text-lg font-extrabold text-slate-950 block">${formatPrice(product.price)}</span>
-                <span class="text-xs font-bold text-amber-700 block">${formatCad(product.price)} CAD</span>
+                <span class="text-sm sm:text-lg font-extrabold text-slate-950 block">${formatPrice(product.price)}</span>
+                <span class="text-[10px] sm:text-xs font-bold text-amber-700 block">${formatCad(product.price)} CAD</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="mt-5 flex items-center gap-2">
-          <a href="product-detail.html?id=${product.id}" class="flex-1 text-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold text-slate-800 hover:bg-slate-100 transition">Details</a>
-          <button type="button" class="flex-1 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-4 py-3 text-xs shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all" onclick="triggerRosePetalAnimation(event, getProductById('${product.id}'))">
+        <div class="mt-3 sm:mt-5 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-2 w-full">
+          <button type="button" class="w-full sm:flex-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all text-center whitespace-nowrap" onclick="triggerRosePetalAnimation(event, getProductById('${product.id}'))">
             Add to Cart 🌸
           </button>
+          <a href="cart.html" class="w-full sm:flex-1 text-center rounded-xl sm:rounded-2xl border border-slate-200 bg-slate-50 px-2 sm:px-3 py-2 sm:py-3 text-[10px] sm:text-xs font-bold text-slate-800 hover:bg-slate-100 transition whitespace-nowrap">View Cart 🛒</a>
         </div>
       </article>
     `;

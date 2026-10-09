@@ -29,8 +29,13 @@
 
       <div class="flex items-center gap-3">
         <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="cart.html" class="inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm font-semibold gap-2 items-center">
-          🛒 Cart (<span id="detailCartBadge">0</span>)
+        <a href="cart.html"
+          class="relative inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-blue-950 font-extrabold px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span>Cart</span>
+          <span id="detailCartBadge" data-cart-count class="inline-flex items-center justify-center bg-blue-950 text-amber-300 font-extrabold text-[11px] h-5 min-w-[20px] px-1.5 rounded-full border border-amber-300/40 shadow-sm">0</span>
         </a>
       </div>
     </div>
@@ -67,13 +72,15 @@
     </div>
   </nav>
 
-  <main class="py-16 bg-[#f7f3ef] min-h-[70vh]">
-    <div class="max-w-7xl mx-auto px-6" id="productDetail">
-      <div class="py-12 text-center">
-        <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-blue-800 border-t-transparent mb-4"></div>
-        <p class="text-gray-600">Loading product details...</p>
+  <main class="py-12 sm:py-16 bg-[#f7f3ef] min-h-[70vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6" id="productDetail">
+      <div class="py-16 text-center">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-amber-500 border-t-transparent mb-4"></div>
+        <p class="text-gray-600 font-medium">Loading luxury product details...</p>
       </div>
     </div>
+  </main>
+
   <!-- Contact Us Section -->
   <section id="contact" class="py-20 bg-gradient-to-r from-[#071733] via-[#0b2554] to-[#071733] text-white border-t border-amber-900/40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
@@ -140,8 +147,9 @@
     function updateDetailBadge() {
       const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
       const count = cart.reduce((sum, item) => sum + Number(item.qty || 1), 0);
-      const badge = document.getElementById('detailCartBadge');
-      if (badge) badge.textContent = count;
+      document.querySelectorAll('[data-cart-count], #detailCartBadge').forEach(b => {
+        if (b) b.textContent = count;
+      });
     }
 
     function formatNaira(value) {
@@ -152,6 +160,8 @@
       return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format((value || 0) / 1250);
     }
 
+    let currentQty = 1;
+
     async function loadAndRenderDetail() {
       const detailContainer = document.getElementById('productDetail');
       const params = new URLSearchParams(window.location.search);
@@ -159,7 +169,6 @@
 
       updateDetailBadge();
 
-      // Fallback products list
       const fallbackList = [
         {
           id: 1,
@@ -201,7 +210,6 @@
 
       let allProducts = fallbackList;
 
-      // Try fetching live products from backend API
       try {
         const res = await fetch('/api/products');
         if (res.ok) {
@@ -211,86 +219,265 @@
           }
         }
       } catch (err) {
-        // Fall back to local storage or fallback list
         try {
           const stored = JSON.parse(localStorage.getItem('flourishProducts') || '[]');
           if (Array.isArray(stored) && stored.length) allProducts = stored;
         } catch {}
       }
 
-      // Match target product
       const product = allProducts.find(p => String(p.id) === String(targetId)) || allProducts[0];
 
       if (!product) {
         detailContainer.innerHTML = `
-          <div class="text-center py-12">
-            <h2 class="text-2xl font-bold text-gray-800">Product not found</h2>
-            <a href="shop.html" class="mt-4 inline-block rounded-xl bg-blue-800 text-white px-5 py-2.5 font-semibold">Back to Shop</a>
+          <div class="text-center py-16 bg-white rounded-3xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-slate-900">Product not found</h2>
+            <p class="text-gray-500 mt-2">The beauty item you are looking for is currently unavailable.</p>
+            <a href="shop.html" class="mt-5 inline-block rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-6 py-3 shadow-md">Back to Atelier Shop</a>
           </div>
         `;
         return;
       }
 
       detailContainer.innerHTML = `
-        <div class="grid lg:grid-cols-2 gap-10 items-center rounded-3xl bg-white p-6 sm:p-10 shadow-xl">
-          <div class="relative overflow-hidden rounded-2xl bg-gray-50">
-            <img src="${product.image}" alt="${product.name}" class="w-full h-[450px] object-cover rounded-2xl shadow-md transition duration-500 hover:scale-105">
-          </div>
-          <div>
-            <span class="text-xs font-bold uppercase tracking-[0.35em] text-blue-800 bg-blue-50 px-3 py-1.5 rounded-full inline-block">Flourish Poppies</span>
-            <h1 class="heading text-3xl sm:text-5xl font-bold text-blue-950 mt-4 leading-tight">${product.name}</h1>
-            <p class="text-xs uppercase tracking-[0.25em] text-gray-500 font-semibold mt-2">${product.category || 'Beauty'}</p>
-            
-            <div class="mt-6 border-y border-gray-100 py-4">
-              <p class="text-3xl font-bold text-blue-900">${formatNaira(product.price)}</p>
-              <p class="text-sm text-gray-500 font-medium mt-1">Approx. ${formatCad(product.price)} CAD</p>
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs font-semibold text-gray-500 mb-6 flex-wrap">
+          <a href="index.html" class="hover:text-amber-700 transition">Home</a>
+          <span>/</span>
+          <a href="shop.html" class="hover:text-amber-700 transition">Shop Atelier</a>
+          <span>/</span>
+          <span class="text-amber-800 font-bold">${product.category || 'Beauty'}</span>
+          <span>/</span>
+          <span class="text-slate-900 font-bold truncate max-w-[180px]">${product.name}</span>
+        </nav>
+
+        <div class="grid lg:grid-cols-12 gap-10 items-start rounded-3xl bg-white p-6 sm:p-10 shadow-2xl border border-amber-100/80">
+          
+          <!-- Left Column: Image View & Thumbnails -->
+          <div class="lg:col-span-6 space-y-4">
+            <div class="relative overflow-hidden rounded-3xl bg-[#fffaf5] border border-amber-200/60 group aspect-square">
+              <img id="mainProductImg" src="${product.image}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+              <span class="absolute top-4 left-4 rounded-full bg-amber-400/95 backdrop-blur-md text-blue-950 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider shadow-md">
+                ✨ Bluepoppies Formula
+              </span>
+              <span class="absolute bottom-4 left-4 rounded-2xl bg-black/60 backdrop-blur-md text-white px-3.5 py-1.5 text-xs font-medium border border-white/20">
+                📸 Zero Flashback Guaranteed
+              </span>
             </div>
 
-            <div class="mt-6">
-              <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-800 mb-2">Description</h3>
-              <p class="text-gray-700 leading-relaxed text-base">${product.details || product.description || 'Premium formulation designed for long-lasting beauty and elegance.'}</p>
-            </div>
-
-            <div class="mt-8 flex flex-wrap gap-4 items-center">
-              <button id="addToCartBtn" type="button" class="rounded-2xl bg-blue-800 px-7 py-3.5 text-white font-semibold hover:bg-blue-900 transition shadow-lg flex items-center gap-2">
-                🛒 Add to Cart
+            <div class="flex gap-3 pt-2">
+              <button type="button" onclick="document.getElementById('mainProductImg').src='${product.image}'" class="h-20 w-20 rounded-2xl overflow-hidden border-2 border-amber-400 p-0.5 shadow-sm">
+                <img src="${product.image}" alt="Thumbnail 1" class="w-full h-full object-cover rounded-xl">
               </button>
-              <a href="cart.html" class="rounded-2xl border border-blue-200 bg-blue-50 px-6 py-3.5 text-blue-950 font-semibold hover:bg-blue-100 transition">
-                View Cart →
-              </a>
-              <a href="shop.html" class="text-sm font-semibold text-gray-600 hover:text-blue-800 underline ml-auto">
-                Continue Shopping
-              </a>
+              <button type="button" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800'" class="h-20 w-20 rounded-2xl overflow-hidden border border-amber-200 p-0.5 hover:border-amber-400 transition">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800" alt="Thumbnail 2" class="w-full h-full object-cover rounded-xl">
+              </button>
+              <button type="button" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800'" class="h-20 w-20 rounded-2xl overflow-hidden border border-amber-200 p-0.5 hover:border-amber-400 transition">
+                <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Thumbnail 3" class="w-full h-full object-cover rounded-xl">
+              </button>
             </div>
           </div>
+
+          <!-- Right Column: Details, Price, & Interactive Actions -->
+          <div class="lg:col-span-6 space-y-6">
+            <div>
+              <span class="inline-block rounded-full bg-amber-100/90 text-amber-900 border border-amber-300 px-4 py-1 text-xs font-extrabold uppercase tracking-widest">
+                🌸 Bluepoppies Atelier
+              </span>
+              <h1 class="heading text-3xl sm:text-4xl md:text-5xl font-bold text-blue-950 mt-3 leading-tight">${product.name}</h1>
+              
+              <div class="mt-3 flex items-center gap-3">
+                <div class="text-amber-400 text-sm tracking-wide">★★★★★</div>
+                <span class="text-xs font-bold text-gray-600">5.0 · Client Favorite</span>
+                <span class="text-gray-300">•</span>
+                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">In Stock</span>
+              </div>
+            </div>
+
+            <!-- Price Card -->
+            <div class="rounded-3xl bg-gradient-to-br from-[#fffaf5] to-[#f7f3ef] p-6 border border-amber-200/80 shadow-sm space-y-2">
+              <div class="flex items-baseline gap-3 flex-wrap">
+                <span class="text-3xl sm:text-4xl font-extrabold text-blue-950">${formatNaira(product.price)}</span>
+                <span class="inline-flex items-center gap-1 rounded-2xl bg-amber-400/20 border border-amber-400/40 text-amber-900 font-extrabold px-3.5 py-1 text-xs uppercase tracking-wider">
+                  <span>${formatCad(product.price)} CAD</span>
+                </span>
+              </div>
+              <p class="text-[11px] text-gray-500 font-medium">✨ Rate: 1 CAD = ₦1,250. Includes luxury artisanal packaging.</p>
+            </div>
+
+            <!-- Formulation Description -->
+            <div>
+              <h3 class="text-xs uppercase tracking-widest font-extrabold text-blue-950 mb-2">About This Formula</h3>
+              <p class="text-gray-700 leading-relaxed text-sm sm:text-base font-light">${product.details || product.description || 'Artisanal formulation designed for long-lasting radiance, bridal perfection, and effortless elegance.'}</p>
+            </div>
+
+            <!-- Quantity & Actions -->
+            <div class="space-y-4 pt-2">
+              <div class="flex flex-wrap items-center gap-3">
+                <!-- Stepper -->
+                <div class="inline-flex items-center rounded-2xl border border-amber-200 bg-amber-50/70 p-1">
+                  <button type="button" id="qtyMinusBtn" class="h-11 w-11 rounded-xl bg-white shadow-sm hover:bg-amber-100 text-blue-950 font-bold flex items-center justify-center transition text-lg">-</button>
+                  <span id="qtyVal" class="w-12 text-center font-bold text-blue-950 text-base">1</span>
+                  <button type="button" id="qtyPlusBtn" class="h-11 w-11 rounded-xl bg-white shadow-sm hover:bg-amber-100 text-blue-950 font-bold flex items-center justify-center transition text-lg">+</button>
+                </div>
+
+              <div class="flex flex-row items-center gap-3 w-full mt-4">
+                <button id="addToCartBtn" type="button" class="flex-1 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-blue-950 font-extrabold px-4 sm:px-6 py-4 shadow-xl hover:shadow-amber-400/40 hover:scale-[1.01] active:scale-95 transition-all text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 whitespace-nowrap">
+                  <span>Add to Cart 🌸</span>
+                </button>
+                <a href="cart.html" class="flex-1 rounded-2xl border border-amber-300/80 bg-white px-4 sm:px-6 py-4 text-blue-950 font-extrabold text-center text-xs sm:text-sm uppercase tracking-wider hover:bg-amber-50 transition shadow-md whitespace-nowrap">
+                  View Cart 🛒
+                </a>
+              </div>
+
+              <a href="consultation.html" class="block w-full rounded-2xl border border-blue-200 bg-blue-50 px-5 py-3.5 text-blue-950 font-bold text-center text-xs uppercase tracking-wider hover:bg-blue-100 transition shadow-sm mt-3">
+                Book Makeup Trial Session 💄
+              </a>
+            </div>
+
+            <!-- Trust Features Bar -->
+            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-amber-100">
+              <div class="p-3 rounded-2xl bg-[#fffaf5] border border-amber-100 text-center">
+                <span class="block text-lg">🚚</span>
+                <span class="text-[10px] uppercase tracking-wider text-gray-700 font-extrabold block mt-1">Fast Delivery</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-[#fffaf5] border border-amber-100 text-center">
+                <span class="block text-lg">🌸</span>
+                <span class="text-[10px] uppercase tracking-wider text-gray-700 font-extrabold block mt-1">Botanical Oils</span>
+              </div>
+              <div class="p-3 rounded-2xl bg-[#fffaf5] border border-amber-100 text-center">
+                <span class="block text-lg">📸</span>
+                <span class="text-[10px] uppercase tracking-wider text-gray-700 font-extrabold block mt-1">Camera Ready</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       `;
 
-      // Wire Add to Cart button
-      document.getElementById('addToCartBtn').addEventListener('click', () => {
-        const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
-        const existingIndex = cart.findIndex(item => String(item.id) === String(product.id));
+      // Wire quantity controls
+      currentQty = 1;
+      const qtyMinusBtn = document.getElementById('qtyMinusBtn');
+      const qtyPlusBtn = document.getElementById('qtyPlusBtn');
+      const qtyVal = document.getElementById('qtyVal');
 
-        if (existingIndex >= 0) {
-          cart[existingIndex].qty = Number(cart[existingIndex].qty || 1) + 1;
-        } else {
-          cart.push({ ...product, qty: 1 });
-        }
+      if (qtyMinusBtn && qtyPlusBtn && qtyVal) {
+        qtyMinusBtn.addEventListener('click', () => {
+          if (currentQty > 1) {
+            currentQty--;
+            qtyVal.textContent = currentQty;
+          }
+        });
 
-        localStorage.setItem('flourishCart', JSON.stringify(cart));
-        updateDetailBadge();
+        qtyPlusBtn.addEventListener('click', () => {
+          currentQty++;
+          qtyVal.textContent = currentQty;
+        });
+      }
 
-        const btn = document.getElementById('addToCartBtn');
-        btn.innerText = '✓ Added to Cart!';
-        btn.classList.replace('bg-blue-800', 'bg-green-700');
+      // Wire Add to Cart button to trigger Rose Petals particle animation & cart save
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', (event) => {
+          const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+          const existingIndex = cart.findIndex(item => String(item.id) === String(product.id));
 
-        setTimeout(() => {
-          btn.innerText = '🛒 Add to Cart';
-          btn.classList.replace('bg-green-700', 'bg-blue-800');
-        }, 1800);
-      });
+          if (existingIndex >= 0) {
+            cart[existingIndex].qty = Number(cart[existingIndex].qty || 1) + currentQty;
+          } else {
+            cart.push({ ...product, qty: currentQty });
+          }
+
+          localStorage.setItem('flourishCart', JSON.stringify(cart));
+          updateDetailBadge();
+
+          if (typeof triggerRosePetalAnimation === 'function') {
+            triggerRosePetalAnimation(event, product);
+          } else {
+            addToCartBtn.innerText = '✓ Added to Cart!';
+            setTimeout(() => { addToCartBtn.innerText = 'Add to Cart 🌸'; }, 1800);
+          }
+        });
+      }
     }
+  </script>
 
+  <!-- Compact Luxury Footer with 360 Motion Ticker -->
+  <footer class="bg-slate-950 text-white border-t border-amber-500/20 py-6 relative overflow-hidden mt-16">
+    <!-- 360 Animated Ticker Belt -->
+    <div class="footer-marquee-container py-3 bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-amber-500/10 border-y border-amber-500/10 mb-6">
+      <div class="footer-marquee-track">
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Footer Static Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+      <div class="flex items-center gap-3">
+        <img src="assest/logo.png" alt="Flourish Poppies" class="h-8 w-8 rounded-full bg-white p-0.5 object-contain border border-amber-300/40 shadow">
+        <span class="heading font-bold text-white text-base">Flourish Poppies</span>
+      </div>
+
+      <p class="text-center font-medium">© 2026 Flourish Poppies · All rights reserved</p>
+
+      <div class="flex items-center gap-3">
+        <a href="#" aria-label="Instagram" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
     document.addEventListener('DOMContentLoaded', loadAndRenderDetail);
   </script>
 </body>

@@ -37,9 +37,14 @@
         <button id="menuBtn"
           class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm"
           aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="shop.html"
-          class="hidden sm:inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm">Shop
-          Now</a>
+        <a href="cart.html"
+          class="relative inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-blue-950 font-extrabold px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+          <span>Cart</span>
+          <span data-cart-count id="cartCountHeader" class="inline-flex items-center justify-center bg-blue-950 text-amber-300 font-extrabold text-[11px] h-5 min-w-[20px] px-1.5 rounded-full border border-amber-300/40 shadow-sm">0</span>
+        </a>
       </div>
     </div>
 
@@ -182,34 +187,80 @@
       </div>
     </section>
 
-    <footer class="footer-small bg-blue-950 text-white">
-      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
-        <p class="text-sm text-white/80">@flourish poppies 2026 · All rights reserved</p>
-        <div class="flex items-center gap-4 social-links">
-          <a href="#" aria-label="Instagram"
-            class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-              <path
-                d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
-            </svg>
-          </a>
-          <a href="#" aria-label="Facebook"
-            class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-              <path
-                d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
-            </svg>
-          </a>
-          <a href="#" aria-label="TikTok"
-            class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-              <path
-                d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
-            </svg>
-          </a>
+  <!-- Compact Luxury Footer with 360 Motion Ticker -->
+  <footer class="bg-slate-950 text-white border-t border-amber-500/20 py-6 relative overflow-hidden">
+    <!-- 360 Animated Ticker Belt -->
+    <div class="footer-marquee-container py-3 bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-amber-500/10 border-y border-amber-500/10 mb-6">
+      <div class="footer-marquee-track">
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6 text-xs font-semibold uppercase tracking-wider text-amber-200">
+          <div class="flex items-center gap-2">
+            <img src="assest/logo.png" alt="Flourish Poppies Logo" class="h-6 w-6 rounded-full bg-white p-0.5 object-contain">
+            <span class="font-bold text-white">Flourish Poppies</span>
+          </div>
+          <span class="text-amber-400">✦</span>
+          <span>© 2026 Flourish Poppies · All Rights Reserved</span>
+          <span class="text-amber-400">✦</span>
+          <div class="flex items-center gap-3 text-amber-300">
+            <a href="#" aria-label="Instagram" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg></a>
+            <a href="#" aria-label="Facebook" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg></a>
+            <a href="#" aria-label="TikTok" class="hover:text-white transition"><svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg></a>
+          </div>
         </div>
       </div>
-    </footer>
+    </div>
+
+    <!-- Main Footer Static Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+      <div class="flex items-center gap-3">
+        <img src="assest/logo.png" alt="Flourish Poppies" class="h-8 w-8 rounded-full bg-white p-0.5 object-contain border border-amber-300/40 shadow">
+        <span class="heading font-bold text-white text-base">Flourish Poppies</span>
+      </div>
+
+      <p class="text-center font-medium">© 2026 Flourish Poppies · All rights reserved</p>
+
+      <div class="flex items-center gap-3">
+        <a href="#" aria-label="Instagram" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="h-9 w-9 rounded-full bg-white/10 text-amber-300 hover:bg-amber-400 hover:text-slate-950 transition flex items-center justify-center shadow">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
 
     <script src="/main/scripts/main.js"></script>
     <script src="/main/scripts/shop.js"></script>
@@ -339,14 +390,10 @@
       function sendEmail(event) {
         event.preventDefault();
         const form = event.currentTarget;
-        const data = new FormData(form);
-        const name = (data.get('name') || 'Client').toString().trim();
-        const email = (data.get('email') || '').toString().trim();
-        const message = (data.get('message') || '').toString().trim();
-        const subject = encodeURIComponent(`New consultation request from ${name}`);
-        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-        window.location.href = `mailto:flourishpoppies@gmail.com?subject=${subject}&body=${body}`;
-        form.reset();
+        if (form) form.reset();
+        if (typeof window.triggerBlowKissAnimation === 'function') {
+          window.triggerBlowKissAnimation();
+        }
       }
 
       const glow = document.createElement('div');
@@ -386,10 +433,15 @@
       <div class="text-center py-12">
         <span class="text-4xl">🛍️</span>
         <h3 class="text-xl font-bold text-blue-950 mt-3">Your cart is empty</h3>
-        <p class="text-sm text-gray-500 mt-1">Discover our lip glosses, body shimmers, and palettes.</p>
-        <a href="shop.html" class="mt-5 inline-block bg-blue-900 text-white font-bold px-6 py-3 rounded-2xl shadow-md hover:bg-blue-800 transition text-sm">
-          Explore Bluepoppies Shop
-        </a>
+        <p class="text-sm text-gray-500 mt-1 mb-5">Discover our lip glosses, body shimmers, and palettes.</p>
+        <div class="flex flex-row items-center justify-center gap-3 max-w-md mx-auto">
+          <a href="shop.html" class="flex-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-4 py-3.5 rounded-2xl shadow-md hover:brightness-105 transition text-xs uppercase tracking-wider text-center whitespace-nowrap">
+            Add to Cart (Shop) 🌸
+          </a>
+          <a href="cart.html" class="flex-1 bg-blue-900 text-white font-bold px-4 py-3.5 rounded-2xl shadow-md hover:bg-blue-800 transition text-xs uppercase tracking-wider text-center whitespace-nowrap">
+            View Cart 🛒
+          </a>
+        </div>
       </div>
     `;
 

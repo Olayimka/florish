@@ -44,6 +44,7 @@ html { scroll-behavior: smooth; }
 .text-gold-gradient {
   background: linear-gradient(135deg, #d4af37 0%, #f7e7b4 50%, #b8860b 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -198,7 +199,7 @@ html { scroll-behavior: smooth; }
 .section-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 40px; }
 .badge { display: inline-block; background: #f4d7c7; color: #b75f24; padding: 6px 14px; border-radius: 30px; font-size: 12px; margin-bottom: 15px; }
 .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
-.product-card img { height: 240px; object-fit: cover; border-radius: 16px; }
+.product-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
 .category { display: block; font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.25em; }
 .price { color: #0b3ea8; font-weight: 600; }
 .price span { color: #777; font-weight: 400; }
@@ -223,26 +224,32 @@ html { scroll-behavior: smooth; }
   .about-hero h1 { font-size: clamp(2.2rem, 8vw, 3.2rem); }
   .founder-photo { margin: 0 auto; width: 100%; }
 
-  .hero-shell { min-height: 82vh; }
+  .hero-shell { min-height: auto; }
 
-  .hero-copy { max-width: 100%; }
+  .hero-copy {
+    max-width: 100%;
+    padding: 1.25rem 1rem !important;
+    border-radius: 1.25rem !important;
+  }
 
   .hero-copy h1 {
-    font-size: clamp(2rem, 8vw, 3rem);
-    line-height: 1.1;
+    line-height: 1.2;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   .hero-copy p {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    word-break: break-word;
   }
 
-  .button-row { display: flex; flex-direction: row; flex-wrap: nowrap; gap: 0.6rem; align-items: center; }
+  .button-row { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
   .button-row button,
-  .button-row a { width: auto; flex: 1 1 0px; text-align: center; justify-content: center; }
+  .button-row a { width: auto; flex: 1 1 auto; text-align: center; justify-content: center; padding: 0.75rem 1rem; }
   .section-header { flex-direction: column; align-items: flex-start; }
   .products-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; }
-  .product-card img { height: 210px; }
+  .product-card img { width: 100%; height: 100%; }
 
   .hero-slide { background-position: center 35%; }
 
@@ -251,6 +258,31 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 480px) {
   .products-grid { grid-template-columns: 1fr; }
-  h1 { font-size: 1.85rem !important; }
+  .hero-copy h1 { font-size: 1.65rem !important; line-height: 1.25 !important; }
 }
+
+/* Continuous 360 Footer Ticker Animation */
+@keyframes footerMarquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.footer-marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.footer-marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  animation: footerMarquee 20s linear infinite;
+  will-change: transform;
+}
+
+.footer-marquee-container:hover .footer-marquee-track {
+  animation-play-state: paused;
+}
+
 

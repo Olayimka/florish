@@ -1,61 +1,91 @@
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-const consultationModal = document.getElementById('consultationModal');
-const closeConsultationModal = document.getElementById('closeConsultationModal');
+const CALENDLY_URL = 'https://calendly.com/blessedbestone/beauty-consultation';
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-    menuBtn.textContent = isOpen ? '✕' : '☰';
-  });
+function initMobileMenu() {
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-  mobileMenu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.textContent = '☰';
+  if (menuBtn && mobileMenu) {
+    // Clone to remove any duplicate listeners
+    const newBtn = menuBtn.cloneNode(true);
+    if (menuBtn.parentNode) {
+      menuBtn.parentNode.replaceChild(newBtn, menuBtn);
+    }
+
+    newBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = mobileMenu.classList.contains('hidden');
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('open');
+        newBtn.setAttribute('aria-expanded', 'true');
+        newBtn.textContent = '✕';
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('open');
+        newBtn.setAttribute('aria-expanded', 'false');
+        newBtn.textContent = '☰';
+      }
     });
-  });
+
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('open');
+        newBtn.setAttribute('aria-expanded', 'false');
+        newBtn.textContent = '☰';
+      });
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initMobileMenu);
+} else {
+  initMobileMenu();
 }
 
 function openConsultationModal() {
-  if (consultationModal) consultationModal.classList.remove('hidden');
+  const modal = document.getElementById('consultationModal');
+  if (modal) modal.classList.remove('hidden');
 }
 
 function closeConsultationModalFn() {
-  if (consultationModal) consultationModal.classList.add('hidden');
+  const modal = document.getElementById('consultationModal');
+  if (modal) modal.classList.add('hidden');
 }
 
-if (consultationModal) {
-  document.querySelectorAll('.open-consultation-modal').forEach((button) => {
-    button.addEventListener('click', openConsultationModal);
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('consultationModal');
+  const closeBtn = document.getElementById('closeConsultationModal');
 
-  consultationModal.addEventListener('click', (event) => {
-    if (event.target.matches('[data-close-modal="true"]')) {
+  if (modal) {
+    document.querySelectorAll('.open-consultation-modal').forEach((button) => {
+      button.addEventListener('click', openConsultationModal);
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target.matches('[data-close-modal="true"]')) {
+        closeConsultationModalFn();
+      }
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeConsultationModalFn);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeConsultationModalFn();
+    });
+  }
+
+  // Handle all Calendly buttons (including inside consultationModal)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-open-calendly]');
+    if (btn) {
       closeConsultationModalFn();
+      if (typeof window.Calendly === 'object' && typeof window.Calendly.initPopupWidget === 'function') {
+        window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+      } else {
+        window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+      }
     }
   });
-
-  if (closeConsultationModal) closeConsultationModal.addEventListener('click', closeConsultationModalFn);
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeConsultationModalFn();
-  });
-}
-
-function sendEmail(event) {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const data = new FormData(form);
-  const name = (data.get('name') || 'Client').toString().trim();
-  const email = (data.get('email') || '').toString().trim();
-  const message = (data.get('message') || '').toString().trim();
-  const subject = encodeURIComponent(`New consultation request from ${name}`);
-  const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-  window.location.href = `mailto:flourishpoppies@gmail.com?subject=${subject}&body=${body}`;
-  form.reset();
-}
-
-window.sendEmail = sendEmail;
+});

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Details | Blue Poppies</title>
+  <title>Product Details | Flourish Poppies</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -11,48 +11,253 @@
 <body class="bg-[#fffaf5] text-gray-800">
   <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-      <a href="index.html" class="flex items-center gap-3 min-w-0"><img src="assest/logo.png" alt="Flourish Poppies logo" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" /><h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2></a>
-      <ul class="hidden md:flex gap-6 text-gray-700 font-medium"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="shop.html" class="text-blue-800">Shop</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="consultation.html">Consultation</a></li><li><a href="contact.html">Contact</a></li></ul>
-      <div class="flex items-center gap-3"><button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button><a href="cart.html" class="hidden sm:inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm">Cart</a></div>
+      <div class="flex items-center gap-3 min-w-0">
+        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0); image-rendering:auto;">
+        <div>
+          <h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2>
+        </div>
+      </div>
+
+      <ul class="hidden md:flex gap-8 text-gray-700 font-medium">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html" class="text-blue-800 font-semibold">Shop</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="consultation.html">Consultation</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
+        <a href="cart.html" class="inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm font-semibold gap-2 items-center">
+          🛒 Cart (<span id="detailCartBadge">0</span>)
+        </a>
+      </div>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-blue-100 bg-white/95 backdrop-blur"><div class="max-w-7xl mx-auto px-4 py-4 space-y-2"><a href="index.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">Home</a><a href="about.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">About</a><a href="shop.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">Shop</a><a href="gallery.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">Gallery</a><a href="consultation.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">Consultation</a><a href="contact.html" class="block px-4 py-3 rounded-xl hover:bg-blue-50 hover:text-blue-800">Contact</a></div></div>
+
+    <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-pink-100">
+      <div class="px-5 py-5">
+        <div class="space-y-2">
+          <a href="index.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Home</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="about.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">About Us</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="gallery.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Gallery</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="consultation.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Consultation</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+          <a href="contact.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
+            <span class="font-medium text-gray-700">Contact Us</span>
+            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
+          </a>
+        </div>
+        <div class="my-5 border-t border-pink-100"></div>
+        <a href="shop.html" class="block text-center py-4 rounded-2xl font-semibold text-white bg-[#694929] from-blue-800 via-blue-700 to-blue-900 shadow-xl hover:shadow-blue-300/40 hover:-translate-y-1 transition-all duration-300">
+          Shop Now →
+        </a>
+      </div>
+    </div>
   </nav>
 
-  <main class="py-16 bg-[#f7f3ef]">
-    <div class="max-w-7xl mx-auto px-6" id="productDetail"></div>
+  <main class="py-16 bg-[#f7f3ef] min-h-[70vh]">
+    <div class="max-w-7xl mx-auto px-6" id="productDetail">
+      <div class="py-12 text-center">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-4 border-blue-800 border-t-transparent mb-4"></div>
+        <p class="text-gray-600">Loading product details...</p>
+      </div>
+    </div>
   </main>
 
- <footer class="footer-small bg-blue-950 text-white">
-  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
-    <p class="text-sm text-white/80">@flourish poppies 2026 · All rights reserved</p>
-    <div class="flex items-center gap-4 social-links">
-      <a href="#" aria-label="Instagram" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
-        </svg>
-      </a>
-      <a href="#" aria-label="Facebook" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-          <path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
-        </svg>
-      </a>
-      <a href="#" aria-label="TikTok" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-          <path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
-        </svg>
-      </a>
+  <footer class="footer-small bg-blue-950 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
+      <p class="text-sm text-white/80">@flourish poppies 2026 · All rights reserved</p>
+      <div class="flex items-center gap-4 social-links">
+        <a href="#" aria-label="Instagram" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
+          </svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+            <path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
+          </svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+            <path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
+          </svg>
+        </a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-  <script src="/main/scripts/main.js"></script>
-  <script src="/main/scripts/shop.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/shop.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      if (typeof window.addToCart === 'function' && typeof renderProductDetail === 'function') {
-        renderProductDetail();
+    function updateDetailBadge() {
+      const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+      const count = cart.reduce((sum, item) => sum + Number(item.qty || 1), 0);
+      const badge = document.getElementById('detailCartBadge');
+      if (badge) badge.textContent = count;
+    }
+
+    function formatNaira(value) {
+      return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(value || 0);
+    }
+
+    function formatCad(value) {
+      return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format((value || 0) / 1250);
+    }
+
+    async function loadAndRenderDetail() {
+      const detailContainer = document.getElementById('productDetail');
+      const params = new URLSearchParams(window.location.search);
+      const targetId = params.get('id') || params.get('product');
+
+      updateDetailBadge();
+
+      // Fallback products list
+      const fallbackList = [
+        {
+          id: 1,
+          name: 'Poppy Dew Lip Gloss',
+          category: 'Beauty',
+          price: 12500,
+          image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600',
+          description: 'A luminous gloss for glowing bridal portraits and special occasions.',
+          details: 'Soft shimmer, nourishing formula, and a satin finish that photographs beautifully for every bridal moment.'
+        },
+        {
+          id: 2,
+          name: 'Gilded Glow Shimmer Oil',
+          category: 'Body',
+          price: 18000,
+          image: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=600',
+          description: 'A polished shimmer finish for events, photos, and elegant evenings.',
+          details: 'Lightweight glow oil with silky hydration, perfect for bridal prep or evening events.'
+        },
+        {
+          id: 3,
+          name: 'Velvet Muse Palette',
+          category: 'Beauty',
+          price: 25000,
+          image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600',
+          description: 'Soft matte tones made for flawless bridal and event styling.',
+          details: 'Buildable soft matte shades designed for classic bridal looks and refined event make-up.'
+        },
+        {
+          id: 4,
+          name: 'Hydra-Flourish Serum',
+          category: 'Skincare',
+          price: 32000,
+          image: 'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600',
+          description: 'Hydrating care that keeps your glow fresh before every celebration.',
+          details: 'A silky serum to prep skin pre-bridal, event, and photo sessions for a luminous finish.'
+        }
+      ];
+
+      let allProducts = fallbackList;
+
+      // Try fetching live products from backend API
+      try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.products) && data.products.length) {
+            allProducts = data.products;
+          }
+        }
+      } catch (err) {
+        // Fall back to local storage or fallback list
+        try {
+          const stored = JSON.parse(localStorage.getItem('flourishProducts') || '[]');
+          if (Array.isArray(stored) && stored.length) allProducts = stored;
+        } catch {}
       }
-    });
+
+      // Match target product
+      const product = allProducts.find(p => String(p.id) === String(targetId)) || allProducts[0];
+
+      if (!product) {
+        detailContainer.innerHTML = `
+          <div class="text-center py-12">
+            <h2 class="text-2xl font-bold text-gray-800">Product not found</h2>
+            <a href="shop.html" class="mt-4 inline-block rounded-xl bg-blue-800 text-white px-5 py-2.5 font-semibold">Back to Shop</a>
+          </div>
+        `;
+        return;
+      }
+
+      detailContainer.innerHTML = `
+        <div class="grid lg:grid-cols-2 gap-10 items-center rounded-3xl bg-white p-6 sm:p-10 shadow-xl">
+          <div class="relative overflow-hidden rounded-2xl bg-gray-50">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-[450px] object-cover rounded-2xl shadow-md transition duration-500 hover:scale-105">
+          </div>
+          <div>
+            <span class="text-xs font-bold uppercase tracking-[0.35em] text-blue-800 bg-blue-50 px-3 py-1.5 rounded-full inline-block">Flourish Poppies</span>
+            <h1 class="heading text-3xl sm:text-5xl font-bold text-blue-950 mt-4 leading-tight">${product.name}</h1>
+            <p class="text-xs uppercase tracking-[0.25em] text-gray-500 font-semibold mt-2">${product.category || 'Beauty'}</p>
+            
+            <div class="mt-6 border-y border-gray-100 py-4">
+              <p class="text-3xl font-bold text-blue-900">${formatNaira(product.price)}</p>
+              <p class="text-sm text-gray-500 font-medium mt-1">Approx. ${formatCad(product.price)} CAD</p>
+            </div>
+
+            <div class="mt-6">
+              <h3 class="text-sm font-semibold uppercase tracking-wider text-gray-800 mb-2">Description</h3>
+              <p class="text-gray-700 leading-relaxed text-base">${product.details || product.description || 'Premium formulation designed for long-lasting beauty and elegance.'}</p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-4 items-center">
+              <button id="addToCartBtn" type="button" class="rounded-2xl bg-blue-800 px-7 py-3.5 text-white font-semibold hover:bg-blue-900 transition shadow-lg flex items-center gap-2">
+                🛒 Add to Cart
+              </button>
+              <a href="cart.html" class="rounded-2xl border border-blue-200 bg-blue-50 px-6 py-3.5 text-blue-950 font-semibold hover:bg-blue-100 transition">
+                View Cart →
+              </a>
+              <a href="shop.html" class="text-sm font-semibold text-gray-600 hover:text-blue-800 underline ml-auto">
+                Continue Shopping
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Wire Add to Cart button
+      document.getElementById('addToCartBtn').addEventListener('click', () => {
+        const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
+        const existingIndex = cart.findIndex(item => String(item.id) === String(product.id));
+
+        if (existingIndex >= 0) {
+          cart[existingIndex].qty = Number(cart[existingIndex].qty || 1) + 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+
+        localStorage.setItem('flourishCart', JSON.stringify(cart));
+        updateDetailBadge();
+
+        const btn = document.getElementById('addToCartBtn');
+        btn.innerText = '✓ Added to Cart!';
+        btn.classList.replace('bg-blue-800', 'bg-green-700');
+
+        setTimeout(() => {
+          btn.innerText = '🛒 Add to Cart';
+          btn.classList.replace('bg-green-700', 'bg-blue-800');
+        }, 1800);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAndRenderDetail);
   </script>
 </body>
 </html>

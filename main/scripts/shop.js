@@ -48,14 +48,11 @@ function formatPrice(value) {
   return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(normalizePrice(value));
 }
 
-function formatCad(value) {
-  return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(normalizePrice(value));
-}
-
-function getConvertedPrices(value) {
-  const amount = normalizePrice(value);
-  const cad = amount / 1250;
-  return { cad };
+// Fixed formatCad: Calculates CAD from Naira price at 1 CAD = 1250 NGN rate
+function formatCad(priceInNaira) {
+  const amountInNaira = normalizePrice(priceInNaira);
+  const cadAmount = amountInNaira / 1250;
+  return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(cadAmount);
 }
 
 function getStoredProducts() {
@@ -76,7 +73,8 @@ function getProductById(id) {
   return getAllProducts().find((item) => String(item.id) === String(id)) || getAllProducts()[0] || SHOP_PRODUCTS[0];
 }
 
-function addToCart(product) {
+// Trigger Rose Petals animation when adding to cart
+function triggerRosePetalAnimation(event, product) {
   const cart = JSON.parse(localStorage.getItem('flourishCart') || '[]');
   const normalizedProduct = { ...product, price: normalizePrice(product.price) };
   const existingIndex = cart.findIndex((item) => String(item.id) === String(normalizedProduct.id));
@@ -88,7 +86,83 @@ function addToCart(product) {
   }
 
   localStorage.setItem('flourishCart', JSON.stringify(cart));
-  window.location.href = 'cart.html';
+
+  // Update cart badges
+  const countBadges = document.querySelectorAll('[data-cart-count], #cartCount, #detailCartBadge');
+  const totalItems = cart.reduce((sum, item) => sum + Number(item.qty || 1), 0);
+  countBadges.forEach(b => { if (b) b.textContent = totalItems; });
+
+  // Floating rose petal particles shower
+  const clickX = event ? event.clientX : window.innerWidth / 2;
+  const clickY = event ? event.clientY : window.innerHeight / 2;
+
+  const petalsContainer = document.createElement('div');
+  petalsContainer.style.position = 'fixed';
+  petalsContainer.style.inset = '0';
+  petalsContainer.style.pointerEvents = 'none';
+  petalsContainer.style.zIndex = '9999';
+  document.body.appendChild(petalsContainer);
+
+  const icons = ['🌸', '🌹', '✨', '💖', '🥀'];
+  for (let i = 0; i < 20; i++) {
+    const petal = document.createElement('span');
+    petal.textContent = icons[Math.floor(Math.random() * icons.length)];
+    petal.style.position = 'fixed';
+    petal.style.left = `${clickX + (Math.random() * 160 - 80)}px`;
+    petal.style.top = `${clickY + (Math.random() * 40 - 20)}px`;
+    petal.style.fontSize = `${16 + Math.random() * 16}px`;
+    petal.style.opacity = '1';
+    petal.style.transition = 'transform 1.3s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 1.3s ease-out';
+    petalsContainer.appendChild(petal);
+
+    const destX = (Math.random() * 320 - 160);
+    const destY = -(140 + Math.random() * 220);
+    const rot = (Math.random() * 720 - 360);
+
+    requestAnimationFrame(() => {
+      petal.style.transform = `translate(${destX}px, ${destY}px) rotate(${rot}deg)`;
+      petal.style.opacity = '0';
+    });
+  }
+
+  setTimeout(() => {
+    if (petalsContainer && petalsContainer.parentNode) {
+      petalsContainer.parentNode.removeChild(petalsContainer);
+    }
+  }, 1500);
+
+  // Show Rose Gold Toast
+  showRoseGoldToast(`✨ ${product.name} added to cart!`);
+}
+
+function showRoseGoldToast(message) {
+  let toast = document.getElementById('roseGoldToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'roseGoldToast';
+    toast.className = 'fixed bottom-6 right-6 z-50 rounded-2xl bg-gradient-to-r from-[#2a0e2a] via-[#1a0928] to-[#2a0e2a] border border-amber-300/60 p-4 text-white shadow-2xl flex items-center gap-3 transition-all duration-300 transform translate-y-10 opacity-0';
+    document.body.appendChild(toast);
+  }
+
+  toast.innerHTML = `
+    <span class="text-2xl">🌸</span>
+    <div>
+      <p class="font-bold text-amber-200 text-sm">${message}</p>
+      <a href="cart.html" class="text-xs font-semibold text-white underline hover:text-amber-300">View Shopping Cart ➔</a>
+    </div>
+  `;
+
+  toast.classList.remove('translate-y-10', 'opacity-0');
+  toast.classList.add('translate-y-0', 'opacity-100');
+
+  setTimeout(() => {
+    toast.classList.remove('translate-y-0', 'opacity-100');
+    toast.classList.add('translate-y-10', 'opacity-0');
+  }, 3500);
+}
+
+function addToCart(product) {
+  triggerRosePetalAnimation(null, product);
 }
 
 async function renderShopProducts() {
@@ -110,22 +184,31 @@ async function renderShopProducts() {
   } catch (err) {}
 
   container.innerHTML = products.map((product) => {
-    const converted = getConvertedPrices(product.price);
     const isSelected = String(product.id) === String(selectedProductId);
     return `
-      <article class="product-card rounded-3xl bg-white p-4 shadow-xl hover:-translate-y-1 transition flex flex-col justify-between ${isSelected ? 'ring-2 ring-blue-800' : ''}" data-product-id="${product.id}">
+      <article class="product-card group relative rounded-3xl bg-white p-5 shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 border border-amber-100/80 flex flex-col justify-between ${isSelected ? 'ring-2 ring-amber-500' : ''}" data-product-id="${product.id}">
         <div>
-          <a href="product-detail.html?id=${product.id}" class="block">
-            <img src="${product.image}" alt="${product.name}" class="h-56 w-full rounded-2xl object-cover hover:opacity-95 transition">
+          <a href="product-detail.html?id=${product.id}" class="block relative overflow-hidden rounded-2xl aspect-square bg-[#fffaf5]">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            ${product.sold ? '<span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-extrabold uppercase tracking-widest px-3 py-1 rounded-full shadow">Sold Out</span>' : ''}
           </a>
-          <span class="category mt-4 block text-xs uppercase tracking-[0.25em] text-gray-500">${product.category || 'Beauty'}</span>
-          <h3 class="mt-2 text-xl font-semibold text-blue-950">${product.name}</h3>
-          <p class="price mt-3 text-blue-800 font-semibold">${formatPrice(product.price)}</p>
-          <p class="mt-1 text-sm text-gray-600">${formatCad(converted.cad)}</p>
+          <div class="mt-4">
+            <span class="inline-block rounded-full bg-amber-100/80 px-3 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-amber-900 border border-amber-200/60">${product.category || 'Beauty'}</span>
+            <h3 class="mt-2 text-lg font-bold text-slate-900 heading line-clamp-1">${product.name}</h3>
+            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${product.description || ''}</p>
+            <div class="mt-4 pt-3 border-t border-amber-100/60 flex items-baseline justify-between">
+              <div>
+                <span class="text-lg font-extrabold text-slate-950 block">${formatPrice(product.price)}</span>
+                <span class="text-xs font-bold text-amber-700 block">${formatCad(product.price)} CAD</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mt-4 flex flex-wrap gap-2 pt-2 border-t border-gray-100">
-          <a href="product-detail.html?id=${product.id}" class="inline-flex rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-900 shadow-sm transition">View details</a>
-          <button type="button" class="inline-flex rounded-full border border-blue-200 px-4 py-2 text-sm font-semibold text-blue-900 hover:bg-blue-50 transition" onclick="addToCart(getProductById('${product.id}'))">Add to cart</button>
+        <div class="mt-5 flex items-center gap-2">
+          <a href="product-detail.html?id=${product.id}" class="flex-1 text-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs font-bold text-slate-800 hover:bg-slate-100 transition">Details</a>
+          <button type="button" class="flex-1 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-4 py-3 text-xs shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all" onclick="triggerRosePetalAnimation(event, getProductById('${product.id}'))">
+            Add to Cart 🌸
+          </button>
         </div>
       </article>
     `;
@@ -150,15 +233,15 @@ function renderProductDetail() {
     <div class="grid lg:grid-cols-2 gap-10 items-center">
       <img src="${product.image}" alt="${product.name}" class="rounded-3xl shadow-2xl h-[420px] object-cover">
       <div>
-        <p class="text-xs uppercase tracking-[0.35em] text-blue-800">Blue Poppies</p>
-        <h1 class="heading text-4xl md:text-5xl font-bold text-blue-950 mt-3">${product.name}</h1>
+        <p class="text-xs uppercase tracking-[0.35em] text-amber-600 font-bold">Bluepoppies Cosmetics</p>
+        <h1 class="heading text-4xl md:text-5xl font-bold text-slate-900 mt-3">${product.name}</h1>
         <p class="text-sm uppercase tracking-[0.25em] text-gray-500 mt-2">${product.category}</p>
         <p class="mt-5 text-gray-700 leading-7">${product.details || product.description || ''}</p>
-        <p class="mt-6 text-3xl font-bold text-blue-900">${formatPrice(product.price)}</p>
-        <p class="mt-2 text-gray-600">${formatCad(getConvertedPrices(product.price).cad)}</p>
+        <p class="mt-6 text-3xl font-bold text-slate-950">${formatPrice(product.price)}</p>
+        <p class="mt-2 text-amber-800 font-bold">${formatCad(product.price)} CAD</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <button type="button" class="rounded-2xl bg-blue-800 px-5 py-3 text-white font-semibold hover:bg-blue-900" onclick="addToCart(getProductById('${product.id}'))">Add to cart</button>
-          <a href="cart.html" class="rounded-2xl border border-blue-200 bg-blue-50 px-5 py-3 text-blue-900 font-semibold hover:bg-blue-100">View cart</a>
+          <button type="button" class="rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-6 py-3.5 hover:bg-amber-300 shadow-md transition" onclick="triggerRosePetalAnimation(event, getProductById('${product.id}'))">Add to cart 🌸</button>
+          <a href="cart.html" class="rounded-2xl border border-slate-300 bg-white px-6 py-3.5 text-slate-900 font-semibold hover:bg-slate-50">View cart</a>
         </div>
       </div>
     </div>
@@ -189,25 +272,29 @@ function renderCart() {
       <div class="flex gap-4 items-center">
         <img src="${item.image}" alt="${item.name}" class="h-24 w-24 rounded-2xl object-cover">
         <div>
-          <h3 class="text-xl font-semibold text-blue-950">${item.name}</h3>
+          <h3 class="text-xl font-semibold text-slate-950">${item.name}</h3>
           <p class="text-sm text-gray-600">${item.category}</p>
-          <p class="text-sm text-blue-800 font-semibold">${formatPrice(item.price)} each</p>
+          <p class="text-sm text-blue-900 font-bold">${formatPrice(item.price)} <span class="text-xs text-amber-700">(${formatCad(item.price)} CAD)</span> each</p>
         </div>
       </div>
-      <div class="text-sm text-gray-700">Qty: ${item.qty}</div>
-      <div class="text-lg font-semibold text-blue-900">${formatPrice(normalizePrice(item.price) * Number(item.qty || 1))}</div>
+      <div class="text-sm text-gray-700 font-bold">Qty: ${item.qty}</div>
+      <div class="text-right">
+        <div class="text-lg font-bold text-slate-950">${formatPrice(normalizePrice(item.price) * Number(item.qty || 1))}</div>
+        <div class="text-xs font-semibold text-amber-700">(${formatCad(normalizePrice(item.price) * Number(item.qty || 1))} CAD)</div>
+      </div>
     </article>
   `).join('');
 
   if (subtotal) subtotal.textContent = formatPrice(total);
-  if (cadSubtotal) cadSubtotal.textContent = formatCad(getConvertedPrices(total).cad);
+  if (cadSubtotal) cadSubtotal.textContent = formatCad(total) + ' CAD';
   if (count) count.textContent = `${cart.length} item${cart.length > 1 ? 's' : ''}`;
 }
 
 window.addToCart = addToCart;
+window.triggerRosePetalAnimation = triggerRosePetalAnimation;
 
-renderShopProducts();
-renderProductDetail();
-renderCart();
-renderProductDetail();
-renderCart();
+document.addEventListener('DOMContentLoaded', () => {
+  renderShopProducts();
+  renderProductDetail();
+  renderCart();
+});

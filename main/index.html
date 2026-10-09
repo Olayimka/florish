@@ -9,7 +9,9 @@
 
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -56,10 +58,10 @@
 
     .overlay {
       background: linear-gradient(110deg,
-          rgba(255, 247, 236, .88),
-          rgba(255, 210, 176, .55),
-          rgba(79, 33, 17, .45),
-          rgba(13, 23, 48, .55));
+          rgba(7, 23, 51, 0.82) 0%,
+          rgba(11, 37, 84, 0.65) 45%,
+          rgba(183, 95, 36, 0.35) 80%,
+          rgba(255, 247, 236, 0.2) 100%);
     }
 
     .products-section {
@@ -449,7 +451,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="relative min-h-[84vh] sm:min-h-screen overflow-hidden hero-shell">
+  <section class="relative min-h-[88vh] sm:min-h-screen overflow-hidden hero-shell flex items-center">
 
     <!-- SLIDES -->
     <div class="hero-slide active"
@@ -469,34 +471,45 @@
 
     <div class="absolute inset-0 overlay"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center py-14 sm:py-18">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center py-16 sm:py-24">
 
-      <div class="max-w-3xl hero-copy">
+      <div class="max-w-3xl hero-copy space-y-6">
 
-        <h1 class="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-gray-900">
 
+
+        <h1 class="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.12] text-white">
           Elegance in Every Detail,
-
-          <span class="italic text-blue-800">
-            Growth
+          <span class="italic text-amber-300 font-normal block sm:inline">
+            Growth & Radiance
           </span>
-
           in Every Step.
         </h1>
 
-        <p class="mt-6 sm:mt-8 text-base sm:text-lg text-gray-800 max-w-xl leading-7 sm:leading-8">
-          A bright, modern blend of premium cosmetics,
-          financial wisdom, and bridal elegance,
-          curated for the woman who wants every moment to shine.
+        <p class="text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed font-light">
+          A modern blend of luxury cosmetics, financial consulting, and bridal event planning — curated for the woman
+          who demands perfection in every moment.
         </p>
 
-        <div class="button-row mt-8 sm:mt-10">
+        <!-- Glassmorphism Stats Counter Pill -->
+        <div class="flex flex-wrap gap-4 pt-2">
+          <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-4 py-2.5 text-white">
+            <span class="block text-lg font-bold text-amber-300">1,500+</span>
+            <span class="text-[10px] uppercase tracking-wider text-slate-300 block font-semibold">Brides & Clients
+              Glammed</span>
+          </div>
+          <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-4 py-2.5 text-white">
+            <span class="block text-lg font-bold text-amber-300">100%</span>
+            <span class="text-[10px] uppercase tracking-wider text-slate-300 block font-semibold">Artisanal
+              Formulas</span>
+          </div>
+
+        </div>
+
+        <div class="button-row pt-4 flex flex-row items-center gap-2.5 sm:gap-4">
           <button type="button"
-            class="open-consultation-modal w-full sm:w-auto bg-blue-800 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold hover:bg-blue-900 shadow-lg shadow-blue-900/20">Book
-            Consultation</button>
+            class="open-consultation-modal inline-flex items-center justify-center whitespace-nowrap bg-amber-400 text-blue-950 px-3.5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-extrabold hover:bg-amber-300 shadow-xl transition-all text-xs sm:text-sm uppercase tracking-wider">Book Consultation 📅</button>
           <a href="shop.html"
-            class="w-full sm:w-auto bg-pink-200 text-gray-800 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-semibold hover:bg-pink-300 shadow-lg shadow-pink-200/60 text-center">Shop
-            at Bluepoppies</a>
+            class="inline-flex items-center justify-center whitespace-nowrap bg-white/15 border border-white/30 text-white px-3.5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold hover:bg-white/25 transition-all text-xs sm:text-sm text-center backdrop-blur-md">Shop at Bluepoppies 🌸</a>
         </div>
 
       </div>

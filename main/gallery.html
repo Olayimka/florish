@@ -1,45 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery | Bridal, Birthday & Event Makeup | Flourish Poppies</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
     .gallery-card {
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
     }
+
     .gallery-card:hover {
       transform: translateY(-6px) scale(1.01);
     }
+
     .gallery-card:hover .overlay-caption {
       opacity: 1;
       transform: translateY(0);
     }
+
     .overlay-caption {
       transition: opacity 0.35s ease, transform 0.35s ease;
       transform: translateY(12px);
     }
+
     .fade-in-up {
       animation: fadeInUp 0.5s ease forwards;
     }
+
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body class="bg-[#fffaf5] text-gray-800 antialiased selection:bg-amber-100 selection:text-amber-900">
   <!-- Navigation Header -->
   <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur border-b border-amber-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 min-w-0">
-        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0);">
+        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager"
+          class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm"
+          style="transform:translateZ(0);">
         <div>
           <h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2>
-          <span class="text-[10px] tracking-widest uppercase font-bold text-amber-700 block">Bridal & Glam Gallery</span>
+          <span class="text-[10px] tracking-widest uppercase font-bold text-amber-700 block">Bridal & Glam
+            Gallery</span>
         </div>
       </div>
 
@@ -53,8 +72,12 @@
       </ul>
 
       <div class="flex items-center gap-3">
-        <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="consultation.html" class="hidden sm:inline-flex bg-gradient-to-r from-blue-900 to-blue-800 text-white px-5 py-3 rounded-xl hover:shadow-lg transition font-medium text-sm">Book Bridal Glam</a>
+        <button id="menuBtn"
+          class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm"
+          aria-label="Open menu" aria-expanded="false">☰</button>
+        <a href="consultation.html"
+          class="hidden sm:inline-flex bg-gradient-to-r from-blue-900 to-blue-800 text-white px-5 py-3 rounded-xl hover:shadow-lg transition font-medium text-sm">Book
+          Bridal Glam</a>
       </div>
     </div>
 
@@ -65,7 +88,8 @@
         <a href="about.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">About Us</a>
         <a href="shop.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Shop</a>
         <a href="gallery.html" class="block rounded-2xl px-4 py-3 bg-amber-100 text-amber-950 font-bold">Gallery</a>
-        <a href="consultation.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Consultation</a>
+        <a href="consultation.html"
+          class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Consultation</a>
         <a href="contact.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Contact Us</a>
       </div>
     </div>
@@ -73,12 +97,14 @@
 
   <main>
     <!-- Featured Animated Hero Slideshow Carousel -->
-    <section class="relative bg-gradient-to-b from-[#071733] via-[#0b2554] to-[#071733] text-white py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
+    <section
+      class="relative bg-gradient-to-b from-[#071733] via-[#0b2554] to-[#071733] text-white py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
       <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-8 items-center relative z-10">
-        
+
         <!-- Left Banner Copy -->
         <div class="md:col-span-5 space-y-6 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-4 py-1.5 text-xs font-semibold tracking-widest text-amber-300 uppercase">
+          <div
+            class="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-4 py-1.5 text-xs font-semibold tracking-widest text-amber-300 uppercase">
             <span>✨ Luxury Portfolio</span>
             <span>•</span>
             <span>Bridal & Events</span>
@@ -87,14 +113,17 @@
             Artistry for Your Unforgettable Moments
           </h1>
           <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Explore our curated showcase of royal bridal styling, birthday glam transformations, and radiant evening outing make-up.
+            Explore our curated showcase of royal bridal styling, birthday glam transformations, and radiant evening
+            outing make-up.
           </p>
 
           <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
-            <a href="#portfolioGrid" class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-bold px-7 py-4 shadow-xl transition-all text-sm">
+            <a href="#portfolioGrid"
+              class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-bold px-7 py-4 shadow-xl transition-all text-sm">
               Explore 30 Look Showcase ↓
             </a>
-            <a href="consultation.html" class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-4 transition-all text-sm">
+            <a href="consultation.html"
+              class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-4 transition-all text-sm">
               Book Your Session
             </a>
           </div>
@@ -102,61 +131,90 @@
 
         <!-- Right Animated Slideshow Carousel Frame -->
         <div class="md:col-span-7 relative">
-          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-black/40 aspect-[4/3] sm:aspect-[16/10]">
-            
+          <div
+            class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-black/40 aspect-[4/3] sm:aspect-[16/10]">
+
             <!-- Slides Container -->
             <div id="heroSlideshow" class="w-full h-full relative">
               <!-- Slide 1 -->
               <div class="slide-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200" alt="Royal Bridal Glam" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
-                  <span class="inline-block self-start rounded-full bg-amber-500/90 text-blue-950 px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Bridal Royalty</span>
-                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Traditional & White Wedding Elegance</h3>
-                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Luminous skin finish and timeless bridal definition created for the bride's big day.</p>
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200" alt="Royal Bridal Glam"
+                  class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span
+                    class="inline-block self-start rounded-full bg-amber-500/90 text-blue-950 px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Bridal
+                    Royalty</span>
+                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Traditional & White Wedding Elegance
+                  </h3>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Luminous skin finish and timeless bridal definition
+                    created for the bride's big day.</p>
                 </div>
               </div>
 
               <!-- Slide 2 -->
               <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200" alt="Birthday Soiree Glam" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
-                  <span class="inline-block self-start rounded-full bg-pink-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Birthday Glam</span>
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200"
+                  alt="Birthday Soiree Glam" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span
+                    class="inline-block self-start rounded-full bg-pink-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Birthday
+                    Glam</span>
                   <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Radiant Birthday Celebration Makeup</h3>
-                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Bold lip highlights, sculpted glow, and high-impact birthday photoshoot styling.</p>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Bold lip highlights, sculpted glow, and high-impact
+                    birthday photoshoot styling.</p>
                 </div>
               </div>
 
               <!-- Slide 3 -->
               <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200" alt="Evening Outing Styling" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
-                  <span class="inline-block self-start rounded-full bg-purple-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Special Outing</span>
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200"
+                  alt="Evening Outing Styling" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span
+                    class="inline-block self-start rounded-full bg-purple-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Special
+                    Outing</span>
                   <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Chic Evening & Gala Glamour</h3>
-                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Sophisticated soft glam designed for red carpets, dinner parties, and special outings.</p>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Sophisticated soft glam designed for red carpets,
+                    dinner parties, and special outings.</p>
                 </div>
               </div>
 
               <!-- Slide 4 -->
               <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
-                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200" alt="Editorial Beauty Shoot" class="w-full h-full object-cover" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
-                  <span class="inline-block self-start rounded-full bg-blue-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Editorial Beauty</span>
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200"
+                  alt="Editorial Beauty Shoot" class="w-full h-full object-cover" />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span
+                    class="inline-block self-start rounded-full bg-blue-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Editorial
+                    Beauty</span>
                   <h3 class="heading text-2xl sm:text-3xl font-bold text-white">High-Fashion Editorial Artistry</h3>
-                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Clean, glowing editorial looks tailored for campaign portraits and creative features.</p>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Clean, glowing editorial looks tailored for campaign
+                    portraits and creative features.</p>
                 </div>
               </div>
             </div>
 
             <!-- Slideshow Controls -->
-            <button id="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all" aria-label="Previous slide">❮</button>
-            <button id="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all" aria-label="Next slide">❯</button>
+            <button id="prevSlide"
+              class="absolute left-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all"
+              aria-label="Previous slide">❮</button>
+            <button id="nextSlide"
+              class="absolute right-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all"
+              aria-label="Next slide">❯</button>
 
             <!-- Dots Indicator -->
             <div id="slideDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
               <button class="dot-btn h-2.5 w-8 rounded-full bg-amber-400 transition-all" data-slide="0"></button>
-              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="1"></button>
-              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="2"></button>
-              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="3"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all"
+                data-slide="1"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all"
+                data-slide="2"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all"
+                data-slide="3"></button>
             </div>
           </div>
         </div>
@@ -165,29 +223,36 @@
     </section>
 
     <!-- Filter Category Bar Section -->
-    <section id="portfolioGrid" class="py-12 bg-[#fffaf5] border-b border-amber-200/50 sticky top-[73px] z-30 backdrop-blur-md bg-white/80">
+    <section id="portfolioGrid"
+      class="py-12 bg-[#fffaf5] border-b border-amber-200/50 top-[73px] z-30 backdrop-blur-md bg-white/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div>
-            <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-700 block">Framework & Look Selector</span>
-            <h2 class="heading text-2xl sm:text-3xl font-bold text-blue-950">Gallery Portfolio (30 Look Slots)</h2>
-          </div>
 
           <!-- Filter Pills -->
           <div class="flex flex-wrap items-center gap-2">
-            <button class="filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all" data-filter="all">
+            <button
+              class="filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all"
+              data-filter="all">
               ✦ All Creations (30)
             </button>
-            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="bridal">
+            <button
+              class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
+              data-filter="bridal">
               👰 Bridal Events
             </button>
-            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="birthday">
+            <button
+              class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
+              data-filter="birthday">
               👑 Birthday Glam
             </button>
-            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="outing">
+            <button
+              class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
+              data-filter="outing">
               ✨ Outings & Parties
             </button>
-            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="editorial">
+            <button
+              class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
+              data-filter="editorial">
               📸 Editorial Shoots
             </button>
           </div>
@@ -198,17 +263,22 @@
     <!-- 30-Slot Gallery Grid Framework -->
     <section class="py-16 bg-[#f7f3ef] px-4 sm:px-6">
       <div class="max-w-7xl mx-auto">
-        
+
         <!-- Info Banner for User -->
-        <div class="mb-10 rounded-2xl bg-amber-50 border border-amber-200/80 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div
+          class="mb-10 rounded-2xl bg-amber-50 border border-amber-200/80 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div class="flex items-center gap-3">
             <span class="text-2xl">📸</span>
             <div>
               <p class="text-xs sm:text-sm font-bold text-amber-950">30 Image Portfolio Framework Ready</p>
-              <p class="text-xs text-amber-800/80">Below are 30 structured image frames for Bridal, Birthday, Outing, and Editorial looks. Replace any <code class="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">src</code> with your own 30 photo files anytime!</p>
+              <p class="text-xs text-amber-800/80">Below are 30 structured image frames for Bridal, Birthday, Outing,
+                and Editorial looks. Replace any <code
+                  class="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">src</code> with your own 30 photo files
+                anytime!</p>
             </div>
           </div>
-          <span class="text-xs font-extrabold text-blue-900 bg-white px-3.5 py-1.5 rounded-xl border border-amber-200 shadow-sm shrink-0">
+          <span
+            class="text-xs font-extrabold text-blue-900 bg-white px-3.5 py-1.5 rounded-xl border border-amber-200 shadow-sm shrink-0">
             Interactive Lightbox Enabled 🔍
           </span>
         </div>
@@ -217,155 +287,290 @@
         <div id="galleryContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
           <!-- SLOT 1: BRIDAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Royal White Wedding Glam" data-desc="Soft flawless base with neutral eye styling for the main bridal entrance.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="bridal" data-title="Royal White Wedding Glam"
+            data-desc="Soft flawless base with neutral eye styling for the main bridal entrance.">
             <!-- IMAGE SLOT 1 (Replace src with your image path e.g. assest/gallery-1.jpg) -->
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Royal White Wedding Glam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Royal White Wedding Glam"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #1</span>
+              <span
+                class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal
+                #1</span>
               <h3 class="font-bold text-lg text-white">Royal White Wedding Glam</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft flawless base with neutral eye styling for the main bridal entrance.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft flawless base with neutral eye styling for the
+                main bridal entrance.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 2: BRIDAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Traditional Aso-Ebi Bride" data-desc="Vibrant traditional bridal transformation with bronzed skin glow.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="bridal" data-title="Traditional Aso-Ebi Bride"
+            data-desc="Vibrant traditional bridal transformation with bronzed skin glow.">
             <!-- IMAGE SLOT 2 -->
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Traditional Aso-Ebi Bride" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800"
+              alt="Traditional Aso-Ebi Bride"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #2</span>
+              <span
+                class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal
+                #2</span>
               <h3 class="font-bold text-lg text-white">Traditional Aso-Ebi Bride</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Vibrant traditional bridal transformation with bronzed skin glow.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Vibrant traditional bridal transformation with bronzed
+                skin glow.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 3: BIRTHDAY -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="Golden Birthday Goddess" data-desc="High-shimmer eyelid glam and bold glossy lip for 25th birthday shoot.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="birthday" data-title="Golden Birthday Goddess"
+            data-desc="High-shimmer eyelid glam and bold glossy lip for 25th birthday shoot.">
             <!-- IMAGE SLOT 3 -->
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Golden Birthday Goddess" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Golden Birthday Goddess"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #3</span>
+              <span
+                class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday
+                #3</span>
               <h3 class="font-bold text-lg text-white">Golden Birthday Goddess</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">High-shimmer eyelid glam and bold glossy lip for 25th birthday shoot.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">High-shimmer eyelid glam and bold glossy lip for 25th
+                birthday shoot.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 4: OUTING -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Sunset Cocktail Party" data-desc="Warm peach tones and wispy lash extensions tailored for an evening dinner.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="outing" data-title="Sunset Cocktail Party"
+            data-desc="Warm peach tones and wispy lash extensions tailored for an evening dinner.">
             <!-- IMAGE SLOT 4 -->
-            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Sunset Cocktail Party" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Sunset Cocktail Party"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #4</span>
+              <span
+                class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing
+                #4</span>
               <h3 class="font-bold text-lg text-white">Sunset Cocktail Party</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Warm peach tones and wispy lash extensions tailored for an evening dinner.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Warm peach tones and wispy lash extensions tailored
+                for an evening dinner.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 5: BRIDAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Bridal Reception Glow" data-desc="Second look reception change with extra shimmer body oil and winged liner.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="bridal" data-title="Bridal Reception Glow"
+            data-desc="Second look reception change with extra shimmer body oil and winged liner.">
             <!-- IMAGE SLOT 5 -->
-            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Bridal Reception Glow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Bridal Reception Glow"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #5</span>
+              <span
+                class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal
+                #5</span>
               <h3 class="font-bold text-lg text-white">Bridal Reception Glow</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Second look reception change with extra shimmer body oil and winged liner.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Second look reception change with extra shimmer body
+                oil and winged liner.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 6: EDITORIAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="editorial" data-title="High-Fashion Studio Cover" data-desc="Sculpted contouring and glass skin texture for luxury lookbook feature.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="editorial" data-title="High-Fashion Studio Cover"
+            data-desc="Sculpted contouring and glass skin texture for luxury lookbook feature.">
             <!-- IMAGE SLOT 6 -->
-            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800" alt="High-Fashion Studio Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800"
+              alt="High-Fashion Studio Cover"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial #6</span>
+              <span
+                class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial
+                #6</span>
               <h3 class="font-bold text-lg text-white">High-Fashion Studio Cover</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sculpted contouring and glass skin texture for luxury lookbook feature.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sculpted contouring and glass skin texture for luxury
+                lookbook feature.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 7: BIRTHDAY -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="Velvet Rose Birthday Portrait" data-desc="Soft smoky eye blend with velvety matte nude lipstick.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="birthday" data-title="Velvet Rose Birthday Portrait"
+            data-desc="Soft smoky eye blend with velvety matte nude lipstick.">
             <!-- IMAGE SLOT 7 -->
-            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800" alt="Velvet Rose Birthday Portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800"
+              alt="Velvet Rose Birthday Portrait"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #7</span>
+              <span
+                class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday
+                #7</span>
               <h3 class="font-bold text-lg text-white">Velvet Rose Birthday Portrait</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft smoky eye blend with velvety matte nude lipstick.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft smoky eye blend with velvety matte nude lipstick.
+              </p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 8: OUTING -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Gala Award Night" data-desc="Sleek, polished glam designed to catch stage lights and flashing cameras.">
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="outing" data-title="Gala Award Night"
+            data-desc="Sleek, polished glam designed to catch stage lights and flashing cameras.">
             <!-- IMAGE SLOT 8 -->
-            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Gala Award Night" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Gala Award Night"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #8</span>
+              <span
+                class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing
+                #8</span>
               <h3 class="font-bold text-lg text-white">Gala Award Night</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sleek, polished glam designed to catch stage lights and flashing cameras.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sleek, polished glam designed to catch stage lights
+                and flashing cameras.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOTS 9 TO 30: PROGRAMMATIC / HTML FRAMEWORK SLOTS FOR THE USER'S 30 IMAGES -->
           <!-- SLOT 9: BRIDAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Nikkah & Cultural Bridal Look" data-desc="Subtle, elegant blush tones with defined brows and glowing skin for Nikkah ceremony.">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Nikkah Bridal Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="bridal" data-title="Nikkah & Cultural Bridal Look"
+            data-desc="Subtle, elegant blush tones with defined brows and glowing skin for Nikkah ceremony.">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Nikkah Bridal Look"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #9</span>
+              <span
+                class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal
+                #9</span>
               <h3 class="font-bold text-lg text-white">Nikkah & Cultural Bridal Look</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Subtle, elegant blush tones with defined brows for Nikkah ceremony.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Subtle, elegant blush tones with defined brows for
+                Nikkah ceremony.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 10: BIRTHDAY -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="30th Birthday Champagne Glam" data-desc="Sparkling champagne eyeshadow, fluffy lashes, and satin lip glow.">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Champagne Glam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="birthday" data-title="30th Birthday Champagne Glam"
+            data-desc="Sparkling champagne eyeshadow, fluffy lashes, and satin lip glow.">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Champagne Glam"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #10</span>
+              <span
+                class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday
+                #10</span>
               <h3 class="font-bold text-lg text-white">Champagne Birthday Glam</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sparkling champagne eyeshadow, fluffy lashes, and satin lip glow.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sparkling champagne eyeshadow, fluffy lashes, and
+                satin lip glow.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 11: OUTING -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Pre-Dinner Date Night Beauty" data-desc="Soft glam skin prep with chocolate lip liner and natural blush touch.">
-            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Date Night Beauty" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="outing" data-title="Pre-Dinner Date Night Beauty"
+            data-desc="Soft glam skin prep with chocolate lip liner and natural blush touch.">
+            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Date Night Beauty"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #11</span>
+              <span
+                class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing
+                #11</span>
               <h3 class="font-bold text-lg text-white">Pre-Dinner Date Night Beauty</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft glam skin prep with chocolate lip liner and natural blush touch.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft glam skin prep with chocolate lip liner and
+                natural blush touch.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
           <!-- SLOT 12: EDITORIAL -->
-          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="editorial" data-title="Pre-Wedding Concept Shoot" data-desc="Artistic pre-wedding portrait session styling with natural sunlit finish.">
-            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Pre-Wedding Shoot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+          <article
+            class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer"
+            data-category="editorial" data-title="Pre-Wedding Concept Shoot"
+            data-desc="Artistic pre-wedding portrait session styling with natural sunlit finish.">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Pre-Wedding Shoot"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+            </div>
             <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
-              <span class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial #12</span>
+              <span
+                class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial
+                #12</span>
               <h3 class="font-bold text-lg text-white">Pre-Wedding Concept Shoot</h3>
-              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Artistic pre-wedding portrait session styling with natural sunlit finish.</p>
-              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Artistic pre-wedding portrait session styling with
+                natural sunlit finish.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo
+                ➔</span>
             </div>
           </article>
 
@@ -398,13 +603,13 @@
                 const title = sampleTitles[cat][(i - 1) % sampleTitles[cat].length] + ` (${i})`;
                 const img = sampleImages[(i - 1) % sampleImages.length];
                 const badgeColor = cat === 'bridal' ? 'bg-amber-400 text-blue-950' : (cat === 'birthday' ? 'bg-pink-400 text-blue-950' : (cat === 'outing' ? 'bg-purple-400 text-blue-950' : 'bg-blue-400 text-blue-950'));
-                
+
                 const article = document.createElement('article');
                 article.className = 'gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer fade-in-up';
                 article.setAttribute('data-category', cat);
                 article.setAttribute('data-title', title);
                 article.setAttribute('data-desc', `Custom transformation slot #${i} for ${cat} event makeup.`);
-                
+
                 article.innerHTML = `
                   <img src="${img}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
@@ -425,16 +630,22 @@
     </section>
 
     <!-- Lightbox Modal Component -->
-    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-8">
-      <button id="closeLightbox" class="absolute top-6 right-6 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl font-bold transition-all z-20">✕</button>
-      
-      <button id="prevLightbox" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❮</button>
-      <button id="nextLightbox" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❯</button>
+    <div id="lightboxModal"
+      class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-8">
+      <button id="closeLightbox"
+        class="absolute top-6 right-6 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl font-bold transition-all z-20">✕</button>
+
+      <button id="prevLightbox"
+        class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❮</button>
+      <button id="nextLightbox"
+        class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❯</button>
 
       <div class="max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center relative">
-        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/20" />
+        <img id="lightboxImg" src="" alt=""
+          class="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/20" />
         <div class="mt-4 text-center text-white space-y-1">
-          <span id="lightboxCategory" class="inline-block rounded-full bg-amber-400 text-blue-950 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider">BRIDAL</span>
+          <span id="lightboxCategory"
+            class="inline-block rounded-full bg-amber-400 text-blue-950 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider">BRIDAL</span>
           <h3 id="lightboxTitle" class="heading text-xl font-bold"></h3>
           <p id="lightboxDesc" class="text-xs text-slate-300 max-w-lg mx-auto"></p>
           <span id="lightboxCounter" class="block text-[11px] text-amber-300/80 font-mono mt-2">Item 1 of 30</span>
@@ -443,20 +654,25 @@
     </div>
 
     <!-- Booking CTA Footer Banner -->
-    <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 text-white py-16 px-6 relative overflow-hidden">
+    <section
+      class="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 text-white py-16 px-6 relative overflow-hidden">
       <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-        <span class="inline-block rounded-full bg-amber-400/20 text-amber-300 px-4 py-1 text-xs font-bold uppercase tracking-widest border border-amber-400/30">
+        <span
+          class="inline-block rounded-full bg-amber-400/20 text-amber-300 px-4 py-1 text-xs font-bold uppercase tracking-widest border border-amber-400/30">
           Book Your Transformation
         </span>
         <h2 class="heading text-3xl sm:text-4xl lg:text-5xl font-bold">Ready for Your Special Bridal or Event Look?</h2>
         <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
-          Reserve your preferred date for bridal glam, birthday prep, or evening makeup consultation with Flourish Poppies today.
+          Reserve your preferred date for bridal glam, birthday prep, or evening makeup consultation with Flourish
+          Poppies today.
         </p>
         <div class="pt-4 flex flex-wrap gap-4 justify-center">
-          <a href="consultation.html" class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-extrabold px-8 py-4 shadow-xl transition-all text-sm">
+          <a href="consultation.html"
+            class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-extrabold px-8 py-4 shadow-xl transition-all text-sm">
             Book Consultation Now →
           </a>
-          <a href="contact.html" class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 transition-all text-sm">
+          <a href="contact.html"
+            class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 transition-all text-sm">
             Contact Us
           </a>
         </div>
@@ -469,19 +685,25 @@
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
       <p class="text-sm text-white/80">© Flourish Poppies 2026 · All Rights Reserved</p>
       <div class="flex items-center gap-4 social-links">
-        <a href="#" aria-label="Instagram" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+        <a href="#" aria-label="Instagram"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
           </svg>
         </a>
-        <a href="#" aria-label="Facebook" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+        <a href="#" aria-label="Facebook"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
+            <path
+              d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
           </svg>
         </a>
-        <a href="#" aria-label="TikTok" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+        <a href="#" aria-label="TikTok"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
+            <path
+              d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
           </svg>
         </a>
       </div>
@@ -590,7 +812,7 @@
         if (!visibleCards.length) return;
         activeLightboxIndex = (index + visibleCards.length) % visibleCards.length;
         const targetCard = visibleCards[activeLightboxIndex];
-        
+
         const img = targetCard.querySelector('img');
         const title = targetCard.getAttribute('data-title') || 'Gallery Look';
         const desc = targetCard.getAttribute('data-desc') || '';
@@ -639,4 +861,5 @@
     });
   </script>
 </body>
+
 </html>

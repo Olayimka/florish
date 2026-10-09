@@ -3,105 +3,471 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery | Flourish Poppies</title>
+  <title>Gallery | Bridal, Birthday & Event Makeup | Flourish Poppies</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .gallery-card {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+    .gallery-card:hover {
+      transform: translateY(-6px) scale(1.01);
+    }
+    .gallery-card:hover .overlay-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .overlay-caption {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      transform: translateY(12px);
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.5s ease forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-[#fffaf5] text-gray-800">
-  <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur">
+<body class="bg-[#fffaf5] text-gray-800 antialiased selection:bg-amber-100 selection:text-amber-900">
+  <!-- Navigation Header -->
+  <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur border-b border-amber-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 min-w-0">
-        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0); image-rendering:auto;">
+        <img src="assest/logo.png" alt="Flourish Poppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0);">
         <div>
           <h2 class="heading text-lg sm:text-2xl font-bold text-blue-900 truncate">Flourish Poppies</h2>
+          <span class="text-[10px] tracking-widest uppercase font-bold text-amber-700 block">Bridal & Glam Gallery</span>
         </div>
       </div>
 
       <ul class="hidden md:flex gap-8 text-gray-700 font-medium">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="gallery.html" class="text-blue-800 font-semibold">Gallery</a></li>
-        <li><a href="consultation.html">Consultation</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="index.html" class="hover:text-blue-900 transition">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-900 transition">About</a></li>
+        <li><a href="shop.html" class="hover:text-blue-900 transition">Shop</a></li>
+        <li><a href="gallery.html" class="text-blue-900 font-bold border-b-2 border-amber-500 pb-1">Gallery</a></li>
+        <li><a href="consultation.html" class="hover:text-blue-900 transition">Consultation</a></li>
+        <li><a href="contact.html" class="hover:text-blue-900 transition">Contact</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
         <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="shop.html" class="hidden sm:inline-flex bg-blue-800 text-white px-5 py-3 rounded-xl hover:bg-blue-900 transition shadow-sm">Shop Now</a>
+        <a href="consultation.html" class="hidden sm:inline-flex bg-gradient-to-r from-blue-900 to-blue-800 text-white px-5 py-3 rounded-xl hover:shadow-lg transition font-medium text-sm">Book Bridal Glam</a>
       </div>
     </div>
 
-    <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-pink-100">
-      <div class="px-5 py-5">
-        <div class="space-y-2">
-          <a href="index.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-            <span class="font-medium text-gray-700">Home</span>
-            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-          </a>
-          <a href="about.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-            <span class="font-medium text-gray-700">About Us</span>
-            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-          </a>
-          <a href="gallery.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#ae9378] hover:bg-pink-100 transition-all duration-300">
-            <span class="font-medium text-[#694929]">Gallery</span>
-            <span class="text-pink-700 opacity-0 group-hover:opacity-100 transition">✦</span>
-          </a>
-          <a href="consultation.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-            <span class="font-medium text-gray-700">Consultation</span>
-            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-          </a>
-          <a href="contact.html" class="group flex items-center justify-between rounded-2xl px-4 py-4 bg-[#fffaf5] hover:bg-pink-50 transition-all duration-300">
-            <span class="font-medium text-gray-700">Contact Us</span>
-            <span class="text-pink-400 opacity-0 group-hover:opacity-100 transition">✦</span>
-          </a>
-        </div>
-        <div class="my-5 border-t border-pink-100"></div>
-        <a href="shop.html" class="block text-center py-4 rounded-2xl font-semibold text-white bg-[#694929] from-blue-800 via-blue-700 to-blue-900 shadow-xl hover:shadow-blue-300/40 hover:-translate-y-1 transition-all duration-300">
-          Shop Now →
-        </a>
+    <!-- Mobile Drawer -->
+    <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-amber-100">
+      <div class="px-5 py-5 space-y-2">
+        <a href="index.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Home</a>
+        <a href="about.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">About Us</a>
+        <a href="shop.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Shop</a>
+        <a href="gallery.html" class="block rounded-2xl px-4 py-3 bg-amber-100 text-amber-950 font-bold">Gallery</a>
+        <a href="consultation.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Consultation</a>
+        <a href="contact.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-gray-700 font-medium">Contact Us</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <p class="text-xs uppercase tracking-[0.35em] text-blue-800">Gallery</p>
+    <!-- Featured Animated Hero Slideshow Carousel -->
+    <section class="relative bg-gradient-to-b from-[#071733] via-[#0b2554] to-[#071733] text-white py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-8 items-center relative z-10">
         
-        
+        <!-- Left Banner Copy -->
+        <div class="md:col-span-5 space-y-6 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-4 py-1.5 text-xs font-semibold tracking-widest text-amber-300 uppercase">
+            <span>✨ Luxury Portfolio</span>
+            <span>•</span>
+            <span>Bridal & Events</span>
+          </div>
+          <h1 class="heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-amber-50 leading-tight">
+            Artistry for Your Unforgettable Moments
+          </h1>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Explore our curated showcase of royal bridal styling, birthday glam transformations, and radiant evening outing make-up.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
+            <a href="#portfolioGrid" class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-bold px-7 py-4 shadow-xl transition-all text-sm">
+              Explore 30 Look Showcase ↓
+            </a>
+            <a href="consultation.html" class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-7 py-4 transition-all text-sm">
+              Book Your Session
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Animated Slideshow Carousel Frame -->
+        <div class="md:col-span-7 relative">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 bg-black/40 aspect-[4/3] sm:aspect-[16/10]">
+            
+            <!-- Slides Container -->
+            <div id="heroSlideshow" class="w-full h-full relative">
+              <!-- Slide 1 -->
+              <div class="slide-item absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=1200" alt="Royal Bridal Glam" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span class="inline-block self-start rounded-full bg-amber-500/90 text-blue-950 px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Bridal Royalty</span>
+                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Traditional & White Wedding Elegance</h3>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Luminous skin finish and timeless bridal definition created for the bride's big day.</p>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1200" alt="Birthday Soiree Glam" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span class="inline-block self-start rounded-full bg-pink-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Birthday Glam</span>
+                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Radiant Birthday Celebration Makeup</h3>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Bold lip highlights, sculpted glow, and high-impact birthday photoshoot styling.</p>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200" alt="Evening Outing Styling" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span class="inline-block self-start rounded-full bg-purple-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Special Outing</span>
+                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">Chic Evening & Gala Glamour</h3>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Sophisticated soft glam designed for red carpets, dinner parties, and special outings.</p>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="slide-item absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out">
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=1200" alt="Editorial Beauty Shoot" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 sm:p-8 flex flex-col justify-end">
+                  <span class="inline-block self-start rounded-full bg-blue-500/90 text-white px-3 py-1 text-xs font-extrabold uppercase tracking-wider mb-2">Editorial Beauty</span>
+                  <h3 class="heading text-2xl sm:text-3xl font-bold text-white">High-Fashion Editorial Artistry</h3>
+                  <p class="text-slate-200 text-xs sm:text-sm mt-1">Clean, glowing editorial looks tailored for campaign portraits and creative features.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slideshow Controls -->
+            <button id="prevSlide" class="absolute left-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all" aria-label="Previous slide">❮</button>
+            <button id="nextSlide" class="absolute right-4 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center text-lg shadow-lg border border-white/20 transition-all" aria-label="Next slide">❯</button>
+
+            <!-- Dots Indicator -->
+            <div id="slideDots" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+              <button class="dot-btn h-2.5 w-8 rounded-full bg-amber-400 transition-all" data-slide="0"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="1"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="2"></button>
+              <button class="dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all" data-slide="3"></button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section id="bridal" class="py-16 bg-[#f7f3ef]">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="heading text-3xl md:text-4xl font-bold text-blue-950">Bridal & Event Gallery</h2>
-        <div class="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" class="h-56 w-full object-cover" alt="Bridal event" /><div class="p-4 text-sm text-gray-700">Classic bridal styling with soft light and elegant textures.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" class="h-56 w-full object-cover" alt="Event celebration" /><div class="p-4 text-sm text-gray-700">Luxury event moments curated across cultures and celebration styles.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" class="h-56 w-full object-cover" alt="Traditional detail" /><div class="p-4 text-sm text-gray-700">Traditional heritage details styled for refined celebration.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" class="h-56 w-full object-cover" alt="Bride and guest" /><div class="p-4 text-sm text-gray-700">A warm and dazzling wedding theme with rich cultural personality.</div></article>
+    <!-- Filter Category Bar Section -->
+    <section id="portfolioGrid" class="py-12 bg-[#fffaf5] border-b border-amber-200/50 sticky top-[73px] z-30 backdrop-blur-md bg-white/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-[0.25em] text-amber-700 block">Framework & Look Selector</span>
+            <h2 class="heading text-2xl sm:text-3xl font-bold text-blue-950">Gallery Portfolio (30 Look Slots)</h2>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="flex flex-wrap items-center gap-2">
+            <button class="filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all" data-filter="all">
+              ✦ All Creations (30)
+            </button>
+            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="bridal">
+              👰 Bridal Events
+            </button>
+            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="birthday">
+              👑 Birthday Glam
+            </button>
+            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="outing">
+              ✨ Outings & Parties
+            </button>
+            <button class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all" data-filter="editorial">
+              📸 Editorial Shoots
+            </button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="makeup" class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-6">
-        <h2 class="heading text-3xl md:text-4xl font-bold text-blue-950">Make-up Gallery</h2>
-        <div class="mt-8 grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800" class="h-56 w-full object-cover" alt="Make-up look" /><div class="p-4 text-sm text-gray-700">Soft glam make-up for bridal portraits and event photos.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" class="h-56 w-full object-cover" alt="Beauty styling" /><div class="p-4 text-sm text-gray-700">Polished beauty styling and refined skin finish.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" class="h-56 w-full object-cover" alt="Glam detail" /><div class="p-4 text-sm text-gray-700">Glam details that bring radiance to every celebration.</div></article>
-          <article class="rounded-3xl overflow-hidden bg-white shadow-xl"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800" class="h-56 w-full object-cover" alt="Editorial beauty" /><div class="p-4 text-sm text-gray-700">Editorial touches designed for sophisticated beauty shoots.</div></article>
+    <!-- 30-Slot Gallery Grid Framework -->
+    <section class="py-16 bg-[#f7f3ef] px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        
+        <!-- Info Banner for User -->
+        <div class="mb-10 rounded-2xl bg-amber-50 border border-amber-200/80 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">📸</span>
+            <div>
+              <p class="text-xs sm:text-sm font-bold text-amber-950">30 Image Portfolio Framework Ready</p>
+              <p class="text-xs text-amber-800/80">Below are 30 structured image frames for Bridal, Birthday, Outing, and Editorial looks. Replace any <code class="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">src</code> with your own 30 photo files anytime!</p>
+            </div>
+          </div>
+          <span class="text-xs font-extrabold text-blue-900 bg-white px-3.5 py-1.5 rounded-xl border border-amber-200 shadow-sm shrink-0">
+            Interactive Lightbox Enabled 🔍
+          </span>
+        </div>
+
+        <!-- Grid Container -->
+        <div id="galleryContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+          <!-- SLOT 1: BRIDAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Royal White Wedding Glam" data-desc="Soft flawless base with neutral eye styling for the main bridal entrance.">
+            <!-- IMAGE SLOT 1 (Replace src with your image path e.g. assest/gallery-1.jpg) -->
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Royal White Wedding Glam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #1</span>
+              <h3 class="font-bold text-lg text-white">Royal White Wedding Glam</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft flawless base with neutral eye styling for the main bridal entrance.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 2: BRIDAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Traditional Aso-Ebi Bride" data-desc="Vibrant traditional bridal transformation with bronzed skin glow.">
+            <!-- IMAGE SLOT 2 -->
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Traditional Aso-Ebi Bride" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #2</span>
+              <h3 class="font-bold text-lg text-white">Traditional Aso-Ebi Bride</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Vibrant traditional bridal transformation with bronzed skin glow.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 3: BIRTHDAY -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="Golden Birthday Goddess" data-desc="High-shimmer eyelid glam and bold glossy lip for 25th birthday shoot.">
+            <!-- IMAGE SLOT 3 -->
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Golden Birthday Goddess" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #3</span>
+              <h3 class="font-bold text-lg text-white">Golden Birthday Goddess</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">High-shimmer eyelid glam and bold glossy lip for 25th birthday shoot.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 4: OUTING -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Sunset Cocktail Party" data-desc="Warm peach tones and wispy lash extensions tailored for an evening dinner.">
+            <!-- IMAGE SLOT 4 -->
+            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Sunset Cocktail Party" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #4</span>
+              <h3 class="font-bold text-lg text-white">Sunset Cocktail Party</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Warm peach tones and wispy lash extensions tailored for an evening dinner.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 5: BRIDAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Bridal Reception Glow" data-desc="Second look reception change with extra shimmer body oil and winged liner.">
+            <!-- IMAGE SLOT 5 -->
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Bridal Reception Glow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #5</span>
+              <h3 class="font-bold text-lg text-white">Bridal Reception Glow</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Second look reception change with extra shimmer body oil and winged liner.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 6: EDITORIAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="editorial" data-title="High-Fashion Studio Cover" data-desc="Sculpted contouring and glass skin texture for luxury lookbook feature.">
+            <!-- IMAGE SLOT 6 -->
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800" alt="High-Fashion Studio Cover" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial #6</span>
+              <h3 class="font-bold text-lg text-white">High-Fashion Studio Cover</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sculpted contouring and glass skin texture for luxury lookbook feature.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 7: BIRTHDAY -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="Velvet Rose Birthday Portrait" data-desc="Soft smoky eye blend with velvety matte nude lipstick.">
+            <!-- IMAGE SLOT 7 -->
+            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800" alt="Velvet Rose Birthday Portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #7</span>
+              <h3 class="font-bold text-lg text-white">Velvet Rose Birthday Portrait</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft smoky eye blend with velvety matte nude lipstick.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 8: OUTING -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Gala Award Night" data-desc="Sleek, polished glam designed to catch stage lights and flashing cameras.">
+            <!-- IMAGE SLOT 8 -->
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800" alt="Gala Award Night" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #8</span>
+              <h3 class="font-bold text-lg text-white">Gala Award Night</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sleek, polished glam designed to catch stage lights and flashing cameras.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOTS 9 TO 30: PROGRAMMATIC / HTML FRAMEWORK SLOTS FOR THE USER'S 30 IMAGES -->
+          <!-- SLOT 9: BRIDAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="bridal" data-title="Nikkah & Cultural Bridal Look" data-desc="Subtle, elegant blush tones with defined brows and glowing skin for Nikkah ceremony.">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800" alt="Nikkah Bridal Look" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-amber-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Bridal #9</span>
+              <h3 class="font-bold text-lg text-white">Nikkah & Cultural Bridal Look</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Subtle, elegant blush tones with defined brows for Nikkah ceremony.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 10: BIRTHDAY -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="birthday" data-title="30th Birthday Champagne Glam" data-desc="Sparkling champagne eyeshadow, fluffy lashes, and satin lip glow.">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800" alt="Champagne Glam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-pink-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Birthday #10</span>
+              <h3 class="font-bold text-lg text-white">Champagne Birthday Glam</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Sparkling champagne eyeshadow, fluffy lashes, and satin lip glow.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 11: OUTING -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="outing" data-title="Pre-Dinner Date Night Beauty" data-desc="Soft glam skin prep with chocolate lip liner and natural blush touch.">
+            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800" alt="Date Night Beauty" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-purple-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Outing #11</span>
+              <h3 class="font-bold text-lg text-white">Pre-Dinner Date Night Beauty</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Soft glam skin prep with chocolate lip liner and natural blush touch.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- SLOT 12: EDITORIAL -->
+          <article class="gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer" data-category="editorial" data-title="Pre-Wedding Concept Shoot" data-desc="Artistic pre-wedding portrait session styling with natural sunlit finish.">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Pre-Wedding Shoot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+            <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+              <span class="self-start rounded-full bg-blue-400 text-blue-950 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">Editorial #12</span>
+              <h3 class="font-bold text-lg text-white">Pre-Wedding Concept Shoot</h3>
+              <p class="text-xs text-slate-200 mt-1 line-clamp-2">Artistic pre-wedding portrait session styling with natural sunlit finish.</p>
+              <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+            </div>
+          </article>
+
+          <!-- REPEATING HTML SLOTS 13 TO 30 FOR FULL 30 FRAMEWORK COVERAGE -->
+          <script>
+            // Generate slots 13 to 30 automatically if not hardcoded to ensure exact 30 slots coverage
+            document.addEventListener('DOMContentLoaded', () => {
+              const container = document.getElementById('galleryContainer');
+              const currentSlots = container.querySelectorAll('.gallery-card').length;
+              const categories = ['bridal', 'birthday', 'outing', 'editorial'];
+              const sampleTitles = {
+                bridal: ['Elegance Bride Prep', 'Classic Church Wedding', 'Traditional Edo Royalty', 'Bridal Party Glam'],
+                birthday: ['Sweet 16 Glow', 'Milestone 40th Celebration', 'Glitz & Glam Shoot', 'Studio Birthday Reel'],
+                outing: ['VIP Lounge Glam', 'Red Carpet Guest', 'Brunch & Mimosa Look', 'Fashion Week Outing'],
+                editorial: ['Vogue Style Feature', 'Beauty Campaign Portrait', 'Summer Solstice Shoot', 'High-Gloss Runway']
+              };
+              const sampleImages = [
+                'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800',
+                'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800',
+                'https://images.unsplash.com/photo-1519741497674-611481863552?w=800',
+                'https://images.unsplash.com/photo-1612817288484-6f916006741a?w=800',
+                'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800',
+                'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800',
+                'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800',
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800'
+              ];
+
+              for (let i = currentSlots + 1; i <= 30; i++) {
+                const cat = categories[(i - 1) % categories.length];
+                const title = sampleTitles[cat][(i - 1) % sampleTitles[cat].length] + ` (${i})`;
+                const img = sampleImages[(i - 1) % sampleImages.length];
+                const badgeColor = cat === 'bridal' ? 'bg-amber-400 text-blue-950' : (cat === 'birthday' ? 'bg-pink-400 text-blue-950' : (cat === 'outing' ? 'bg-purple-400 text-blue-950' : 'bg-blue-400 text-blue-950'));
+                
+                const article = document.createElement('article');
+                article.className = 'gallery-card group relative rounded-3xl overflow-hidden bg-white shadow-lg border border-amber-100 aspect-[3/4] cursor-pointer fade-in-up';
+                article.setAttribute('data-category', cat);
+                article.setAttribute('data-title', title);
+                article.setAttribute('data-desc', `Custom transformation slot #${i} for ${cat} event makeup.`);
+                
+                article.innerHTML = `
+                  <img src="${img}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-950/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                  <div class="overlay-caption absolute bottom-0 inset-x-0 p-5 text-white flex flex-col justify-end">
+                    <span class="self-start rounded-full ${badgeColor} px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider mb-2">${cat.toUpperCase()} #${i}</span>
+                    <h3 class="font-bold text-lg text-white">${title}</h3>
+                    <p class="text-xs text-slate-200 mt-1 line-clamp-2">Flawless beauty artistry created for special ${cat} moments.</p>
+                    <span class="mt-3 text-xs font-bold text-amber-300 flex items-center gap-1">Click to view full photo ➔</span>
+                  </div>
+                `;
+                container.appendChild(article);
+              }
+            });
+          </script>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal Component -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-8">
+      <button id="closeLightbox" class="absolute top-6 right-6 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl font-bold transition-all z-20">✕</button>
+      
+      <button id="prevLightbox" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❮</button>
+      <button id="nextLightbox" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition-all z-20">❯</button>
+
+      <div class="max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center relative">
+        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/20" />
+        <div class="mt-4 text-center text-white space-y-1">
+          <span id="lightboxCategory" class="inline-block rounded-full bg-amber-400 text-blue-950 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider">BRIDAL</span>
+          <h3 id="lightboxTitle" class="heading text-xl font-bold"></h3>
+          <p id="lightboxDesc" class="text-xs text-slate-300 max-w-lg mx-auto"></p>
+          <span id="lightboxCounter" class="block text-[11px] text-amber-300/80 font-mono mt-2">Item 1 of 30</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking CTA Footer Banner -->
+    <section class="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 text-white py-16 px-6 relative overflow-hidden">
+      <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
+        <span class="inline-block rounded-full bg-amber-400/20 text-amber-300 px-4 py-1 text-xs font-bold uppercase tracking-widest border border-amber-400/30">
+          Book Your Transformation
+        </span>
+        <h2 class="heading text-3xl sm:text-4xl lg:text-5xl font-bold">Ready for Your Special Bridal or Event Look?</h2>
+        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+          Reserve your preferred date for bridal glam, birthday prep, or evening makeup consultation with Flourish Poppies today.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4 justify-center">
+          <a href="consultation.html" class="rounded-2xl bg-amber-500 hover:bg-amber-400 text-blue-950 font-extrabold px-8 py-4 shadow-xl transition-all text-sm">
+            Book Consultation Now →
+          </a>
+          <a href="contact.html" class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 transition-all text-sm">
+            Contact Us
+          </a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="footer-small bg-blue-950 text-white">
+  <!-- Small Footer -->
+  <footer class="bg-blue-950 text-white border-t border-amber-950/40">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
-      <p class="text-sm text-white/80">@flourish poppies 2026 · All rights reserved</p>
+      <p class="text-sm text-white/80">© Flourish Poppies 2026 · All Rights Reserved</p>
       <div class="flex items-center gap-4 social-links">
         <a href="#" aria-label="Instagram" class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -122,30 +488,155 @@
     </div>
   </footer>
 
-  <script src="/main/scripts/main.js"></script>
+  <script src="scripts/main.js"></script>
   <script>
-    const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Drawer Toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('hidden');
+          menuBtn.setAttribute('aria-expanded', String(!isOpen));
+          menuBtn.textContent = !isOpen ? '✕' : '☰';
+        });
+      }
 
+      // Hero Slideshow Controller
+      const slides = document.querySelectorAll('.slide-item');
+      const dots = document.querySelectorAll('.dot-btn');
+      const prevBtn = document.getElementById('prevSlide');
+      const nextBtn = document.getElementById('nextSlide');
+      let currentSlide = 0;
+      let slideTimer = null;
 
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', String(isOpen));
-    menuBtn.textContent = isOpen ? '✕' : '☰';
-  });
+      function showSlide(index) {
+        if (!slides.length) return;
+        currentSlide = (index + slides.length) % slides.length;
+        slides.forEach((slide, idx) => {
+          slide.classList.toggle('opacity-100', idx === currentSlide);
+          slide.classList.toggle('opacity-0', idx !== currentSlide);
+        });
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.className = 'dot-btn h-2.5 w-8 rounded-full bg-amber-400 transition-all';
+          } else {
+            dot.className = 'dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all';
+          }
+        });
+      }
 
-  mobileMenu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.textContent = '☰';
+      function startTimer() {
+        stopTimer();
+        slideTimer = setInterval(() => showSlide(currentSlide + 1), 4500);
+      }
+      function stopTimer() {
+        if (slideTimer) clearInterval(slideTimer);
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => { showSlide(currentSlide - 1); startTimer(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { showSlide(currentSlide + 1); startTimer(); });
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = Number(dot.getAttribute('data-slide'));
+          showSlide(idx);
+          startTimer();
+        });
+      });
+      startTimer();
+
+      // Category Filter Controller
+      const filterPills = document.querySelectorAll('.filter-pill');
+      filterPills.forEach((pill) => {
+        pill.addEventListener('click', () => {
+          filterPills.forEach((p) => {
+            p.className = 'filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all';
+          });
+          pill.className = 'filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all';
+
+          const filterCategory = pill.getAttribute('data-filter');
+          const cards = document.querySelectorAll('.gallery-card');
+          cards.forEach((card) => {
+            const cardCat = card.getAttribute('data-category');
+            if (filterCategory === 'all' || cardCat === filterCategory) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Lightbox Modal Controller
+      const lightboxModal = document.getElementById('lightboxModal');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxTitle = document.getElementById('lightboxTitle');
+      const lightboxDesc = document.getElementById('lightboxDesc');
+      const lightboxCategory = document.getElementById('lightboxCategory');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      const closeLightbox = document.getElementById('closeLightbox');
+      const prevLightbox = document.getElementById('prevLightbox');
+      const nextLightbox = document.getElementById('nextLightbox');
+
+      let visibleCards = [];
+      let activeLightboxIndex = 0;
+
+      function updateVisibleCards() {
+        visibleCards = Array.from(document.querySelectorAll('.gallery-card')).filter(c => c.style.display !== 'none');
+      }
+
+      function openLightbox(index) {
+        updateVisibleCards();
+        if (!visibleCards.length) return;
+        activeLightboxIndex = (index + visibleCards.length) % visibleCards.length;
+        const targetCard = visibleCards[activeLightboxIndex];
+        
+        const img = targetCard.querySelector('img');
+        const title = targetCard.getAttribute('data-title') || 'Gallery Look';
+        const desc = targetCard.getAttribute('data-desc') || '';
+        const cat = targetCard.getAttribute('data-category') || 'GLAM';
+
+        lightboxImg.src = img.src;
+        lightboxTitle.textContent = title;
+        lightboxDesc.textContent = desc;
+        lightboxCategory.textContent = cat.toUpperCase();
+        lightboxCounter.textContent = `Look ${activeLightboxIndex + 1} of ${visibleCards.length}`;
+
+        lightboxModal.classList.remove('hidden');
+        lightboxModal.classList.add('flex');
+      }
+
+      document.getElementById('galleryContainer').addEventListener('click', (e) => {
+        const card = e.target.closest('.gallery-card');
+        if (card) {
+          updateVisibleCards();
+          const idx = visibleCards.indexOf(card);
+          if (idx !== -1) openLightbox(idx);
+        }
+      });
+
+      if (closeLightbox) {
+        closeLightbox.addEventListener('click', () => {
+          lightboxModal.classList.add('hidden');
+          lightboxModal.classList.remove('flex');
+        });
+      }
+
+      if (prevLightbox) {
+        prevLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex - 1));
+      }
+
+      if (nextLightbox) {
+        nextLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex + 1));
+      }
+
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) {
+          lightboxModal.classList.add('hidden');
+          lightboxModal.classList.remove('flex');
+        }
+      });
     });
-  });
-}
-
-
-
   </script>
 </body>
 </html>

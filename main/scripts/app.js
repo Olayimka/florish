@@ -63,8 +63,10 @@
     return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(parsePrice(value));
   }
 
-  function formatCad(value) {
-    return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(parsePrice(value));
+  function formatCad(priceInNgn) {
+    const rawNgn = parsePrice(priceInNgn);
+    const cadAmount = rawNgn / 1250;
+    return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 2 }).format(cadAmount);
   }
 
   function readProductsFromStorage() {
@@ -178,39 +180,74 @@
   }
 
   async function createProduct(productPayload) {
-    const response = await fetch(PRODUCT_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productPayload)
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Unable to save product');
-    writeProductsToStorage(data.products || [data.product]);
-    return data.product;
+    try {
+      const response = await fetch(PRODUCT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productPayload)
+      });
+      if (response.ok) {
+        const data = await response.json();
+        const updatedList = data.products || [data.product, ...getProducts()];
+        writeProductsToStorage(updatedList);
+        return data.product || productPayload;
+      }
+    } catch (err) {
+      console.warn('Server create API unavailable, using local storage:', err);
+    }
+    const current = getProducts();
+    const newProd = { id: Date.now(), ...productPayload };
+    current.unshift(newProd);
+    writeProductsToStorage(current);
+    return newProd;
   }
 
   async function updateProduct(productPayload) {
-    const response = await fetch('/api/products/update', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(productPayload)
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Unable to update product');
-    writeProductsToStorage(data.products || []);
-    return data.products;
+    try {
+      const response = await fetch('/api/products/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(productPayload)
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.products) {
+          writeProductsToStorage(data.products);
+          return data.products;
+        }
+      }
+    } catch (err) {
+      console.warn('Server update API unavailable, using local storage:', err);
+    }
+    const current = getProducts();
+    const idx = current.findIndex(p => String(p.id) === String(productPayload.id));
+    if (idx >= 0) {
+      current[idx] = { ...current[idx], ...productPayload };
+      writeProductsToStorage(current);
+    }
+    return current;
   }
 
   async function deleteProduct(productId) {
-    const response = await fetch('/api/products/delete', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: productId })
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Unable to delete product');
-    writeProductsToStorage(data.products || []);
-    return data.products;
+    try {
+      const response = await fetch('/api/products/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: productId })
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.products && Array.isArray(data.products)) {
+          writeProductsToStorage(data.products);
+          return data.products;
+        }
+      }
+    } catch (err) {
+      console.warn('Server delete API unavailable, using local storage:', err);
+    }
+    const remaining = getProducts().filter(p => String(p.id) !== String(productId));
+    writeProductsToStorage(remaining);
+    return remaining;
   }
 
   async function submitInquiry(event) {
@@ -392,16 +429,45 @@
     const tableBody = document.getElementById('adminInventoryTable');
     if (!tableBody) return;
     const products = getProducts();
+    if (!products.length) {
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="5" class="py-12 text-center text-gray-500">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 mb-3 text-xl">🛍️</div>
+            <p class="font-medium">No products in inventory yet.</p>
+            <p class="text-xs text-gray-400 mt-1">Use the form above to add your first luxury beauty item.</p>
+          </td>
+        </tr>
+      `;
+      return;
+    }
     tableBody.innerHTML = products.map((product) => `
-      <tr class="border-b border-amber-100 text-sm text-gray-700">
-        <td class="py-3 pr-3 font-semibold text-blue-950">${product.name}</td>
-        <td class="py-3 pr-3">${product.category || 'Beauty'}</td>
-        <td class="py-3 pr-3">${formatPrice(product.price)}</td>
-        <td class="py-3 pr-3"><span class="rounded-full px-3 py-1 text-xs font-semibold ${product.sold ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-700'}">${product.sold ? 'Sold' : 'Available'}</span></td>
-        <td class="py-3 pr-3">
-          <div class="flex flex-wrap gap-2">
-            <button type="button" class="rounded-full border border-blue-200 px-3 py-1 text-xs font-semibold text-blue-900" data-edit-product="${product.id}">Edit</button>
-            <button type="button" class="rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700" data-delete-product="${product.id}">Delete</button>
+      <tr class="border-b border-amber-100/60 text-sm text-gray-700 hover:bg-amber-50/40 transition-colors">
+        <td class="py-4 pr-4">
+          <div class="flex items-center gap-3.5">
+            <img src="${product.image || 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600'}" alt="${product.name}" class="h-12 w-12 rounded-2xl object-cover border border-amber-200/80 shadow-sm shrink-0" />
+            <div class="min-w-0">
+              <div class="font-bold text-blue-950 truncate max-w-[200px]">${product.name}</div>
+              <div class="text-xs text-gray-500 line-clamp-1 max-w-[240px]">${product.description || product.category}</div>
+            </div>
+          </div>
+        </td>
+        <td class="py-4 pr-4">
+          <span class="inline-block rounded-full bg-amber-100/80 px-3 py-1 text-xs font-semibold text-amber-900 border border-amber-200/50">${product.category || 'Beauty'}</span>
+        </td>
+        <td class="py-4 pr-4 whitespace-nowrap">
+          <div class="font-bold text-blue-950">${formatPrice(product.price)}</div>
+          <div class="text-xs font-semibold text-amber-700 mt-0.5">${formatCad(product.price)} CAD</div>
+        </td>
+        <td class="py-4 pr-4 whitespace-nowrap">
+          <span class="rounded-full px-3 py-1 text-xs font-bold ${product.sold ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-emerald-100 text-emerald-800 border border-emerald-200'}">
+            ${product.sold ? 'Sold' : 'Available'}
+          </span>
+        </td>
+        <td class="py-4 pr-4 whitespace-nowrap">
+          <div class="flex items-center gap-2">
+            <button type="button" class="rounded-xl border border-blue-200 bg-blue-50 px-3.5 py-1.5 text-xs font-bold text-blue-900 hover:bg-blue-800 hover:text-white transition-all shadow-sm" data-edit-product="${product.id}">Edit</button>
+            <button type="button" class="rounded-xl border border-rose-200 bg-rose-50 px-3.5 py-1.5 text-xs font-bold text-rose-700 hover:bg-rose-600 hover:text-white transition-all shadow-sm" data-delete-product="${product.id}">Delete</button>
           </div>
         </td>
       </tr>

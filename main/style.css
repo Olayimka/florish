@@ -217,6 +217,16 @@ html { scroll-behavior: smooth; }
   .founder-card { grid-template-columns: 1fr; }
 }
 
+.hero-copy {
+  padding: calc(2.5rem + 15px);
+}
+
+@media (max-width: 1023px) {
+  .hero-copy {
+    padding: calc(2rem + 15px);
+  }
+}
+
 @media (max-width: 767px) {
   body { font-size: 15px; cursor: auto; }
 
@@ -228,7 +238,7 @@ html { scroll-behavior: smooth; }
 
   .hero-copy {
     max-width: 100%;
-    padding: 1.25rem 1rem !important;
+    padding: calc(1.25rem + 15px) calc(1rem + 15px) !important;
     border-radius: 1.25rem !important;
   }
 

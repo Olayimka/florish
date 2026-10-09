@@ -396,17 +396,9 @@
         <button id="menuBtn"
           class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-blue-100 bg-blue-50 text-blue-900 text-xl shadow-sm"
           aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="cart.html"
-          class="relative inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-blue-950 font-extrabold px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm shadow-md hover:shadow-amber-400/40 hover:scale-[1.02] active:scale-95 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-            class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-          </svg>
-          <span>Cart</span>
-          <span data-cart-count id="cartCountIndex"
-            class="inline-flex items-center justify-center bg-blue-950 text-amber-300 font-extrabold text-[11px] h-5 min-w-[20px] px-1.5 rounded-full border border-amber-300/40 shadow-sm">0</span>
-        </a>
+        <a href="consultation.html"
+          class="hidden sm:inline-flex bg-gradient-to-r from-blue-950 via-blue-900 to-blue-950 text-amber-300 font-semibold text-sm px-5 py-3 rounded-xl hover:shadow-lg transition border border-amber-400/30">Book
+          Consultation</a>
       </div>
     </div>
 
@@ -483,7 +475,7 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center py-8 sm:py-12">
 
       <div
-        class="max-w-3xl hero-copy bg-black/65 backdrop-blur-md p-4 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl space-y-4 sm:space-y-6">
+        class="max-w-3xl hero-copy bg-black/65 backdrop-blur-md p-[31px] sm:p-[47px] lg:p-[55px] rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl space-y-4 sm:space-y-6">
 
         <h1
           class="heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-snug sm:leading-[1.15] text-white tracking-tight drop-shadow-md">
@@ -500,18 +492,18 @@
         </p>
 
         <!-- Glassmorphism Stats Counter Pill -->
-        <div class="flex flex-wrap gap-2 sm:gap-4 pt-1">
+        <div class="flex flex-row flex-nowrap items-stretch gap-2.5 sm:gap-4 pt-1 w-full max-w-lg">
           <div
-            class="rounded-xl sm:rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-sm">
+            class="flex-1 min-w-0 rounded-xl sm:rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 text-white shadow-sm">
             <span class="block text-base sm:text-lg font-bold text-amber-300">1,500+</span>
-            <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-200 block font-semibold">Brides &
+            <span class="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-200 block font-semibold leading-tight">Brides &
               Clients Glammed</span>
           </div>
           <div
-            class="rounded-xl sm:rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-3 sm:px-4 py-1.5 sm:py-2 text-white shadow-sm">
+            class="flex-1 min-w-0 rounded-xl sm:rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-3 sm:px-4 py-2 sm:py-2.5 text-white shadow-sm">
             <span class="block text-base sm:text-lg font-bold text-amber-300">100%</span>
             <span
-              class="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-200 block font-semibold">Artisanal
+              class="text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-200 block font-semibold leading-tight">Artisanal
               Formulas</span>
           </div>
         </div>

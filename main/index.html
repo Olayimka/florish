@@ -619,96 +619,232 @@
       </div>
     </div>
   </section>
-  <!-- SERVICES -->
-  <section style="padding:60px 20px;max-width:1200px;margin:auto; background:#f3efec;">
-    <div style="text-align:center;margin-bottom:50px;">
-      <h1 style="margin:0;font-size:clamp(2rem,5vw,4rem);font-family:Georgia,serif;color:#222;font-weight:700;">The
-        Three Pillars</h1>
-      <p style="margin-top:10px;color:#666;font-size:16px;">A holistic approach to premium living.</p>
-    </div>
-
-    <div id="pillars-container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-      <div
-        style="background:#fff;padding:40px 30px;text-align:center;border-radius:8px;min-height:420px;display:flex;flex-direction:column;align-items:center;">
-        <div
-          style="width:80px;height:80px;background:#f7dbe8;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:25px;font-size:32px;">
-          🧠</div>
-        <h2 style="margin:0 0 20px;font-family:Georgia,serif;color:#0b46c5;font-size:2rem;line-height:1.2;">
-          BluePoppies<br>Cosmetics</h2>
-        <p style="color:#666;line-height:1.8;font-size:18px;margin-bottom:auto;">Artisanal beauty products crafted for
-          the modern individual who demands both elegance and performance.</p>
-        <a href="shop.html"
-          style="margin-top:40px;text-decoration:none;color:#0b46c5;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;">Shop
-          Collection</a>
+  <!-- SERVICES / THREE PILLARS -->
+  <section class="py-20 bg-[#f3efec]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <span class="badge inline-block rounded-full bg-amber-200/60 px-4 py-1.5 text-xs font-bold tracking-widest text-amber-900 uppercase mb-3">Our Core Expertise</span>
+        <h2 class="heading text-4xl md:text-5xl font-bold text-blue-950">The Three Pillars</h2>
+        <p class="mt-3 text-gray-600 text-base md:text-lg max-w-2xl mx-auto">A holistic approach to luxury cosmetics, strategic wealth, and editorial bridal styling.</p>
       </div>
 
-      <div
-        style="background:#fff;padding:40px 30px;text-align:center;border-radius:8px;min-height:420px;display:flex;flex-direction:column;align-items:center;">
-        <div
-          style="width:80px;height:80px;background:#0b46c5;color:white;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:25px;font-size:32px;">
-          🏛️</div>
-        <h2 style="margin:0 0 20px;font-family:Georgia,serif;color:#0b46c5;font-size:2rem;line-height:1.2;">Financial
-          Strategy</h2>
-        <p style="color:#666;line-height:1.8;font-size:18px;margin-bottom:auto;">Elite advisory services designed to
-          secure your heritage and grow your wealth with sophisticated precision.</p>
-        <a href="consultation.html"
-          style="margin-top:40px;text-decoration:none;color:#0b46c5;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;">Consult
-          Advisory</a>
-      </div>
+      <div id="pillars-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Pillar 1: BluePoppies Cosmetics -->
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-amber-100/70 min-h-[420px] flex flex-col items-center text-center hover:-translate-y-2 transition-all duration-300">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-pink-500/15 via-pink-500/10 to-amber-500/20 border border-pink-200/80 flex items-center justify-center mb-6 shadow-sm text-pink-700">
+            <!-- Professional Cosmetics / Beauty SVG Icon -->
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            </svg>
+          </div>
+          <h3 class="heading text-2xl font-bold text-blue-950 mb-3">BluePoppies<br>Cosmetics</h3>
+          <p class="text-gray-600 leading-relaxed text-base mb-auto font-light">Artisanal beauty formulations and high-performance makeup crafted for the modern individual demanding timeless radiance.</p>
+          <a href="shop.html" class="mt-8 text-blue-900 font-extrabold tracking-wider uppercase text-xs hover:text-amber-600 transition border-b-2 border-amber-400 pb-1 inline-flex items-center gap-1.5">Shop Collection ➔</a>
+        </div>
 
-      <div
-        style="background:#fff;padding:40px 30px;text-align:center;border-radius:8px;min-height:420px;display:flex;flex-direction:column;align-items:center;">
-        <div
-          style="width:80px;height:80px;background:#f7dbe8;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:25px;font-size:32px;">
-          🎉</div>
-        <h2 style="margin:0 0 20px;font-family:Georgia,serif;color:#0b46c5;font-size:2rem;line-height:1.2;">Bridal &
-          Events</h2>
-        <p style="color:#666;line-height:1.8;font-size:18px;margin-bottom:auto;">Bespoke styling and event management
-          for life's most precious milestones, curated with editorial flair.</p>
-        <a href="consultation.html"
-          style="margin-top:40px;text-decoration:none;color:#0b46c5;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:14px;">Book
-          Event</a>
+        <!-- Pillar 2: Financial Strategy -->
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-amber-100/70 min-h-[420px] flex flex-col items-center text-center hover:-translate-y-2 transition-all duration-300">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-900/15 via-blue-900/10 to-amber-500/20 border border-blue-200/80 flex items-center justify-center mb-6 shadow-sm text-blue-900">
+            <!-- Professional Financial Strategy SVG Icon -->
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="heading text-2xl font-bold text-blue-950 mb-3">Financial<br>Strategy</h3>
+          <p class="text-gray-600 leading-relaxed text-base mb-auto font-light">Elite advisory services designed to secure your financial heritage, optimize portfolios, and build sustainable prosperity.</p>
+          <a href="consultation.html" class="mt-8 text-blue-900 font-extrabold tracking-wider uppercase text-xs hover:text-amber-600 transition border-b-2 border-amber-400 pb-1 inline-flex items-center gap-1.5">Consult Advisory ➔</a>
+        </div>
+
+        <!-- Pillar 3: Bridal & Events -->
+        <div class="bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-amber-100/70 min-h-[420px] flex flex-col items-center text-center hover:-translate-y-2 transition-all duration-300">
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-amber-500/15 via-amber-400/20 to-pink-500/15 border border-amber-300/80 flex items-center justify-center mb-6 shadow-sm text-amber-700">
+            <!-- Professional Bridal & Events SVG Icon -->
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg>
+          </div>
+          <h3 class="heading text-2xl font-bold text-blue-950 mb-3">Bridal &<br>Events</h3>
+          <p class="text-gray-600 leading-relaxed text-base mb-auto font-light">Bespoke bridal make-up, wedding styling, and luxury event planning for life's most cherished milestone celebrations.</p>
+          <a href="consultation.html" class="mt-8 text-blue-900 font-extrabold tracking-wider uppercase text-xs hover:text-amber-600 transition border-b-2 border-amber-400 pb-1 inline-flex items-center gap-1.5">Book Event Glam ➔</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-
-
-  <!-- GALLERY -->
+  <!-- GALLERY SHOWCASE SECTION -->
   <section id="gallery" class="py-24 bg-[#fffaf5]">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="heading text-4xl md:text-5xl font-bold text-blue-900">Wedding Moments</h2>
-        <p class="mt-4 text-gray-600">Warm, bright, and elegant celebrations captured in every frame.</p>
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-6">
+        <div>
+          <span class="badge inline-block rounded-full bg-amber-100 border border-amber-200 px-4 py-1.5 text-xs font-bold text-amber-900 uppercase tracking-wider mb-2">Artistry Portfolio</span>
+          <h2 class="heading text-4xl md:text-5xl font-bold text-blue-900">Bridal & Make-Up Gallery</h2>
+          <p class="mt-3 text-gray-600 text-base max-w-xl">Explore our radiant makeup transformations, royal bridal styling, and celebration looks. Tap any photo to open our full gallery page!</p>
+        </div>
+        <a href="gallery.html" class="inline-flex items-center gap-2 rounded-2xl bg-blue-900 text-white hover:bg-blue-800 px-6 py-3.5 text-xs font-bold uppercase tracking-wider shadow-lg transition-all shrink-0">
+          <span>Explore All 30 Gallery Looks</span>
+          <span>➔</span>
+        </a>
       </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="rounded-3xl overflow-hidden shadow-xl bg-white"><img
-            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=900"
-            class="h-56 w-full object-cover" alt="Wedding celebration">
-          <div class="p-5">
-            <h3 class="font-semibold text-blue-900">Bridal Glow</h3>
-            <p class="text-sm text-gray-600 mt-2">Soft light, rich color, and elegant details for a memorable day.</p>
+
+      <!-- Clickable Gallery Grid (Redirects to gallery.html on tap/click) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Gallery Card 1: Royal Bridal Glam -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Royal Bridal Glamour">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-amber-400/95 text-blue-950 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Bridal Royalty
+            </span>
           </div>
-        </article>
-        <article class="rounded-3xl overflow-hidden shadow-xl bg-white"><img
-            src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=900"
-            class="h-56 w-full object-cover" alt="Wedding reception">
-          <div class="p-5">
-            <h3 class="font-semibold text-blue-900">Reception Energy</h3>
-            <p class="text-sm text-gray-600 mt-2">A joyful atmosphere with style, music, and celebration in every
-              corner.</p>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Royal White Wedding Glam</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Luminous skin finish, soft neutral eyes, and timeless bridal definition created for the big day.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Bridal Suite</span>
+            </div>
           </div>
-        </article>
-        <article class="rounded-3xl overflow-hidden shadow-xl bg-white"><img
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900"
-            class="h-56 w-full object-cover" alt="Traditional wedding moment">
-          <div class="p-5">
-            <h3 class="font-semibold text-blue-900">Tradition & Charm</h3>
-            <p class="text-sm text-gray-600 mt-2">Beautiful cultural touches arranged with a modern luxurious finish.
-            </p>
+        </a>
+
+        <!-- Gallery Card 2: Birthday & Photo Shoot Makeup -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Birthday Celebration Makeup">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-pink-500/95 text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Birthday Glam
+            </span>
           </div>
-        </article>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Radiant Birthday Celebration</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Bold lip accent, sculpted cheekbones, and high-impact birthday photoshoot styling.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Makeup Session</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gallery Card 3: Editorial Soft Glam Makeup -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Editorial Soft Glam">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-purple-500/95 text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Editorial Makeup
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Editorial Soft Glam Finish</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Dewy, effortless elegance for campaigns, dinners, and luxury editorial features.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Bluepoppies Look</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gallery Card 4: Traditional Wedding Styling -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Traditional Wedding Makeup">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-amber-500/95 text-blue-950 px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Traditional Bride
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Traditional Bridal Artistry</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Vibrant cultural accents, regal gele coordination, and rich flawless make-up artistry.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Culture & Glam</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gallery Card 5: Glamour Session Makeup -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Special Outing Makeup">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-blue-600/95 text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Outing & Gala
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Evening Gala & Party Glam</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Sophisticated eye definition and long-lasting glow tailored for galas, red carpets, and special dates.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Special Outings</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Gallery Card 6: Bride Glow Transformation -->
+        <a href="gallery.html" class="group rounded-3xl overflow-hidden shadow-xl bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl border border-amber-100/80 flex flex-col cursor-pointer">
+          <div class="relative overflow-hidden h-64 w-full">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=900" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Bridal Glam Session">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-400 text-blue-950 font-bold px-3.5 py-1.5 text-xs shadow-md">
+                <span>View in Gallery</span>
+                <span>➔</span>
+              </span>
+            </div>
+            <span class="absolute top-3 left-3 rounded-full bg-emerald-600/95 text-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider shadow-sm">
+              Luxury Beauty
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-xl text-blue-900 group-hover:text-amber-600 transition">Artisanal Beauty Session</h3>
+              <p class="text-sm text-gray-600 mt-2 leading-relaxed font-light">Precision application using Bluepoppies lip glosses, shimmer oils, and high-pigment palettes.</p>
+            </div>
+            <div class="mt-5 flex items-center justify-between text-xs font-semibold text-amber-700">
+              <span class="inline-flex items-center gap-1">Tap to see full gallery <span>➔</span></span>
+              <span class="text-gray-400 font-normal">Glam Suite</span>
+            </div>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>

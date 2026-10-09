@@ -451,7 +451,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="relative min-h-[50vh] sm:min-h-[55vh] py-12 sm:py-16 overflow-hidden hero-shell flex items-center">
+  <section class="relative min-h-[55vh] sm:min-h-[60vh] py-12 sm:py-16 overflow-hidden hero-shell flex items-center">
 
     <!-- SLIDES -->
     <div class="hero-slide active"
@@ -469,13 +469,14 @@
     <div class="hero-slide"
       style="background-image:url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600');"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center py-10 sm:py-16">
+    <!-- Vignette for image depth -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent pointer-events-none"></div>
 
-      <div class="max-w-3xl hero-copy space-y-6">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center py-8 sm:py-12">
 
+      <div class="max-w-3xl hero-copy bg-black/60 backdrop-blur-md p-6 sm:p-10 rounded-3xl border border-white/20 shadow-2xl space-y-6">
 
-
-        <h1 class="heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.12] text-white">
+        <h1 class="heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.15] text-white tracking-tight drop-shadow-md">
           Elegance in Every Detail,
           <span class="italic text-amber-300 font-normal block sm:inline">
             Growth & Radiance
@@ -483,31 +484,30 @@
           in Every Step.
         </h1>
 
-        <p class="text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed font-light">
+        <p class="text-sm sm:text-base md:text-lg text-slate-100 max-w-2xl leading-relaxed font-normal drop-shadow">
           A modern blend of luxury cosmetics, financial consulting, and bridal event planning — curated for the woman
           who demands perfection in every moment.
         </p>
 
         <!-- Glassmorphism Stats Counter Pill -->
-        <div class="flex flex-wrap gap-4 pt-2">
-          <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-4 py-2.5 text-white">
+        <div class="flex flex-wrap gap-3 sm:gap-4 pt-1">
+          <div class="rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-4 py-2 text-white shadow-sm">
             <span class="block text-lg font-bold text-amber-300">1,500+</span>
-            <span class="text-[10px] uppercase tracking-wider text-slate-300 block font-semibold">Brides & Clients
+            <span class="text-[10px] uppercase tracking-wider text-slate-200 block font-semibold">Brides & Clients
               Glammed</span>
           </div>
-          <div class="rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-4 py-2.5 text-white">
+          <div class="rounded-2xl bg-white/15 border border-white/25 backdrop-blur-md px-4 py-2 text-white shadow-sm">
             <span class="block text-lg font-bold text-amber-300">100%</span>
-            <span class="text-[10px] uppercase tracking-wider text-slate-300 block font-semibold">Artisanal
+            <span class="text-[10px] uppercase tracking-wider text-slate-200 block font-semibold">Artisanal
               Formulas</span>
           </div>
-
         </div>
 
-        <div class="button-row pt-4 flex flex-row items-center gap-2.5 sm:gap-4">
+        <div class="button-row pt-2 flex flex-row items-center gap-2.5 sm:gap-4">
           <button type="button"
             class="open-consultation-modal inline-flex items-center justify-center whitespace-nowrap bg-amber-400 text-blue-950 px-3.5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-extrabold hover:bg-amber-300 shadow-xl transition-all text-xs sm:text-sm uppercase tracking-wider">Book Consultation 📅</button>
           <a href="shop.html"
-            class="inline-flex items-center justify-center whitespace-nowrap bg-white/15 border border-white/30 text-white px-3.5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold hover:bg-white/25 transition-all text-xs sm:text-sm text-center backdrop-blur-md">Shop at Bluepoppies 🌸</a>
+            class="inline-flex items-center justify-center whitespace-nowrap bg-white/20 border border-white/40 text-white px-3.5 sm:px-6 py-3 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold hover:bg-white/30 transition-all text-xs sm:text-sm text-center backdrop-blur-md">Shop at Bluepoppies 🌸</a>
         </div>
 
       </div>
@@ -972,7 +972,6 @@
         <button type="submit"
           class="w-full rounded-2xl bg-amber-300 text-blue-950 font-semibold px-5 py-3 hover:bg-amber-200 transition">Send
           Inquiry</button>
-        <p class="text-xs text-gray-300 mt-3">This opens your email app with the form details ready to send.</p>
       </form>
     </div>
   </section>

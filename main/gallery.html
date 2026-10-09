@@ -238,22 +238,22 @@
             <button
               class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
               data-filter="bridal">
-              👰 Bridal Events
+              Bridal Events
             </button>
             <button
               class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
               data-filter="birthday">
-              👑 Birthday Glam
+              Birthday Glam
             </button>
             <button
               class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
               data-filter="outing">
-              ✨ Outings & Parties
+              Outings & Parties
             </button>
             <button
               class="filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all"
               data-filter="editorial">
-              📸 Editorial Shoots
+              Editorial Shoots
             </button>
           </div>
         </div>
@@ -264,24 +264,7 @@
     <section class="py-16 bg-[#f7f3ef] px-4 sm:px-6">
       <div class="max-w-7xl mx-auto">
 
-        <!-- Info Banner for User -->
-        <div
-          class="mb-10 rounded-2xl bg-amber-50 border border-amber-200/80 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">📸</span>
-            <div>
-              <p class="text-xs sm:text-sm font-bold text-amber-950">30 Image Portfolio Framework Ready</p>
-              <p class="text-xs text-amber-800/80">Below are 30 structured image frames for Bridal, Birthday, Outing,
-                and Editorial looks. Replace any <code
-                  class="bg-amber-100 px-1 py-0.5 rounded font-mono text-[11px]">src</code> with your own 30 photo files
-                anytime!</p>
-            </div>
-          </div>
-          <span
-            class="text-xs font-extrabold text-blue-900 bg-white px-3.5 py-1.5 rounded-xl border border-amber-200 shadow-sm shrink-0">
-            Interactive Lightbox Enabled 🔍
-          </span>
-        </div>
+
 
         <!-- Grid Container -->
         <div id="galleryContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -677,222 +660,238 @@
           </a>
         </div>
       </div>
-  <!-- Contact Us Section -->
-  <section id="contact" class="py-20 bg-gradient-to-r from-[#071733] via-[#0b2554] to-[#071733] text-white border-t border-amber-900/40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <span class="text-amber-300 uppercase tracking-[0.35em] text-xs font-bold block mb-2">GET IN TOUCH</span>
-        <h2 class="heading text-3xl sm:text-5xl font-bold mt-2 leading-tight">Let’s Plan Your Next Elegant Celebration</h2>
-        <p class="mt-4 text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-          Whether you need bridal event planning, makeup consultation, bespoke cosmetics, or custom styling, our founders are ready to assist you.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a href="tel:+2348140000000" class="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-sm font-semibold text-white hover:bg-white/20 transition backdrop-blur">
-            <span class="text-xl">📞</span> Call +234 814 000 0000
-          </a>
-          <a href="consultation.html" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 text-blue-950 font-bold px-6 py-4 text-sm hover:bg-amber-300 transition shadow-lg">
-            Book Online Consultation →
-          </a>
+      <!-- Contact Us Section -->
+      <section id="contact"
+        class="py-20 bg-gradient-to-r from-[#071733] via-[#0b2554] to-[#071733] text-white border-t border-amber-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <span class="text-amber-300 uppercase tracking-[0.35em] text-xs font-bold block mb-2">GET IN TOUCH</span>
+            <h2 class="heading text-3xl sm:text-5xl font-bold mt-2 leading-tight">Let’s Plan Your Next Elegant
+              Celebration</h2>
+            <p class="mt-4 text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
+              Whether you need bridal event planning, makeup consultation, bespoke cosmetics, or custom styling, our
+              founders are ready to assist you.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a href="tel:+2348140000000"
+                class="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-sm font-semibold text-white hover:bg-white/20 transition backdrop-blur">
+                <span class="text-xl">📞</span> Call +234 814 000 0000
+              </a>
+              <a href="consultation.html"
+                class="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 text-blue-950 font-bold px-6 py-4 text-sm hover:bg-amber-300 transition shadow-lg">
+                Book Online Consultation →
+              </a>
+            </div>
+          </div>
+
+          <form id="contactForm"
+            class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 shadow-2xl backdrop-blur">
+            <h3 class="heading text-xl sm:text-2xl font-bold text-white mb-5">Send Us A Direct Message</h3>
+
+            <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Name</label>
+            <input name="name" type="text" required
+              class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+              placeholder="Ada Okafor">
+
+            <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Email Address</label>
+            <input name="email" type="email" required
+              class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+              placeholder="you@example.com">
+
+            <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Message /
+              Inquiry</label>
+            <textarea name="message" rows="3" required
+              class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+              placeholder="Tell us about your wedding date, beauty needs, or consultation request..."></textarea>
+
+            <button type="submit"
+              class="w-full rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-5 py-4 hover:bg-amber-300 transition shadow-lg text-sm uppercase tracking-wider">Send
+              Inquiry</button>
+
+          </form>
         </div>
-      </div>
+      </section>
 
-      <form id="contactForm" class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 shadow-2xl backdrop-blur">
-        <h3 class="heading text-xl sm:text-2xl font-bold text-white mb-5">Send Us A Direct Message</h3>
-        
-        <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Name</label>
-        <input name="name" type="text" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="Ada Okafor">
-        
-        <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Email Address</label>
-        <input name="email" type="email" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="you@example.com">
-        
-        <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Message / Inquiry</label>
-        <textarea name="message" rows="3" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="Tell us about your wedding date, beauty needs, or consultation request..."></textarea>
-        
-        <button type="submit" class="w-full rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-5 py-4 hover:bg-amber-300 transition shadow-lg text-sm uppercase tracking-wider">Send Inquiry</button>
-      </form>
-    </div>
-  </section>
+      <!-- Small Footer -->
+      <footer class="bg-blue-950 text-white border-t border-amber-950/40">
+        <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
+          <p class="text-sm text-white/80">© Flourish Poppies 2026 · All Rights Reserved</p>
+          <div class="flex items-center gap-4 social-links">
+            <a href="#" aria-label="Instagram"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <path
+                  d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="Facebook"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <path
+                  d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
+              </svg>
+            </a>
+            <a href="#" aria-label="TikTok"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <path
+                  d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </footer>
 
-  <!-- Small Footer -->
-  <footer class="bg-blue-950 text-white border-t border-amber-950/40">
-    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col items-center gap-5">
-      <p class="text-sm text-white/80">© Flourish Poppies 2026 · All Rights Reserved</p>
-      <div class="flex items-center gap-4 social-links">
-        <a href="#" aria-label="Instagram"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path
-              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7.25a4.75 4.75 0 1 1 0 9.5 4.75 4.75 0 0 1 0-9.5Zm0 1.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5Z" />
-          </svg>
-        </a>
-        <a href="#" aria-label="Facebook"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path
-              d="M13.5 22V13.5h3.45l.52-3.9h-3.97V6.6c0-1.13.32-1.9 1.96-1.9h2.09V1.1h-2.86c-3.57 0-4.22 1.7-4.22 4.18v2.32H7.5v3.9h3.4V22h3.6Z" />
-          </svg>
-        </a>
-        <a href="#" aria-label="TikTok"
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-            <path
-              d="M17.07 4.5a4.78 4.78 0 0 1-1.87-.38v7.59a3.38 3.38 0 1 1-3.44-3.38h1.1c.6 0 1.17.13 1.69.37V3.35h1.52v1.15Zm-5.85 16.67a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5Z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="scripts/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Mobile Drawer Toggle
-      const menuBtn = document.getElementById('menuBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', () => {
-          const isOpen = mobileMenu.classList.toggle('hidden');
-          menuBtn.setAttribute('aria-expanded', String(!isOpen));
-          menuBtn.textContent = !isOpen ? '✕' : '☰';
-        });
-      }
-
-      // Hero Slideshow Controller
-      const slides = document.querySelectorAll('.slide-item');
-      const dots = document.querySelectorAll('.dot-btn');
-      const prevBtn = document.getElementById('prevSlide');
-      const nextBtn = document.getElementById('nextSlide');
-      let currentSlide = 0;
-      let slideTimer = null;
-
-      function showSlide(index) {
-        if (!slides.length) return;
-        currentSlide = (index + slides.length) % slides.length;
-        slides.forEach((slide, idx) => {
-          slide.classList.toggle('opacity-100', idx === currentSlide);
-          slide.classList.toggle('opacity-0', idx !== currentSlide);
-        });
-        dots.forEach((dot, idx) => {
-          if (idx === currentSlide) {
-            dot.className = 'dot-btn h-2.5 w-8 rounded-full bg-amber-400 transition-all';
-          } else {
-            dot.className = 'dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all';
+      <script src="scripts/main.js"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          // Mobile Drawer Toggle
+          const menuBtn = document.getElementById('menuBtn');
+          const mobileMenu = document.getElementById('mobileMenu');
+          if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+              const isOpen = mobileMenu.classList.toggle('hidden');
+              menuBtn.setAttribute('aria-expanded', String(!isOpen));
+              menuBtn.textContent = !isOpen ? '✕' : '☰';
+            });
           }
-        });
-      }
 
-      function startTimer() {
-        stopTimer();
-        slideTimer = setInterval(() => showSlide(currentSlide + 1), 4500);
-      }
-      function stopTimer() {
-        if (slideTimer) clearInterval(slideTimer);
-      }
+          // Hero Slideshow Controller
+          const slides = document.querySelectorAll('.slide-item');
+          const dots = document.querySelectorAll('.dot-btn');
+          const prevBtn = document.getElementById('prevSlide');
+          const nextBtn = document.getElementById('nextSlide');
+          let currentSlide = 0;
+          let slideTimer = null;
 
-      if (prevBtn) prevBtn.addEventListener('click', () => { showSlide(currentSlide - 1); startTimer(); });
-      if (nextBtn) nextBtn.addEventListener('click', () => { showSlide(currentSlide + 1); startTimer(); });
-      dots.forEach((dot) => {
-        dot.addEventListener('click', () => {
-          const idx = Number(dot.getAttribute('data-slide'));
-          showSlide(idx);
-          startTimer();
-        });
-      });
-      startTimer();
+          function showSlide(index) {
+            if (!slides.length) return;
+            currentSlide = (index + slides.length) % slides.length;
+            slides.forEach((slide, idx) => {
+              slide.classList.toggle('opacity-100', idx === currentSlide);
+              slide.classList.toggle('opacity-0', idx !== currentSlide);
+            });
+            dots.forEach((dot, idx) => {
+              if (idx === currentSlide) {
+                dot.className = 'dot-btn h-2.5 w-8 rounded-full bg-amber-400 transition-all';
+              } else {
+                dot.className = 'dot-btn h-2.5 w-2.5 rounded-full bg-white/50 hover:bg-white transition-all';
+              }
+            });
+          }
 
-      // Category Filter Controller
-      const filterPills = document.querySelectorAll('.filter-pill');
-      filterPills.forEach((pill) => {
-        pill.addEventListener('click', () => {
-          filterPills.forEach((p) => {
-            p.className = 'filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all';
+          function startTimer() {
+            stopTimer();
+            slideTimer = setInterval(() => showSlide(currentSlide + 1), 4500);
+          }
+          function stopTimer() {
+            if (slideTimer) clearInterval(slideTimer);
+          }
+
+          if (prevBtn) prevBtn.addEventListener('click', () => { showSlide(currentSlide - 1); startTimer(); });
+          if (nextBtn) nextBtn.addEventListener('click', () => { showSlide(currentSlide + 1); startTimer(); });
+          dots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+              const idx = Number(dot.getAttribute('data-slide'));
+              showSlide(idx);
+              startTimer();
+            });
           });
-          pill.className = 'filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all';
+          startTimer();
 
-          const filterCategory = pill.getAttribute('data-filter');
-          const cards = document.querySelectorAll('.gallery-card');
-          cards.forEach((card) => {
-            const cardCat = card.getAttribute('data-category');
-            if (filterCategory === 'all' || cardCat === filterCategory) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
+          // Category Filter Controller
+          const filterPills = document.querySelectorAll('.filter-pill');
+          filterPills.forEach((pill) => {
+            pill.addEventListener('click', () => {
+              filterPills.forEach((p) => {
+                p.className = 'filter-pill rounded-2xl bg-white border border-amber-200 text-gray-700 hover:bg-amber-50 px-5 py-2.5 text-xs font-bold transition-all';
+              });
+              pill.className = 'filter-pill active rounded-2xl bg-blue-900 text-white px-5 py-2.5 text-xs font-bold shadow-md transition-all';
+
+              const filterCategory = pill.getAttribute('data-filter');
+              const cards = document.querySelectorAll('.gallery-card');
+              cards.forEach((card) => {
+                const cardCat = card.getAttribute('data-category');
+                if (filterCategory === 'all' || cardCat === filterCategory) {
+                  card.style.display = 'block';
+                } else {
+                  card.style.display = 'none';
+                }
+              });
+            });
+          });
+
+          // Lightbox Modal Controller
+          const lightboxModal = document.getElementById('lightboxModal');
+          const lightboxImg = document.getElementById('lightboxImg');
+          const lightboxTitle = document.getElementById('lightboxTitle');
+          const lightboxDesc = document.getElementById('lightboxDesc');
+          const lightboxCategory = document.getElementById('lightboxCategory');
+          const lightboxCounter = document.getElementById('lightboxCounter');
+          const closeLightbox = document.getElementById('closeLightbox');
+          const prevLightbox = document.getElementById('prevLightbox');
+          const nextLightbox = document.getElementById('nextLightbox');
+
+          let visibleCards = [];
+          let activeLightboxIndex = 0;
+
+          function updateVisibleCards() {
+            visibleCards = Array.from(document.querySelectorAll('.gallery-card')).filter(c => c.style.display !== 'none');
+          }
+
+          function openLightbox(index) {
+            updateVisibleCards();
+            if (!visibleCards.length) return;
+            activeLightboxIndex = (index + visibleCards.length) % visibleCards.length;
+            const targetCard = visibleCards[activeLightboxIndex];
+
+            const img = targetCard.querySelector('img');
+            const title = targetCard.getAttribute('data-title') || 'Gallery Look';
+            const desc = targetCard.getAttribute('data-desc') || '';
+            const cat = targetCard.getAttribute('data-category') || 'GLAM';
+
+            lightboxImg.src = img.src;
+            lightboxTitle.textContent = title;
+            lightboxDesc.textContent = desc;
+            lightboxCategory.textContent = cat.toUpperCase();
+            lightboxCounter.textContent = `Look ${activeLightboxIndex + 1} of ${visibleCards.length}`;
+
+            lightboxModal.classList.remove('hidden');
+            lightboxModal.classList.add('flex');
+          }
+
+          document.getElementById('galleryContainer').addEventListener('click', (e) => {
+            const card = e.target.closest('.gallery-card');
+            if (card) {
+              updateVisibleCards();
+              const idx = visibleCards.indexOf(card);
+              if (idx !== -1) openLightbox(idx);
+            }
+          });
+
+          if (closeLightbox) {
+            closeLightbox.addEventListener('click', () => {
+              lightboxModal.classList.add('hidden');
+              lightboxModal.classList.remove('flex');
+            });
+          }
+
+          if (prevLightbox) {
+            prevLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex - 1));
+          }
+
+          if (nextLightbox) {
+            nextLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex + 1));
+          }
+
+          lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+              lightboxModal.classList.add('hidden');
+              lightboxModal.classList.remove('flex');
             }
           });
         });
-      });
-
-      // Lightbox Modal Controller
-      const lightboxModal = document.getElementById('lightboxModal');
-      const lightboxImg = document.getElementById('lightboxImg');
-      const lightboxTitle = document.getElementById('lightboxTitle');
-      const lightboxDesc = document.getElementById('lightboxDesc');
-      const lightboxCategory = document.getElementById('lightboxCategory');
-      const lightboxCounter = document.getElementById('lightboxCounter');
-      const closeLightbox = document.getElementById('closeLightbox');
-      const prevLightbox = document.getElementById('prevLightbox');
-      const nextLightbox = document.getElementById('nextLightbox');
-
-      let visibleCards = [];
-      let activeLightboxIndex = 0;
-
-      function updateVisibleCards() {
-        visibleCards = Array.from(document.querySelectorAll('.gallery-card')).filter(c => c.style.display !== 'none');
-      }
-
-      function openLightbox(index) {
-        updateVisibleCards();
-        if (!visibleCards.length) return;
-        activeLightboxIndex = (index + visibleCards.length) % visibleCards.length;
-        const targetCard = visibleCards[activeLightboxIndex];
-
-        const img = targetCard.querySelector('img');
-        const title = targetCard.getAttribute('data-title') || 'Gallery Look';
-        const desc = targetCard.getAttribute('data-desc') || '';
-        const cat = targetCard.getAttribute('data-category') || 'GLAM';
-
-        lightboxImg.src = img.src;
-        lightboxTitle.textContent = title;
-        lightboxDesc.textContent = desc;
-        lightboxCategory.textContent = cat.toUpperCase();
-        lightboxCounter.textContent = `Look ${activeLightboxIndex + 1} of ${visibleCards.length}`;
-
-        lightboxModal.classList.remove('hidden');
-        lightboxModal.classList.add('flex');
-      }
-
-      document.getElementById('galleryContainer').addEventListener('click', (e) => {
-        const card = e.target.closest('.gallery-card');
-        if (card) {
-          updateVisibleCards();
-          const idx = visibleCards.indexOf(card);
-          if (idx !== -1) openLightbox(idx);
-        }
-      });
-
-      if (closeLightbox) {
-        closeLightbox.addEventListener('click', () => {
-          lightboxModal.classList.add('hidden');
-          lightboxModal.classList.remove('flex');
-        });
-      }
-
-      if (prevLightbox) {
-        prevLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex - 1));
-      }
-
-      if (nextLightbox) {
-        nextLightbox.addEventListener('click', () => openLightbox(activeLightboxIndex + 1));
-      }
-
-      lightboxModal.addEventListener('click', (e) => {
-        if (e.target === lightboxModal) {
-          lightboxModal.classList.add('hidden');
-          lightboxModal.classList.remove('flex');
-        }
-      });
-    });
-  </script>
+      </script>
 </body>
 
 </html>

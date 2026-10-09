@@ -1,51 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bluepoppies Cosmetics | Luxury Beauty & Skin Prep</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
     @keyframes petalFloat {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-160px) rotate(360deg); opacity: 0; }
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-160px) rotate(360deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
+
 <body class="bg-[#fffaf7] text-slate-800 antialiased selection:bg-amber-100 selection:text-amber-900">
-  
+
   <!-- Navigation Header -->
   <nav class="bg-white/95 shadow-sm sticky top-0 z-50 backdrop-blur border-b border-amber-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
       <a href="index.html" class="flex items-center gap-3 min-w-0 group">
-        <img src="assest/logo.png" alt="Bluepoppies logo" loading="eager" class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm" style="transform:translateZ(0);">
+        <img src="assest/logo.png" alt="Bluepoppies logo" loading="eager"
+          class="h-14 w-14 rounded-full object-contain border border-amber-200 bg-white p-1 shadow-sm"
+          style="transform:translateZ(0);">
         <div>
           <h2 class="heading text-lg sm:text-2xl font-bold text-slate-950 truncate">Bluepoppies</h2>
-          <span class="text-[10px] tracking-widest uppercase font-bold text-amber-700 block">Luxury Cosmetics & Beauty</span>
+          <span class="text-[10px] tracking-widest uppercase font-bold text-amber-700 block">Luxury Cosmetics &
+            Beauty</span>
         </div>
       </a>
 
       <ul class="hidden md:flex gap-8 text-slate-700 font-medium text-sm">
         <li><a href="index.html" class="hover:text-amber-700 transition">Home</a></li>
         <li><a href="about.html" class="hover:text-amber-700 transition">About</a></li>
-        <li><a href="shop.html" class="text-amber-800 font-bold border-b-2 border-amber-500 pb-0.5">Shop Bluepoppies</a></li>
+        <li><a href="shop.html" class="text-amber-800 font-bold border-b-2 border-amber-500 pb-0.5">Shop Bluepoppies</a>
+        </li>
         <li><a href="gallery.html" class="hover:text-amber-700 transition">Gallery</a></li>
         <li><a href="consultation.html" class="hover:text-amber-700 transition">Consultation</a></li>
         <li><a href="contact.html" class="hover:text-amber-700 transition">Contact</a></li>
       </ul>
 
       <div class="flex items-center gap-3">
-        <a href="cart.html" class="relative inline-flex items-center justify-center p-2 text-slate-900 hover:text-amber-700 transition" aria-label="View Cart">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-7 h-7">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        <a href="cart.html"
+          class="relative inline-flex items-center justify-center p-2 text-slate-900 hover:text-amber-700 transition"
+          aria-label="View Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8"
+            stroke="currentColor" class="w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
           </svg>
-          <span data-cart-count id="cartCount" class="absolute -top-1 -right-1 bg-amber-500 text-slate-950 font-extrabold text-xs h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">0</span>
+          <span data-cart-count id="cartCount"
+            class="absolute -top-1 -right-1 bg-amber-500 text-slate-950 font-extrabold text-xs h-5 w-5 rounded-full flex items-center justify-center border-2 border-white shadow-sm">0</span>
         </a>
 
-        <button id="menuBtn" class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-amber-200 bg-amber-50 text-slate-900 text-xl shadow-sm" aria-label="Open menu" aria-expanded="false">☰</button>
-        <a href="consultation.html" class="hidden sm:inline-flex bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-5 py-3 rounded-xl hover:shadow-lg transition text-xs uppercase tracking-wider">Book Makeup Session</a>
+        <button id="menuBtn"
+          class="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-xl border border-amber-200 bg-amber-50 text-slate-900 text-xl shadow-sm"
+          aria-label="Open menu" aria-expanded="false">☰</button>
+        <a href="consultation.html"
+          class="hidden sm:inline-flex bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-slate-950 font-extrabold px-5 py-3 rounded-xl hover:shadow-lg transition text-xs uppercase tracking-wider">Book
+          Makeup Session</a>
       </div>
     </div>
 
@@ -53,11 +77,15 @@
     <div id="mobileMenu" class="md:hidden hidden bg-white/95 backdrop-blur-xl shadow-2xl border-t border-amber-100">
       <div class="px-5 py-5 space-y-2">
         <a href="index.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Home</a>
-        <a href="about.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">About Founders</a>
-        <a href="shop.html" class="block rounded-2xl px-4 py-3 bg-amber-100/70 text-slate-950 font-bold">Shop Bluepoppies</a>
+        <a href="about.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">About
+          Founders</a>
+        <a href="shop.html" class="block rounded-2xl px-4 py-3 bg-amber-100/70 text-slate-950 font-bold">Shop
+          Bluepoppies</a>
         <a href="gallery.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Gallery</a>
-        <a href="consultation.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Consultation</a>
-        <a href="contact.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Contact Us</a>
+        <a href="consultation.html"
+          class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Consultation</a>
+        <a href="contact.html" class="block rounded-2xl px-4 py-3 bg-[#fffaf5] text-slate-700 font-medium">Contact
+          Us</a>
       </div>
     </div>
   </nav>
@@ -65,30 +93,30 @@
   <main>
 
     <!-- Luxury Cosmetic Hero Section -->
-    <section class="relative bg-gradient-to-r from-[#210921] via-[#3d1338] to-[#210921] text-white py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
+    <section
+      class="relative bg-gradient-to-r from-[#210921] via-[#3d1338] to-[#210921] text-white py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
       <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-center relative z-10">
-        
+
         <!-- Left Copy Column -->
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 rounded-full bg-amber-400/20 border border-amber-400/40 px-4 py-1.5 text-xs font-extrabold tracking-widest text-amber-300 uppercase">
-            <span>🌸 Bluepoppies Atelier</span>
-            <span>•</span>
-            <span>Bespoke Beauty</span>
-          </div>
+
 
           <h1 class="heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
             Artisanal Cosmetics Made For Your <span class="text-amber-300 italic">Signature Glow</span>
           </h1>
 
           <p class="text-slate-200 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
-            Formulated with botanical poppy seed oils, silk hydration, and zero-flashback pigments. Discover high-shine lip dew, gilded body shimmer, and soft-matte palettes crafted for modern elegance.
+            Formulated with botanical poppy seed oils, silk hydration, and zero-flashback pigments. Discover high-shine
+            lip dew, gilded body shimmer, and soft-matte palettes crafted for modern elegance.
           </p>
 
           <div class="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="#shopCatalog" class="rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold px-8 py-4 shadow-xl transition-all text-sm">
+            <a href="#shopCatalog"
+              class="rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-extrabold px-8 py-4 shadow-xl transition-all text-sm">
               Explore Collection ↓
             </a>
-            <a href="consultation.html" class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 transition-all text-sm backdrop-blur">
+            <a href="consultation.html"
+              class="rounded-2xl border border-white/20 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 transition-all text-sm backdrop-blur">
               Book Makeup Consultation 💄
             </a>
           </div>
@@ -96,29 +124,31 @@
           <div class="pt-6 grid grid-cols-3 gap-4 max-w-lg border-t border-white/15">
             <div>
               <span class="block text-xl font-bold text-amber-300 heading">100%</span>
-              <span class="text-[11px] text-slate-300 uppercase tracking-wider block">Botanical Care</span>
+              <span class="text-[11px] text-slate-300 uppercase tracking-wider block">professional Client Care</span>
             </div>
             <div>
               <span class="block text-xl font-bold text-amber-300 heading">Camera</span>
               <span class="text-[11px] text-slate-300 uppercase tracking-wider block">Clear Finish</span>
             </div>
-            <div>
-              <span class="block text-xl font-bold text-amber-300 heading">Dual</span>
-              <span class="text-[11px] text-slate-300 uppercase tracking-wider block">₦ NGN & CA$ CAD</span>
-            </div>
+
           </div>
         </div>
 
         <!-- Right Hero Visual Box -->
         <div class="lg:col-span-5 relative">
           <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-300/30 group">
-            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900" alt="Bluepoppies Cosmetics Collection" class="w-full h-[420px] object-cover group-hover:scale-105 transition duration-700" />
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=900"
+              alt="Bluepoppies Cosmetics Collection"
+              class="w-full h-[420px] object-cover group-hover:scale-105 transition duration-700" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#210921]/90 via-transparent to-transparent"></div>
-            
-            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 text-white">
-              <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">Featured Formula</span>
+
+            <div
+              class="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 text-white">
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-300 block">Featured
+                Formula</span>
               <h3 class="heading font-bold text-lg text-white mt-0.5">Poppy Dew & Gilded Shimmer Elixirs</h3>
-              <p class="text-xs text-slate-200 mt-1">Lightweight hydration engineered for bridal portraits and evening celebrations.</p>
+              <p class="text-xs text-slate-200 mt-1">Lightweight hydration engineered for bridal portraits and evening
+                celebrations.</p>
             </div>
           </div>
         </div>
@@ -127,16 +157,20 @@
     </section>
 
     <!-- Makeup Consultation Reminder Banner -->
-    <section class="bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 border-y border-amber-200/80 py-8 px-4 sm:px-6">
+    <section
+      class="bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 border-y border-amber-200/80 py-8 px-4 sm:px-6">
       <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-3 text-center sm:text-left">
           <span class="text-3xl">💄</span>
           <div>
-            <h3 class="heading font-bold text-slate-950 text-lg sm:text-xl">Planning a Wedding, Birthday, or Special Event?</h3>
-            <p class="text-xs sm:text-sm text-slate-700 mt-0.5">Book your private 1-on-1 Makeup Session with Bluepoppies Founder for a customized glam trial!</p>
+            <h3 class="heading font-bold text-slate-950 text-lg sm:text-xl">Planning a Wedding, Birthday, or Special
+              Event?</h3>
+            <p class="text-xs sm:text-sm text-slate-700 mt-0.5">Book your private 1-on-1 Makeup Session with Bluepoppies
+              Founder for a customized glam trial!</p>
           </div>
         </div>
-        <a href="consultation.html" class="rounded-2xl bg-slate-950 hover:bg-slate-800 text-amber-300 font-extrabold px-6 py-3 text-xs uppercase tracking-wider shrink-0 shadow-md transition">
+        <a href="consultation.html"
+          class="rounded-2xl bg-slate-950 hover:bg-slate-800 text-amber-300 font-extrabold px-6 py-3 text-xs uppercase tracking-wider shrink-0 shadow-md transition">
           Book Session Now →
         </a>
       </div>
@@ -145,17 +179,15 @@
     <!-- Catalog Section -->
     <section id="shopCatalog" class="py-16 px-4 sm:px-6">
       <div class="max-w-7xl mx-auto space-y-8">
-        
+
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-amber-200/60 pb-6">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-[0.3em] text-amber-700 block">BLUEPOPPIES ATELIER</span>
+            <span class="text-xs font-extrabold uppercase tracking-[0.3em] text-amber-700 block">BLUEPOPPIES
+              ATELIER</span>
             <h2 class="heading text-3xl sm:text-4xl font-bold text-slate-950 mt-1">Curated Beauty Essentials</h2>
           </div>
-          
-          <div class="inline-flex items-center gap-2 text-xs font-bold text-slate-700 bg-white px-4 py-2 rounded-2xl border border-amber-200 shadow-sm">
-            <span>Dual Currency Display:</span>
-            <span class="text-amber-800">₦ NGN + CA$ CAD</span>
-          </div>
+
+
         </div>
 
         <!-- Rendered Products Grid (Populated by shop.js) -->
@@ -167,38 +199,52 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section id="contact" class="py-20 bg-gradient-to-r from-[#071733] via-[#0b2554] to-[#071733] text-white border-t border-amber-900/40">
+    <section id="contact"
+      class="py-20 bg-gradient-to-r from-[#071733] via-[#0b2554] to-[#071733] text-white border-t border-amber-900/40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
         <div>
           <span class="text-amber-300 uppercase tracking-[0.35em] text-xs font-bold block mb-2">GET IN TOUCH</span>
-          <h2 class="heading text-3xl sm:text-5xl font-bold mt-2 leading-tight">Let’s Plan Your Next Elegant Celebration</h2>
+          <h2 class="heading text-3xl sm:text-5xl font-bold mt-2 leading-tight">Let’s Plan Your Next Elegant Celebration
+          </h2>
           <p class="mt-4 text-slate-300 max-w-xl text-sm sm:text-base leading-relaxed">
-            Whether you need bridal event planning, makeup consultation, bespoke cosmetics, or custom styling, our founders are ready to assist you.
+            Whether you need bridal event planning, makeup consultation, bespoke cosmetics, or custom styling, our
+            founders are ready to assist you.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="tel:+2348140000000" class="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-sm font-semibold text-white hover:bg-white/20 transition backdrop-blur">
+            <a href="tel:+2348140000000"
+              class="inline-flex items-center justify-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-6 py-4 text-sm font-semibold text-white hover:bg-white/20 transition backdrop-blur">
               <span class="text-xl">📞</span> Call +234 814 000 0000
             </a>
-            <a href="consultation.html" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 text-blue-950 font-bold px-6 py-4 text-sm hover:bg-amber-300 transition shadow-lg">
+            <a href="consultation.html"
+              class="inline-flex items-center justify-center gap-2 rounded-2xl bg-amber-400 text-blue-950 font-bold px-6 py-4 text-sm hover:bg-amber-300 transition shadow-lg">
               Book Online Consultation →
             </a>
           </div>
         </div>
 
-        <form id="contactForm" class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 shadow-2xl backdrop-blur">
+        <form id="contactForm"
+          class="rounded-3xl border border-white/15 bg-white/10 p-6 sm:p-8 shadow-2xl backdrop-blur">
           <h3 class="heading text-xl sm:text-2xl font-bold text-white mb-5">Send Us A Direct Message</h3>
-          
+
           <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Name</label>
-          <input name="name" type="text" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="Ada Okafor">
-          
+          <input name="name" type="text" required
+            class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+            placeholder="Ada Okafor">
+
           <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Email Address</label>
-          <input name="email" type="email" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="you@example.com">
-          
-          <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Message / Inquiry</label>
-          <textarea name="message" rows="3" required class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium" placeholder="Tell us about your wedding date, beauty needs, or consultation request..."></textarea>
-          
-          <button type="submit" class="w-full rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-5 py-4 hover:bg-amber-300 transition shadow-lg text-sm uppercase tracking-wider">Send Inquiry</button>
-          <p class="text-[11px] text-slate-400 mt-3 text-center">Your request will be sent directly to our executive team.</p>
+          <input name="email" type="email" required
+            class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+            placeholder="you@example.com">
+
+          <label class="block text-xs uppercase tracking-wider text-amber-200 mb-2 font-bold">Your Message /
+            Inquiry</label>
+          <textarea name="message" rows="3" required
+            class="w-full rounded-2xl border border-white/15 bg-white/95 text-slate-900 px-4 py-3.5 mb-4 focus:outline-none focus:ring-2 focus:ring-amber-300 text-sm font-medium"
+            placeholder="Tell us about your wedding date, beauty needs, or consultation request..."></textarea>
+
+          <button type="submit"
+            class="w-full rounded-2xl bg-amber-400 text-blue-950 font-extrabold px-5 py-4 hover:bg-amber-300 transition shadow-lg text-sm uppercase tracking-wider">Send
+            Inquiry</button>
         </form>
       </div>
     </section>
@@ -229,4 +275,5 @@
     });
   </script>
 </body>
+
 </html>
